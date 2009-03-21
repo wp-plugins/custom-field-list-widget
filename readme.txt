@@ -27,20 +27,20 @@ Available in the languages: English, German
 
 == Installation ==
 
-Put the files and the folders from the .zip-file into a separate folder in the main plugins folder (e.g. /wp-content/plugins) of your weblog.
-The files should be stored like this:
-/wp-content/plugins/widget_custom_field_list/widget_custom_field_list.php
-/wp-content/plugins/widget_custom_field_list/widget_custom_field_list_js.php
-/wp-content/plugins/widget_custom_field_list/widget_custom_field_list.css
-/wp-content/plugins/widget_custom_field_list/customfieldlist-de_DE.mo (german localization file)
-/wp-content/plugins/widget_custom_field_list/customfieldlist-de_DE.po (german localization file)
-/wp-content/plugins/widget_custom_field_list/uninstall.php
+* Put the files and the folders from the .zip-file into a separate folder in the main plugins folder (e.g. /wp-content/plugins) of your weblog.
+* The files should be stored like this:
+ /wp-content/plugins/widget_custom_field_list/widget_custom_field_list.php
+ /wp-content/plugins/widget_custom_field_list/widget_custom_field_list_js.php
+ /wp-content/plugins/widget_custom_field_list/widget_custom_field_list.css
+ /wp-content/plugins/widget_custom_field_list/customfieldlist-de_DE.mo (german localization file)
+ /wp-content/plugins/widget_custom_field_list/customfieldlist-de_DE.po (german localization file)
+ /wp-content/plugins/widget_custom_field_list/uninstall.php
+ 
+ /wp-content/plugins/widget_custom_field_list/custom_field_list_k2_widget.php (move this file into the /app/modules/-folder of the K2-theme if you are using the K2 theme e.g.: /wp-content/themes/k2/app/modules/)
 
-/wp-content/plugins/widget_custom_field_list/custom_field_list_k2_widget.php (move this file into the /app/modules/-folder of the K2-theme if you are using the K2 theme e.g.: /wp-content/themes/k2/app/modules/)
+* Since WP 2.7 you can upload the .zip-file at once and the files will be put in the right place automatically - except for the K2 theme file.
 
-Since WP 2.7 you can upload the .zip-file at once and the files will be put in the right place automatically - except for the K2 theme file.
-
-Activate the plugin.
+* Activate the plugin.
 
 
 == Screenshots ==
