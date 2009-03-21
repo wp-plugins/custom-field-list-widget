@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-16 21:15+0100\n"
-"PO-Revision-Date: 2009-03-16 21:15+0100\n"
+"POT-Creation-Date: 2009-03-21 00:45+0100\n"
+"PO-Revision-Date: 2009-03-21 00:45+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,63 +13,68 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp27en\\wp-content\\plugins\\widget_custom_field_list\n"
+"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp28en\\wp-content\\plugins\\widget_custom_field_list\n"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:105
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:276
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:329
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:330
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:334
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:335
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:97
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:273
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:326
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:327
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:331
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:332
 msgid "Custom Field List"
 msgstr "Spezialfeldliste"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:160
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:169
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:153
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:162
 msgid "in"
 msgstr "in"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:179
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:172
+#, php-format
+msgid "There are no values in connection to the custom field name %1$s in the data base."
+msgstr "Es gibt keine, mit dem Spezialfeldnamen %1$s in Verbindung stehenden, Werte in der Datenbank."
+
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:175
 msgid "Please, define a custom field name!"
 msgstr "Bitte, definieren Sie einen Spezialfeldnamen!"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:182
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:178
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Es konnten keine Daten des Widgets aus der Datenbank geladen werde."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:188
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:185
 msgid "part"
 msgstr "Teil"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:283
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:280
 msgid "Header (optional)"
 msgstr "&Uuml;berschrift (optional)"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:283
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:280
 msgid "Leave the field empty for no widget title"
 msgstr "kein Titel: das Feld leer lassen"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:284
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:281
 msgid "Custom Field Name"
 msgstr "Spezialfeldname"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:286
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:288
-msgid "show only a part of the list elements at once"
-msgstr "nur einen Teil der Listenelemente auf einmal anzeigen"
-
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:291
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:293
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:283
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:285
 msgid "sort the values by the last word"
 msgstr "die Werte nach deren letztem Wort sortieren"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:295
-msgid "points per part of the list"
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:288
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:290
+msgid "show only a part of the list elements at once"
+msgstr "nur einen Teil der Listenelemente auf einmal anzeigen"
+
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:292
+msgid "elements per part of the list"
 msgstr "Elemente pro Listenteil"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:308
+#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:305
 msgid "Displays a list of custom field values of a set key"
 msgstr "Zeigt eine Liste von Spezialfeldwerten eines bestimmten Spezialfeldnamens an"
 
