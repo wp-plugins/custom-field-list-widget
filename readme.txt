@@ -4,7 +4,7 @@ Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 0.8
+Stable tag: 0.8.1
 
 This plugin makes a list of custom field information in the sidebar.
 
@@ -43,6 +43,16 @@ Since WP 2.7 you can upload the .zip-file at once and the files will be put in t
 Activate the plugin.
 
 
+== Screenshots ==
+
+[Please, have a look at the plugins page.](http://undeuxoutrois.de/custom_field_list_widget.shtml "Screenshots at the plugins page")
+
+
+== Frequently Asked Questions ==
+
+No questions so far. (Please, have look to "Other notes" and "Usage".)
+
+
 == Usage ==
 
 Usage of "sort values by the last word" (since v0.7):
@@ -50,15 +60,16 @@ Usage of "sort values by the last word" (since v0.7):
 You can influence which word the last word is by using _ between the words. If you make a _ between two words it will be seen as one word.
 
 example:
+
 	names with more than one first and family name
 		
-		Jon Jake Stewart Brown
-		the last word is Brown
+	Jon Jake Stewart Brown
+	the last word is Brown
 		
-		Jon Jake Stewart_Brown
-		the last word is "Stewart Brown"
-		
-	The _ will not displayed in the sidebar.
+	Jon Jake Stewart_Brown
+	the last word is "Stewart Brown"
+
+The _ will not displayed in the sidebar.
 
 
 == Deinstallation ==
@@ -68,6 +79,11 @@ Deactivate the plugin.
 Delete the folders and files of the plugin (don't forget the file from the K2 theme folder if you have used that).
 
 
-== Screenshots ==
+== Change Log ==
 
-[Please, have a look at the plugins page.](http://undeuxoutrois.de/custom_field_list_widget.shtml "Screenshots at the plugins page")
+v0.8.1:
+-added an error message for the case that no values in connection to the choosen custom field name can be found
+-changed a description (widgets page)
+
+v0.8:
+-first release at wordpress.org
