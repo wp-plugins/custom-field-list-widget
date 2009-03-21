@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This widget lists all values of a custom field, groups equal values and (hyper-) links the values to their posts. || Dieses Widget erzeugt eine Liste aus den Werten eines Spezialfeldes, gruppiert mehrfach vorkommende Werte und verlinkt die Werte ihren Beitr&auml;gen.
 Author: Tim Berger
-Version: 0.8
+Version: 0.8.1
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
 Max WP Version: 
@@ -118,76 +118,81 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$meta_values =  $wpdb->get_results($querystring);
 				$nr_meta_values = count($meta_values);
 				
-				if ( 'lastword' === $opt['orderelement'] ) {
-					for ( $i=0; $i < $nr_meta_values; $i++ ) {
-						$mvals[] = str_replace("_", " ", end(str_word_count($meta_values[$i]->meta_value, 1, "0123456789_.")));
-					}
-					asort($mvals);
-					$mval_keys = array_keys($mvals);
-				}
-				
-				for ( $i=0; $i < $nr_meta_values; $i++ ) {
+				if ($nr_meta_values > 0) {
 					if ( 'lastword' === $opt['orderelement'] ) {
-						$meta_value = str_replace("_", " ", $meta_values[intval($mval_keys[$i])]->meta_value);
-						if (0 == $i) {
-							$meta_value_minus_one = "";
-						} else {
-							$meta_value_minus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i-1]))]->meta_value);
+						for ( $i=0; $i < $nr_meta_values; $i++ ) {
+							$mvals[] = str_replace("_", " ", end(str_word_count($meta_values[$i]->meta_value, 1, "0123456789_.")));
 						}
-						$meta_value_plus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i+1]))]->meta_value);
-						$key = intval($mval_keys[$i]);						
-					} else {
-						$meta_value = str_replace("_", " ", $meta_values[$i]->meta_value);
-						$meta_value_minus_one = str_replace("_", " ", $meta_values[($i-1)]->meta_value);
-						$meta_value_plus_one = str_replace("_", " ", $meta_values[($i+1)]->meta_value);
-						$key = $i;
-					}
-					$singlevisit = TRUE;
-					if ( $meta_value != $meta_value_minus_one AND $meta_value == $meta_value_plus_one ) {
-						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$j.'"'.">\n\t".'<span class="customfieldtitle">'.$meta_value.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t".'<ul class="customfieldsublist">'."\n";
-						$singlevisit = FALSE;
-						$k++;
-					}
-					if ( $meta_value == $meta_value_minus_one OR $meta_value == $meta_value_plus_one ) {
-						echo "\t\t".'<li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li>\n";
-						$singlevisit = FALSE;
-					}
-					if ( $meta_value == $meta_value_minus_one AND $meta_value != $meta_value_plus_one ) {
-						echo "\t</ul>\n\t</li>\n";
-						$singlevisit = FALSE;
+						asort($mvals);
+						$mval_keys = array_keys($mvals);
 					}
 					
-					if ( $singlevisit === TRUE ) {
-						echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_value."</a></li>\n";
-						$k++;
+					for ( $i=0; $i < $nr_meta_values; $i++ ) {
+						if ( 'lastword' === $opt['orderelement'] ) {
+							$meta_value = str_replace("_", " ", $meta_values[intval($mval_keys[$i])]->meta_value);
+							if (0 == $i) {
+								$meta_value_minus_one = "";
+							} else {
+								$meta_value_minus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i-1]))]->meta_value);
+							}
+							$meta_value_plus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i+1]))]->meta_value);
+							$key = intval($mval_keys[$i]);						
+						} else {
+							$meta_value = str_replace("_", " ", $meta_values[$i]->meta_value);
+							$meta_value_minus_one = str_replace("_", " ", $meta_values[($i-1)]->meta_value);
+							$meta_value_plus_one = str_replace("_", " ", $meta_values[($i+1)]->meta_value);
+							$key = $i;
+						}
+						$singlevisit = TRUE;
+						if ( $meta_value != $meta_value_minus_one AND $meta_value == $meta_value_plus_one ) {
+							echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$j.'"'.">\n\t".'<span class="customfieldtitle">'.$meta_value.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t".'<ul class="customfieldsublist">'."\n";
+							$singlevisit = FALSE;
+							$k++;
+						}
+						if ( $meta_value == $meta_value_minus_one OR $meta_value == $meta_value_plus_one ) {
+							echo "\t\t".'<li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li>\n";
+							$singlevisit = FALSE;
+						}
+						if ( $meta_value == $meta_value_minus_one AND $meta_value != $meta_value_plus_one ) {
+							echo "\t</ul>\n\t</li>\n";
+							$singlevisit = FALSE;
+						}
+						
+						if ( $singlevisit === TRUE ) {
+							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_value."</a></li>\n";
+							$k++;
+						}
+						
+						if (  ($k > 0) AND ($partlength < $nr_meta_values) AND $k !== $k_odd AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
+							$j++;
+						}
+						$k_odd = $k;
 					}
-					
-					if (  ($k > 0) AND ($partlength < $nr_meta_values) AND $k !== $k_odd AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
-						$j++;
-					}
-					$k_odd = $k;
+				} else {
+					echo "<li>".sprintf(__('There are no values in connection to the custom field name %1$s in the data base.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 				}
 			} else {
-				echo "<li>".__('Please, define a custom field name!','customfieldlist')."</li>";
+				echo "<li>".__('Please, define a custom field name!','customfieldlist')."</li>\n";
 			}
 		} else {
-			echo "<li>".__('Unable to retrieve the data of the customfield list widget from the db.','customfieldlist')."</li>";
+			echo "<li>".__('Unable to retrieve the data of the customfield list widget from the db.','customfieldlist')."</li>\n";
 		}
+		
 		echo "</ul>\n";
 		echo '<input type="hidden" id="customfieldlistelements_'.$number.'" value="'.$j.'"'." />\n";
 		if ($j > 0 AND $k > $partlength) {
-		echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
-		echo __('part','customfieldlist').": ";
-			if ( 0 === ($k % $partlength) ) {
-				for ($i=0; $i<$j; $i++) {
-					echo '[<a href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+			echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
+			echo __('part','customfieldlist').": ";
+				if ( 0 === ($k % $partlength) ) {
+					for ($i=0; $i<$j; $i++) {
+						echo '[<a href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+					}
+				} else {
+					for ($i=0; $i<=$j; $i++) {
+						echo '[<a href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+					}
 				}
-			} else {
-				for ($i=0; $i<=$j; $i++) {
-					echo '[<a href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
-				}
-			}
-		echo "</p>\n";
+			echo "</p>\n";
 		}
 	echo $after_widget."\n";
 }
@@ -284,7 +289,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 	} else {
 		echo '<p style="text-align:center;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" /></p>';
 	}
-	echo '<p style="text-align:center;">'.__('points per part of the list','customfieldlist').' (X>=3): <input type="text" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="200" /></p>';
+	echo '<p style="text-align:center;">'.__('elements per part of the list','customfieldlist').' (X>=3): <input type="text" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="200" /></p>';
 	echo '<input type="hidden" id="customfieldlist-submit-'.$number.'" name="customfieldlist-submit['.$number.'][submit]" value="1" />';
 }
 
