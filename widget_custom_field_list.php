@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This widget lists all values of a custom field, groups equal values and (hyper-) links the values to their posts. || Dieses Widget erzeugt eine Liste aus den Werten eines Spezialfeldes, gruppiert mehrfach vorkommende Werte und verlinkt die Werte ihren Beitr&auml;gen.
 Author: Tim Berger
-Version: 0.8.1
+Version: 0.9
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
 Max WP Version: 
@@ -58,6 +58,7 @@ if ( ! defined( 'WP_CONTENT_DIR' ) ) { define( 'WP_CONTENT_DIR', ABSPATH . 'wp-c
 if ( ! defined( 'WP_PLUGIN_URL' ) ) { define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' ); }
 if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' ); }
 
+
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
 	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__))) );
@@ -69,6 +70,7 @@ register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
 function customfieldlist_on_deactivation() { 
 	delete_option('widget_custom_field_list');
 }
+
 
 // produces the list in the sidebar
 function customfieldlist($args=array(), $widget_args=1) {
@@ -94,13 +96,13 @@ function customfieldlist($args=array(), $widget_args=1) {
 	if ( FALSE !== $opt AND !empty($opt['header']) ) {
 		$header = $opt['header'];
 	} else {
-		$header =  __('Custom Field List','customfieldlist') ;
+		$header =  __('Custom Field List','customfieldlist');
 	}
 	
 	echo $before_widget."\n";
 		echo $before_title.$header.$after_title . "\n";
 		echo '<input type="hidden" name="customfieldlist_widget_id" value="'.$number.'"'." />\n";
-		if ( 'yes' === $opt['partlist'] AND $partlength >= 3) {
+		if ('yes' === $opt['partlist'] AND $partlength >= 3) {
 			echo '<input type="hidden" id="customfieldlistpartlist_'.$number.'" value="yes"'." />\n";
 		} else {
 			echo '<input type="hidden" id="customfieldlistpartlist_'.$number.'" value="no"'." />\n";
@@ -111,19 +113,49 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$only_public = ' AND p.post_status = "publish"';
 		}
 		$j=$k=0;
+		
 		echo "<ul>\n";
 		if (FALSE !== $opt) {
 			if ( !empty($opt['customfieldname']) ) {
-				$querystring = 'SELECT pm.post_id, pm.meta_value, p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$opt['customfieldname'].'"'.$only_public.' ORDER BY pm.meta_value ASC';
+				if ( (defined('DB_COLLATE') AND '' != DB_COLLATE) OR (isset($opt['db_collate']) AND !empty($opt['db_collate'])) ) {
+					if ( '' == DB_COLLATE ) {
+						$collation_string = $opt['db_collate'];
+					} else {
+						$collation_string = DB_COLLATE;
+					}
+					$querystring = 'SELECT pm.post_id, pm.meta_value, p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$opt['customfieldname'].'"'.$only_public.' ORDER BY pm.meta_value COLLATE '.$collation_string.', LENGTH(pm.meta_value)';
+				} else {
+					$querystring = 'SELECT pm.post_id, pm.meta_value, p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$opt['customfieldname'].'"'.$only_public.' ORDER BY pm.meta_value, LENGTH(pm.meta_value)';
+				}
 				$meta_values =  $wpdb->get_results($querystring);
 				$nr_meta_values = count($meta_values);
 				
 				if ($nr_meta_values > 0) {
 					if ( 'lastword' === $opt['orderelement'] ) {
-						for ( $i=0; $i < $nr_meta_values; $i++ ) {
-							$mvals[] = str_replace("_", " ", end(str_word_count($meta_values[$i]->meta_value, 1, "0123456789_.")));
+						$mvals=array();
+						$old_locale = setlocale(LC_COLLATE, "0");
+						
+						if (FALSE !== strpos(strtolower(php_uname('s')), 'win') AND function_exists('mb_convert_encoding')) {
+							for ( $i=0; $i < $nr_meta_values; $i++ ) {
+								$mvals[] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/u", $meta_values[$i]->meta_value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
+							}
+							// build the charset name and setlocale on Windows machines 
+							$loc = setlocale(LC_COLLATE, $opt['win_country_codepage']);
+						} else {
+							for ( $i=0; $i < $nr_meta_values; $i++ ) {
+								$mvals[] = str_replace("_", " ", end(preg_split("/\s+/u", $meta_values[$i]->meta_value, -1, PREG_SPLIT_NO_EMPTY)));
+							}
+							// build the charset name and setlocale on Linux (or other) machines 
+							$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
 						}
-						asort($mvals);
+						
+						// sort the meta_values
+						asort($mvals, SORT_LOCALE_STRING);
+						
+						//turn the locale back
+						$loc=setlocale(LC_COLLATE, $old_locale);
+						
+						// get the keys with the new order
 						$mval_keys = array_keys($mvals);
 					}
 					
@@ -135,7 +167,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 							} else {
 								$meta_value_minus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i-1]))]->meta_value);
 							}
-							$meta_value_plus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i+1]))]->meta_value);
+							if (($nr_meta_values-1) == $i) {
+								$meta_value_plus_one = "";
+							} else {
+								$meta_value_plus_one = str_replace("_", " ", $meta_values[(intval($mval_keys[$i+1]))]->meta_value);
+							}
 							$key = intval($mval_keys[$i]);						
 						} else {
 							$meta_value = str_replace("_", " ", $meta_values[$i]->meta_value);
@@ -143,26 +179,49 @@ function customfieldlist($args=array(), $widget_args=1) {
 							$meta_value_plus_one = str_replace("_", " ", $meta_values[($i+1)]->meta_value);
 							$key = $i;
 						}
-						$singlevisit = TRUE;
-						if ( $meta_value != $meta_value_minus_one AND $meta_value == $meta_value_plus_one ) {
-							echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$j.'"'.">\n\t".'<span class="customfieldtitle">'.$meta_value.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t".'<ul class="customfieldsublist">'."\n";
-							$singlevisit = FALSE;
-							$k++;
-						}
-						if ( $meta_value == $meta_value_minus_one OR $meta_value == $meta_value_plus_one ) {
-							echo "\t\t".'<li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li>\n";
-							$singlevisit = FALSE;
-						}
-						if ( $meta_value == $meta_value_minus_one AND $meta_value != $meta_value_plus_one ) {
-							echo "\t</ul>\n\t</li>\n";
-							$singlevisit = FALSE;
-						}
 						
-						if ( $singlevisit === TRUE ) {
-							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_value."</a></li>\n";
-							$k++;
+						switch ($opt['list_layout']) {
+							case 'each_element_with_sub_element' :
+								$singlevisit = TRUE;
+								if ( $meta_value != $meta_value_minus_one AND $meta_value == $meta_value_plus_one AND $nr_meta_values > 1 ) {
+									echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$j.'"'.">\n\t".$meta_value."\n\t".'<ul>'."\n";
+									$singlevisit = FALSE;
+									$k++;
+								}
+								if ( $meta_value == $meta_value_minus_one OR $meta_value == $meta_value_plus_one AND $nr_meta_values > 1 ) {
+									echo "\t\t".'<li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li>\n";
+									$singlevisit = FALSE;
+								}
+								if ( $meta_value == $meta_value_minus_one AND $meta_value != $meta_value_plus_one OR ($i == ($nr_meta_values-1) AND FALSE === $singlevisit) ) {
+									echo "\t</ul>\n\t</li>\n";
+								}
+								
+								if ( $singlevisit === TRUE ) {
+									echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value.'<ul><li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li></ul></li>\n";
+									$k++;
+								}
+							break;
+							default :
+								$singlevisit = TRUE;
+								if ( $meta_value != $meta_value_minus_one AND $meta_value == $meta_value_plus_one AND $nr_meta_values > 1 ) {
+									echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$j.'"'.">\n\t".'<span class="customfieldtitle">'.$meta_value.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t".'<ul class="customfieldsublist">'."\n";
+									$singlevisit = FALSE;
+									$k++;
+								}
+								if ( $meta_value == $meta_value_minus_one OR $meta_value == $meta_value_plus_one AND $nr_meta_values > 1 ) {
+									echo "\t\t".'<li><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_values[$key]->post_title."</a></li>\n";
+									$singlevisit = FALSE;
+								}
+								if ( $meta_value == $meta_value_minus_one AND $meta_value != $meta_value_plus_one OR ($i == ($nr_meta_values-1) AND FALSE === $singlevisit)  ) {
+									echo "\t</ul>\n\t</li>\n";
+								}
+								
+								if ( $singlevisit === TRUE ) {
+									echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink($meta_values[$key]->post_id).'" title="'.$meta_value." ".__('in','customfieldlist')." ".$meta_values[$key]->post_title.'">'.$meta_value."</a></li>\n";
+									$k++;
+								}
+							break;
 						}
-						
 						if (  ($k > 0) AND ($partlength < $nr_meta_values) AND $k !== $k_odd AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
 							$j++;
 						}
@@ -177,8 +236,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			echo "<li>".__('Unable to retrieve the data of the customfield list widget from the db.','customfieldlist')."</li>\n";
 		}
+		echo "</ul><!-- ul end --> \n";
 		
-		echo "</ul>\n";
 		echo '<input type="hidden" id="customfieldlistelements_'.$number.'" value="'.$j.'"'." />\n";
 		if ($j > 0 AND $k > $partlength) {
 			echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
@@ -194,7 +253,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				}
 			echo "</p>\n";
 		}
-	echo $after_widget."\n";
+	echo $after_widget."<!-- after_widget -->\n";
 }
 
 /*
@@ -246,8 +305,13 @@ function customfieldlist($args=array(), $widget_args=1) {
 			if ( !isset($_POST['customfieldlist_opt'][$widget_number]) OR !is_array($_POST['customfieldlist_opt'][$widget_number]) ) {// user clicked cancel
 				continue;
 			}
-			$opt[$widget_number]['header'] = attribute_escape(strip_tags(trim($_POST['customfieldlist_opt'][$widget_number]['header'])));
-			$opt[$widget_number]['customfieldname'] = attribute_escape(strip_tags(trim($_POST['customfieldlist_opt'][$widget_number]['customfieldname'])));
+			$opt[$widget_number]['header'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['header'])));
+			$opt[$widget_number]['customfieldname'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['customfieldname'])));
+			if ( !isset($_POST['customfieldlist_opt'][$widget_number]['list_layout']) OR 'standard' === $_POST['customfieldlist_opt'][$widget_number]['list_layout'] ) {
+				$opt[$widget_number]['list_layout'] = 'standard';
+			} else {
+				$opt[$widget_number]['list_layout'] = 'each_element_with_sub_element';
+			}
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['partlist']) ) {
 				$opt[$widget_number]['partlist'] = 'yes';
 			} else {
@@ -258,8 +322,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['orderelement'] = 'firstword';
 			}
-			$opt[$widget_number]['partlength'] = intval(attribute_escape(strip_tags(trim($_POST['customfieldlist_opt'][$widget_number]['partlength']))));
-			if ( $opt[$widget_number]['partlength'] < 3 ) {
+			$opt[$widget_number]['db_collate'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['db_collate'])));
+			$opt[$widget_number]['win_country_codepage'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['win_country_codepage'])));
+			$opt[$widget_number]['encoding_for_win'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['encoding_for_win'])));
+			
+			$opt[$widget_number]['partlength'] = intval(strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['partlength']))));
+			if ( is_nan($opt[$widget_number]['partlength']) OR $opt[$widget_number]['partlength'] < 3 ) {
 				$opt[$widget_number]['partlength'] = 3;
 			} 
 		}
@@ -273,23 +341,77 @@ function customfieldlist($args=array(), $widget_args=1) {
 		$header =  __('Custom Field List','customfieldlist');
 		$number = '%i%';
 	} else {
-		$header = $opt[$number]['header'];
+		$header = attribute_escape($opt[$number]['header']);
 		$partlength = $opt[$number]['partlength'];
 	}
 
 	echo '<p style="text-align:center;">'.__('Header (optional)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][header]" value="'.$header.'" maxlength="200" /><br /><span style="font-size:0.8em;">('.__('Leave the field empty for no widget title','customfieldlist').')<span></p>';
-	echo '<p style="text-align:center;">'.__('Custom Field Name','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][customfieldname]" value="'.$opt[$number]['customfieldname'].'" maxlength="200" /></p>';
-	if ( 'lastword' === $opt[$number]['orderelement'] ) {
-		echo '<p style="text-align:center;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" checked="checked" /></p>';
+	
+	echo '<p style="text-align:right;">'.__('Custom Field Name','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][customfieldname]" value="'.attribute_escape($opt[$number]['customfieldname']).'" maxlength="200" /></p>';
+	
+	// section: select the layout
+	echo '<div style="text-align:right; margin-bottom:3px;">';
+	if ( !isset($opt[$number]['list_layout']) OR 'standard' === $opt[$number]['list_layout'] ) {
+		$listlayoutopt1chk = ' checked="checked"';
+		$listlayoutopt2chk = '';
 	} else {
-		echo '<p style="text-align:center;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" /></p>';
+		$listlayoutopt1chk = '';
+		$listlayoutopt2chk = ' checked="checked"';
+	}
+	echo '<label for="customfieldlist_opt_'.$number.'_list_layout_opt1">'.__('standard layout','customfieldlist').' <input type="radio" name="customfieldlist_opt['.$number.'][list_layout]" id="customfieldlist_opt_'.$number.'_list_layout_opt1" value="standard" '.$listlayoutopt1chk.' /></label>'."<br /> \n";
+	echo '<p style="color:#999;">'.__('Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title.','customfieldlist').'</p>';
+	echo '<label for="customfieldlist_opt_'.$number.'_list_layout_opt2">'.__('each element with sub elements','customfieldlist').' <input type="radio" name="customfieldlist_opt['.$number.'][list_layout]" id="customfieldlist_opt_'.$number.'_list_layout_opt2" value="each_element_with_sub_element" '.$listlayoutopt2chk.' /></label>';
+	echo '<p style="color:#999;">'.__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts.','customfieldlist').'</p>';
+	echo '</div>';
+	
+	// section: select DB_CHARSET
+	if (FALSE == defined('DB_COLLATE')) {
+		echo '<p style="text-align:right;"><a href="http://dev.mysql.com/doc/refman/5.1/en/charset-charsets.html" target="_blank">'.__('database collation','customfieldlist').'</a>: <input type="text" name="customfieldlist_opt['.$number.'][db_collate]" value="'.attribute_escape($opt[$number]['db_collate']).'" maxlength="200" /></p>';
+	}
+	
+	// section: "sort by the last word" preferences
+	$old_locale = setlocale(LC_COLLATE, "0");
+	$loc = setlocale(LC_COLLATE, WPLANG.'.'.get_bloginfo('charset'), WPLANG, 'english_usa');
+	setlocale(LC_COLLATE, $old_locale);
+	if (FALSE === $loc) {
+		$message_setloc = '<span class="error" style="display:block; text-align:left;">'.__('This option will probably not work. Because it is not possible to set "setlocale(LC_COLLATE, ... " on this server.','customfieldlist').'</span>';
+	} else {
+		if (FALSE !== strpos(strtolower(php_uname('s')), 'win')) {
+			if (function_exists('mb_convert_encoding')) {
+				// the encoding which PHP multibyte supports  http://www.php.net/manual/en/mbstring.supported-encodings.php (without these: 'UTF-32', 'UTF-32BE', 'UTF-32LE', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-7', 'UTF7-IMAP', 'UTF-8',
+				$encodings = array('UCS-4', 'UCS-4BE', 'UCS-4LE', 'UCS-2', 'UCS-2BE', 'UCS-2LE', 'ASCII', 'EUC-JP', 'SJIS', 'eucJP-win', 'SJIS-win', 'ISO-2022-JP', 'JIS', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'byte2be', 'byte2le', 'byte4be', 'byte4le', 'BASE64', 'HTML-ENTITIES', '7bit', '8bit', 'EUC-CN', 'CP936', 'HZ', 'EUC-TW', 'CP950', 'BIG-5', 'EUC-KR', 'UHC (CP949)', 'ISO-2022-KR', 'Windows-1251 (CP1251)', 'Windows-1252 (CP1252)', 'CP866 (IBM866)', 'KOI8-R');
+				$message_os = '<span class="updated" style="display:block; text-align:left;">'.__('The server OS is Windows (which is not able to sort UTF-8) what makes it necessary to','customfieldlist').'';
+				$message_os .= '<ul style="font-size:1em;">';
+				$message_os .= '<li>'.__('enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:100%;" /></li>';
+				$message_os .= '<li>'.__('select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': <select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
+				foreach ($encodings as $encoding) {
+					$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
+					if ($encoding == $stored_encoding) {
+						$message_os .= '<option selected="selected">'.$encoding.'</option>';
+					} else {
+						$message_os .= '<option>'.$encoding.'</option>';
+					}
+				}
+				$message_os .= '</select></li></ul></span>';
+			} else {
+				$message_os = '<span class="error" style="display:block;">'.__('This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available.','customfieldlist').'';
+			}
+		} else {
+			$message_os = '';
+		}
+		$message_setloc = '';
+	}
+	if ( 'lastword' === $opt[$number]['orderelement'] ) {
+		echo '<p style="text-align:right;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" checked="checked" />'.$message_os.$message_setloc.'</p>';
+	} else {
+		echo '<p style="text-align:right;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" />'.$message_os.$message_setloc.'</p>';
 	}
 	if ( 'yes' == $opt[$number]['partlist'] ) {
-		echo '<p style="text-align:center;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" checked="checked" /></p>';
+		echo '<p style="text-align:right;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" checked="checked" /></p>';
 	} else {
-		echo '<p style="text-align:center;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" /></p>';
+		echo '<p style="text-align:right;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" /></p>';
 	}
-	echo '<p style="text-align:center;">'.__('elements per part of the list','customfieldlist').' (X>=3): <input type="text" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="200" /></p>';
+	echo '<p style="text-align:right;">'.__('elements per part of the list','customfieldlist').' (X>=3): <input type="text" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;" /></p>';
 	echo '<input type="hidden" id="customfieldlist-submit-'.$number.'" name="customfieldlist-submit['.$number.'][submit]" value="1" />';
 }
 
