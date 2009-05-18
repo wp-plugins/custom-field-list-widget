@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This widget lists all values of a custom field, groups equal values and (hyper-) links the values to their posts. || Dieses Widget erzeugt eine Liste aus den Werten eines Spezialfeldes, gruppiert mehrfach vorkommende Werte und verlinkt die Werte ihren Beitr&auml;gen.
 Author: Tim Berger
-Version: 0.9
+Version: 0.9.1
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
 Max WP Version: 
@@ -458,13 +458,13 @@ function customfieldlist_widget_init() {
 add_action('wp_print_scripts', 'customfieldlist_widget_script');
 function customfieldlist_widget_script() {
 	wp_enqueue_script( 'jquery' );
-	$scriptfile = WP_PLUGIN_URL.'/widget_custom_field_list/widget_custom_field_list_js.php';
+	$scriptfile = WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'/widget_custom_field_list_js.php';
 	wp_enqueue_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
 }
 
 add_action('wp_print_styles', 'customfieldlist_widget_style');
 function customfieldlist_widget_style() {
-	$stylefile = WP_PLUGIN_URL.'/widget_custom_field_list/widget_custom_field_list.css';
+	$stylefile = WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'/widget_custom_field_list.css';
 	wp_enqueue_style( 'customfieldlist_widget_style', $stylefile );
 }
 ?>
