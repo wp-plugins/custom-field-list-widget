@@ -4,7 +4,7 @@ Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 0.9
+Stable tag: 0.9.1
 
 This plugin makes a list of custom field information in the sidebar.
 
@@ -82,6 +82,9 @@ The _ will not displayed in the sidebar.
 
 
 == Change Log ==
+
+= v0.9.1 =
+* Fix for v0.9: I have replaced some hardcoded folder names. The jQuery effects e.g. should work now after an automatic update, too. 
 
 = v0.9 =
 * added a new layout option to the widgets preferences
