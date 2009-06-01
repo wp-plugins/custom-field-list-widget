@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This widget lists all values of a custom field, groups equal values and (hyper-) links the values to their posts. || Dieses Widget erzeugt eine Liste aus den Werten eines Spezialfeldes, gruppiert mehrfach vorkommende Werte und verlinkt die Werte ihren Beitr&auml;gen.
 Author: Tim Berger
-Version: 0.9.1
+Version: 0.9.2
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
 Max WP Version: 
@@ -57,11 +57,13 @@ if ( ! defined( 'WP_CONTENT_URL' ) ) { define( 'WP_CONTENT_URL', get_option( 'si
 if ( ! defined( 'WP_CONTENT_DIR' ) ) { define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' ); }
 if ( ! defined( 'WP_PLUGIN_URL' ) ) { define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' ); }
 if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' ); }
+if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
+if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
 
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
-	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__))) );
+	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
 }
 
 
@@ -380,10 +382,10 @@ function customfieldlist($args=array(), $widget_args=1) {
 			if (function_exists('mb_convert_encoding')) {
 				// the encoding which PHP multibyte supports  http://www.php.net/manual/en/mbstring.supported-encodings.php (without these: 'UTF-32', 'UTF-32BE', 'UTF-32LE', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-7', 'UTF7-IMAP', 'UTF-8',
 				$encodings = array('UCS-4', 'UCS-4BE', 'UCS-4LE', 'UCS-2', 'UCS-2BE', 'UCS-2LE', 'ASCII', 'EUC-JP', 'SJIS', 'eucJP-win', 'SJIS-win', 'ISO-2022-JP', 'JIS', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'byte2be', 'byte2le', 'byte4be', 'byte4le', 'BASE64', 'HTML-ENTITIES', '7bit', '8bit', 'EUC-CN', 'CP936', 'HZ', 'EUC-TW', 'CP950', 'BIG-5', 'EUC-KR', 'UHC (CP949)', 'ISO-2022-KR', 'Windows-1251 (CP1251)', 'Windows-1252 (CP1252)', 'CP866 (IBM866)', 'KOI8-R');
-				$message_os = '<span class="updated" style="display:block; text-align:left;">'.__('The server OS is Windows (which is not able to sort UTF-8) what makes it necessary to','customfieldlist').'';
-				$message_os .= '<ul style="font-size:1em;">';
-				$message_os .= '<li>'.__('enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:100%;" /></li>';
-				$message_os .= '<li>'.__('select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': <select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
+				$message_os = '<span class="updated" style="display:block; text-align:left; margin-bottom:30px;">'.__('The server OS is Windows (which is not able to sort UTF-8) what makes it necessary to:','customfieldlist').'<br />';
+				$message_os .= __('1. enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:100%;" /><br />';
+				$message_os .= __('2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': ';
+				$message_os .= '<select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
 				foreach ($encodings as $encoding) {
 					$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
 					if ($encoding == $stored_encoding) {
@@ -392,9 +394,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$message_os .= '<option>'.$encoding.'</option>';
 					}
 				}
-				$message_os .= '</select></li></ul></span>';
+				$message_os .= '</select>';
+				$message_os .= '</span>';
+				$message_os_asterisk = ' class="updated"';
 			} else {
-				$message_os = '<span class="error" style="display:block;">'.__('This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available.','customfieldlist').'';
+				$message_os = '<span class="error" style="display:block;">'.__('This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available.','customfieldlist').'</span>';
 			}
 		} else {
 			$message_os = '';
@@ -402,9 +406,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 		$message_setloc = '';
 	}
 	if ( 'lastword' === $opt[$number]['orderelement'] ) {
-		echo '<p style="text-align:right;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" checked="checked" />'.$message_os.$message_setloc.'</p>';
+		echo '<p style="text-align:right;"'.$message_os_asterisk.'>'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" checked="checked" /></p>'.$message_os.$message_setloc.'';
 	} else {
-		echo '<p style="text-align:right;">'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" />'.$message_os.$message_setloc.'</p>';
+		echo '<p style="text-align:right;"'.$message_os_asterisk.'>'.__('sort the values by the last word','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" value="lastword" /></p>'.$message_os.$message_setloc.'';
 	}
 	if ( 'yes' == $opt[$number]['partlist'] ) {
 		echo '<p style="text-align:right;">'.__('show only a part of the list elements at once','customfieldlist').': <input type="checkbox" name="customfieldlist_opt['.$number.'][partlist]" value="yes" checked="checked" /></p>';
@@ -458,13 +462,13 @@ function customfieldlist_widget_init() {
 add_action('wp_print_scripts', 'customfieldlist_widget_script');
 function customfieldlist_widget_script() {
 	wp_enqueue_script( 'jquery' );
-	$scriptfile = WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'/widget_custom_field_list_js.php';
+	$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
 	wp_enqueue_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
 }
 
 add_action('wp_print_styles', 'customfieldlist_widget_style');
 function customfieldlist_widget_style() {
-	$stylefile = WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)).'/widget_custom_field_list.css';
+	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list.css';
 	wp_enqueue_style( 'customfieldlist_widget_style', $stylefile );
 }
 ?>
