@@ -381,17 +381,17 @@ function customfieldlist($args=array(), $widget_args=1) {
 		if (FALSE !== strpos(strtolower(php_uname('s')), 'win')) {
 			if (function_exists('mb_convert_encoding')) {
 				// the encoding which PHP multibyte supports  http://www.php.net/manual/en/mbstring.supported-encodings.php (without these: 'UTF-32', 'UTF-32BE', 'UTF-32LE', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-7', 'UTF7-IMAP', 'UTF-8',
-				$encodings = array('UCS-4', 'UCS-4BE', 'UCS-4LE', 'UCS-2', 'UCS-2BE', 'UCS-2LE', 'ASCII', 'EUC-JP', 'SJIS', 'eucJP-win', 'SJIS-win', 'ISO-2022-JP', 'JIS', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'byte2be', 'byte2le', 'byte4be', 'byte4le', 'BASE64', 'HTML-ENTITIES', '7bit', '8bit', 'EUC-CN', 'CP936', 'HZ', 'EUC-TW', 'CP950', 'BIG-5', 'EUC-KR', 'UHC (CP949)', 'ISO-2022-KR', 'Windows-1251 (CP1251)', 'Windows-1252 (CP1252)', 'CP866 (IBM866)', 'KOI8-R');
+				$encodings = array('UCS-4' => 'UCS-4', 'UCS-4BE' => 'UCS-4BE', 'UCS-4LE' => 'UCS-4LE', 'UCS-2' => 'UCS-2', 'UCS-2BE' => 'UCS-2BE', 'UCS-2LE' => 'UCS-2LE', 'ASCII' => 'ASCII', 'EUC-JP' => 'EUC-JP', 'SJIS' => 'SJIS', 'eucJP-win' => 'eucJP-win', 'SJIS-win' => 'SJIS-win', 'ISO-2022-JP' => 'ISO-2022-JP', 'JIS' => 'JIS', 'ISO-8859-1' => 'ISO-8859-1', 'ISO-8859-2' => 'ISO-8859-2', 'ISO-8859-3' => 'ISO-8859-3', 'ISO-8859-4' => 'ISO-8859-4', 'ISO-8859-5' => 'ISO-8859-5', 'ISO-8859-6' => 'ISO-8859-6', 'ISO-8859-7' => 'ISO-8859-7', 'ISO-8859-8' => 'ISO-8859-8', 'ISO-8859-9' => 'ISO-8859-9', 'ISO-8859-10' => 'ISO-8859-10', 'ISO-8859-13' => 'ISO-8859-13', 'ISO-8859-14' => 'ISO-8859-14', 'ISO-8859-15' => 'ISO-8859-15', 'byte2be' => 'byte2be', 'byte2le' => 'byte2le', 'byte4be' => 'byte4be', 'byte4le' => 'byte4le', 'BASE64' => 'BASE64', 'HTML-ENTITIES' => 'HTML-ENTITIES', '7bit' => '7bit', '8bit' => '8bit', 'EUC-CN' => 'EUC-CN', 'CP936' => 'CP936', 'HZ' => 'HZ', 'EUC-TW' => 'EUC-TW', 'CP950' => 'CP950', 'BIG-5', 'EUC-KR' => 'EUC-KR', 'UHC' => 'CP949', 'ISO-2022-KR' => 'ISO-2022-KR', 'Windows-1251' => 'CP1251', 'Windows-1252' => 'CP1252', 'IBM866' => 'CP866', 'KOI8-R' => 'KOI8-R');
 				$message_os = '<span class="updated" style="display:block; text-align:left; margin-bottom:30px;">'.__('The server OS is Windows (which is not able to sort UTF-8) what makes it necessary to:','customfieldlist').'<br />';
 				$message_os .= __('1. enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:100%;" /><br />';
 				$message_os .= __('2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': ';
 				$message_os .= '<select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
-				foreach ($encodings as $encoding) {
+				foreach ($encodings as $keyname => $encoding) {
 					$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
 					if ($encoding == $stored_encoding) {
-						$message_os .= '<option selected="selected">'.$encoding.'</option>';
+						$message_os .= '<option value="'.$encoding.'" selected="selected">'.$keyname.'</option>';
 					} else {
-						$message_os .= '<option>'.$encoding.'</option>';
+						$message_os .= '<option value="'.$encoding.'">'.$keyname.'</option>';
 					}
 				}
 				$message_os .= '</select>';
