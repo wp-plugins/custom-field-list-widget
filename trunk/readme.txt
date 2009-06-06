@@ -11,6 +11,8 @@ This plugin makes a list of custom field information in the sidebar.
 
 == Description ==
 
+	[There is a new release candidate of v0.9.2.](http://svn.wp-plugins.org/custom-field-list-widget/trunk/ "SVN Release Candidate")
+
 This plugin lists all values of a choosable custom field name, groups the values of of a post and (hyper-) links the values to their posts
 as a sidebar widget.
 This allows you to create a list of one category of meta information. The custom field names and values can be used as categorizable tags and with this plugin you can create lists of tags of one category.
