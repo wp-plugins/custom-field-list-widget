@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This widget lists all values of a custom field, groups equal values and (hyper-) links the values to their posts. || Dieses Widget erzeugt eine Liste aus den Werten eines Spezialfeldes, gruppiert mehrfach vorkommende Werte und verlinkt die Werte ihren Beitr&auml;gen.
 Author: Tim Berger
-Version: 0.9.2
+Version: 0.9.2 RC 2
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
 Max WP Version: 
