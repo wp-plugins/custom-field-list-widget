@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-30 11:55+0100\n"
-"PO-Revision-Date: 2009-05-30 11:57+0100\n"
+"POT-Creation-Date: 2009-06-08 13:35+0100\n"
+"PO-Revision-Date: 2009-06-08 13:36+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Bulgarian <>\n"
 "MIME-Version: 1.0\n"
@@ -17,110 +17,110 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp27en\\wp-content\\plugins\\widget_custom_field_list\n"
+"X-Poedit-SearchPath-0: H:\\WP_Plugins_SVN\\widget_custom_field_list\\trunk\n"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:101
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:343
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:452
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:453
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:457
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:458
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/custom_field_list_k2_widget.php:29
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/custom_field_list_k2_widget.php:30
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:101
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:343
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:452
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:453
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:457
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:458
 msgid "Custom Field List"
 msgstr "Списък с потребителски полета"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:194
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:202
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:214
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:222
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:194
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:202
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:214
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:222
 msgid "in"
 msgstr "в"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:233
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:233
 #, php-format
-msgid "There are no values in connection to the custom field name %1$s in the data base."
-msgstr "В базата от данни няма стойности, обвързани с потребителското име на полето %1$s."
+msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
+msgstr "В базата от данни няма стойности, обвързани с потребителското име на полето \"%1$s\"."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:236
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:236
 msgid "Please, define a custom field name!"
 msgstr "Моля, дефинирайте потребителско име за поле!"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:239
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:239
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Неуспех при получаването на информация за списъка от потребителски полета от базата с данни."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:246
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:246
 msgid "part"
 msgstr "част"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:350
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:350
 msgid "Header (optional)"
 msgstr "Заглавна част (по желание)"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:350
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:350
 msgid "Leave the field empty for no widget title"
 msgstr "Оставете полето празно за джаджа без заглавие"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:352
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:352
 msgid "Custom Field Name"
 msgstr "Име на потребителското поле"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:363
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:363
 msgid "standard layout"
 msgstr "стандартно разположение"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:364
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:364
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "Само елементите от списъка с имена на потребителски полета с повече от една стойност на потребителското поле имат поделементи. Тези поделементи се появяват след щракване върху елемент от списъка с имена на потребителски полета или след щракване на знака \"+\" до тях. Другите елементи от списъка с по една стойност са хипервръзки към съответните постове, а стойностите им са в заглавната (title) част на връзката."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:365
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:365
 msgid "each element with sub elements"
 msgstr "всеки елемент с поделементи"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:366
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:366
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts."
 msgstr "Показване на всеки един елемент от списъка с потребителски полета със стойността на потребителското поле като поделемент. Всички поделементи са видими през цялото време и са хипервръзки към съответните постове."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:371
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:371
 msgid "database collation"
 msgstr "колация на базата от данни"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:379
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:379
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "Тази опция вероятно няма да сработи. Защото няма възможност на този сървър да бъде зададен \"setlocale(LC_COLLATE, ... \"."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:385
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:385
 msgid "The server OS is Windows (which is not able to sort UTF-8) what makes it necessary to:"
 msgstr "Сървърната ОС е Windows (при която няма възможност за сортиране при UTF-8). Това налага:"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:386
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:386
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. да въведете вашия <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">език</a> и <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">страна</a> и евентуално <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">идентификатор за кодировка</a> (например german_germany or german_germany.1252 за немски)"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:387
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:387
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. изберете (същата) кодировка във вида, с който PHP може да се справи (например Windows-1252 за немски)"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:401
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:401
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "Тази опция вероятно няма да сработи на този сървър, защото разширението конвертира кодировката на мета стойностите към кодировката на операционната система (Windows) с помощта на функцията mb_convert_encoding, но тази функция не е в наличност."
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:409
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:411
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:409
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:411
 msgid "sort the values by the last word"
 msgstr "сортиране на стойностите по последна дума"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:414
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:416
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:414
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:416
 msgid "show only a part of the list elements at once"
 msgstr "показване само на част от списъка с елементи"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:418
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:418
 msgid "elements per part of the list"
 msgstr "елементи за част от списъка"
 
-#: H:\xampp\htdocs\wp27en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:431
+#: H:\WP_Plugins_SVN\widget_custom_field_list\trunk/widget_custom_field_list.php:431
 msgid "Displays a list of custom field values of a set key"
 msgstr "Показва списък със стойности на потребителски полета за зададен ключ"
 
