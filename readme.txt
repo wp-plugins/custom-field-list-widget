@@ -87,7 +87,7 @@ The _ will not displayed in the sidebar.
 * This version is for WP 2.8+. It is based on the new widget API.
 
 = v0.9.2 =
-* Fix for v0.9 and v0.9.2: I have changed the HTML structure of the widgets setting form. That corrects a problem which appaers if your weblog runs on a Windows server. These changes inluding little changes in the language files, too.
+* Fix for v0.9 and v0.9.1: I have changed the HTML structure of the widgets setting form. That corrects a problem which appaers if your weblog runs on a Windows server. These changes inluding little changes in the language files, too.
 
 = v0.9.1 =
 * Fix for v0.9: I have replaced some hardcoded folder names. The jQuery effects e.g. should work now after an automatic update, too. 
