@@ -230,7 +230,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$k_odd = $k;
 					}
 				} else {
-					echo "<li>".sprintf(__('There are no values in connection to the custom field name %1$s in the data base.','customfieldlist'), $opt['customfieldname'])."</li>\n";
+					echo "<li>".sprintf(__('There are no values in connection to the custom field name "%1$s" in the data base.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 				}
 			} else {
 				echo "<li>".__('Please, define a custom field name!','customfieldlist')."</li>\n";
