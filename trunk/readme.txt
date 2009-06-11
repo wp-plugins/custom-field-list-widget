@@ -3,15 +3,13 @@ Contributors: ntm
 Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.7.1
-Stable tag: 0.9.1
+Tested up to: 2.8
+Stable tag: 0.9.2
 
 This plugin makes a list of custom field information in the sidebar.
 
 
 == Description ==
-
-	[There is a new release candidate of v0.9.2.](http://svn.wp-plugins.org/custom-field-list-widget/trunk/ "SVN Release Candidate")
 
 This plugin lists all values of a choosable custom field name, groups the values of of a post and (hyper-) links the values to their posts
 as a sidebar widget.
@@ -84,6 +82,9 @@ The _ will not displayed in the sidebar.
 
 
 == Change Log ==
+
+= v0.9.2 =
+* Fix for v0.9 and v0.9.1: I have changed the HTML structure of the widgets setting form. That corrects a problem which appaers if your weblog runs on a Windows server. These changes inluding little changes in the language files, too.
 
 = v0.9.1 =
 * Fix for v0.9: I have replaced some hardcoded folder names. The jQuery effects e.g. should work now after an automatic update, too. 
