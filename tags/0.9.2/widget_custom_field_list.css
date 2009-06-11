@@ -1,0 +1,11 @@
+.customfieldtitle:hover {
+	text-decoration:underline;
+}
+
+.customfieldtitle, .customfieldplus {
+	cursor:pointer;
+}
+
+.customfieldlistpages {
+	display:none;
+}
