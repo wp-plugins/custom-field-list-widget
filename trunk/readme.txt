@@ -3,8 +3,8 @@ Contributors: ntm
 Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.8
-Stable tag: 0.9.3
+Tested up to: 2.8.1
+Stable tag: 0.9.4
 
 This plugin makes a list of custom field information in the sidebar.
 
@@ -24,7 +24,12 @@ This plugin supports multiple widgets (You can have more than one list at the sa
 
 Furthermore this plugin has got a Add On for the famous K2 theme. You can use it with the K2 Sidebar Manager.
 
-Available in the languages: English, German, Bulgarian
+Available in the languages:
+
+* English
+* German
+* Bulgarian provided by Peter Toushkov
+* Russian provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 
 
 == Installation ==
@@ -86,6 +91,9 @@ The _ will not displayed in the sidebar.
 
 
 == Change Log ==
+
+= v0.9.4 =
+* added Russian language files (Thanks to [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp."))
 
 = v0.9.3 =
 * added a new layout option to the widgets preferences: you can create a list of all (unique) custom field values of a custom field (name). Each value can be linked individually to a post or a page or to something else.
