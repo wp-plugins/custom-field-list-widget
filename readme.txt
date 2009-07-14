@@ -46,6 +46,8 @@ Available in the languages:
 	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.po (german localization file)
 	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.mo (bulgarian localization file)
 	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.po (bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.mo (russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.po (russian localization file)
 	* /wp-content/plugins/widget\_custom\_field\_list/uninstall.php
 	
 	* /wp-content/plugins/widget\_custom\_field\_list/custom\_field\_list\_k2\_widget.php (move this file into the /app/modules/-folder of the K2-theme if you are using the K2 theme e.g.: /wp-content/themes/k2/app/modules/)
