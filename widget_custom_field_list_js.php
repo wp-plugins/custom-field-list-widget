@@ -1,4 +1,6 @@
-<?php // if jQuery is available and working then deflate the sublists and change the switch sign after the page is loaded ?>
+<?php 
+header('Content-type: application/x-javascript');
+// if jQuery is available and working then deflate the sublists and change the switch sign after the page is loaded ?>
 jQuery(window).load(function(){
 	jQuery(".customfieldplus").text("[ + ]");
 	jQuery(".customfieldsublist").hide();
