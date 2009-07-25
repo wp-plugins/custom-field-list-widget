@@ -7,7 +7,7 @@ Author: Tim Berger
 Version: 0.9.4
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
-Max WP Version: 2.8
+Max WP Version: 2.8.2
 License: GNU General Public License
 
 Requirements:
