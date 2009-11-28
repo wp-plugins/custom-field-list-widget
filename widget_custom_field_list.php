@@ -4,14 +4,15 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.4
+Version: 0.9.4.1
 Author URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Min WP Version: 2.5
-Max WP Version: 2.8.2
+Max WP Version: 2.8.3
 License: GNU General Public License
 
 Requirements:
-	- WP 2.5 or newer
+	- min. WP 2.5 
+	- max. WP 2.8.x
 	- a widgets supportting theme
 
 Usage when using "sort values by the last word":
@@ -48,9 +49,10 @@ Usage when using "sort values by the last word":
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 Localization:
-	Bulgarian -
-	Russian -
-	German -
+	English (default)
+	Bulgarian - Peter Toushkov
+	Russian - Michael Comfi (http://www.comfi.com/)
+	German - Tim Berger
 
 Parts of this plugin are based on the multiple-widgets-pattern example from the file /wp-includes/widgets.php of WP 2.7.1
 
@@ -138,6 +140,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$meta_values =  $wpdb->get_results($querystring);
 						$nr_meta_values = count($meta_values);
 						
+						if ( 'desc' === $opt['sortseq'] ) {
+							$meta_values_reverse = array_reverse($meta_values);
+							$meta_values = $meta_values_reverse;
+						}
+						
 						if ($nr_meta_values > 0) {
 							foreach ($meta_values as $meta_value) {
 								$meta_values_array[$meta_value->meta_id]=$meta_value->meta_value;
@@ -183,6 +190,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$meta_values =  $wpdb->get_results($querystring);
 						$nr_meta_values = count($meta_values);
 						
+
 						if ($nr_meta_values > 0) {
 							if ( 'lastword' === $opt['orderelement'] ) {
 								$mvals=array();
@@ -203,13 +211,22 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 								
 								// sort the meta_values
-								asort($mvals, SORT_LOCALE_STRING);
+								if ( 'desc' === $opt['sortseq'] ) {
+									arsort($mvals, SORT_LOCALE_STRING);
+								} else {
+									asort($mvals, SORT_LOCALE_STRING);
+								}
 								
 								//turn the locale back
 								$loc=setlocale(LC_COLLATE, $old_locale);
 								
 								// get the keys with the new order
 								$mval_keys = array_keys($mvals);
+							} else {
+								if ( 'desc' === $opt['sortseq'] ) {
+									$meta_values_reverse = array_reverse($meta_values);
+									$meta_values = $meta_values_reverse;
+								}
 							}
 							
 							for ( $i=0; $i < $nr_meta_values; $i++ ) {
@@ -385,6 +402,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			if ( is_nan($opt[$widget_number]['partlength']) OR $opt[$widget_number]['partlength'] < 3 ) {
 				$opt[$widget_number]['partlength'] = 3;
 			} 
+			
+			if ( 'asc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] OR 'desc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] ) {
+				$opt[$widget_number]['sortseq'] = $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'];
+			} else {
+				$opt[$widget_number]['sortseq'] = 'asc';
+			}
 		}
 		update_option("widget_custom_field_list", $opt);
 		$updated = true; // So that we don't go through this more than once
@@ -400,9 +423,23 @@ function customfieldlist($args=array(), $widget_args=1) {
 		$partlength = $opt[$number]['partlength'];
 	}
 
-	echo '<p style="text-align:center;">'.__('Header (optional)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][header]" value="'.$header.'" maxlength="200" /><br /><span style="font-size:0.8em;">('.__('Leave the field empty for no widget title','customfieldlist').')<span></p>';
+	echo '<p style="text-align:center;">'.__('Header (optional)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][header]" value="'.$header.'" maxlength="200" /><br /><span style="font-size:0.8em;">('.__('Leave the field empty for no widget title','customfieldlist').')</span></p>';
 	
-	echo '<p style="text-align:right;">'.__('Custom Field Name','customfieldlist').': <input type="text" id="customfieldname_'.$number.'" name="customfieldlist_opt['.$number.'][customfieldname]" value="'.attribute_escape($opt[$number]['customfieldname']).'" maxlength="200" onchange="javascript:customfieldlist_show_message(\'customfieldlist_opt_'.$number.'_list_layout_opt3_message\');" /></p>';
+	echo '<p style="text-align:right;">'.__('Custom Field Name','customfieldlist').': <input type="text" id="customfieldname_'.$number.'" name="customfieldlist_opt['.$number.'][customfieldname]" value="'.attribute_escape($opt[$number]['customfieldname']).'" maxlength="200" onchange="javascript:customfieldlist_show_message_layout3(\'customfieldlist_opt_'.$number.'_list_layout_opt3_message\', \'customfieldlist_opt_'.$number.'_list_layout_opt3\');" /></p>';
+	
+	$customfieldsortseq_DESC_selected='';
+	$customfieldsortseq_ASC_selected='';
+	if ( TRUE !== isset($opt[$number]['sortseq']) OR TRUE === empty($opt[$number]['sortseq']) OR 'asc' === $opt[$number]['sortseq'] ) {
+		$customfieldsortseq_ASC_selected=' selected="selected"';
+	} else {
+		$customfieldsortseq_DESC_selected=' selected="selected"';
+	}
+	echo '<p style="text-align:right;">'.__('sort sequence','customfieldlist').': ';
+	echo '<select id="customfieldsortseq_'.$number.'" name="customfieldlist_opt['.$number.'][customfieldsortseq]">';
+	echo '<option value="asc"'.$customfieldsortseq_ASC_selected.'>'.__('ascending (ASC)','customfieldlist').'</option>';
+	echo '<option value="desc"'.$customfieldsortseq_DESC_selected.'>'.__('descending (DESC)','customfieldlist').'</option>';
+	echo '</select>';
+	echo '</p>';
 	
 	// section: select the layout
 	echo '<div style="text-align:right; margin-bottom:3px;">';
@@ -546,10 +583,12 @@ function customfieldlist_widget_admin_script() {
 	?>
 	<script type="text/javascript">
 	//<![CDATA[
-	function customfieldlist_show_message(cell_id) {
-		var cell = document.getElementById(cell_id);
-		if ( cell.style.display == 'none' ) {
-			cell.style.display = 'block';
+	function customfieldlist_show_message_layout3(cell_id, option_id) {
+		if (document.getElementById(option_id).checked == true) {
+			var cell = document.getElementById(cell_id);
+			if ( cell.style.display == 'none' ) {
+				cell.style.display = 'block';
+			}
 		} 
 	}
 	//]]>
