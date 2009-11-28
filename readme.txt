@@ -29,9 +29,9 @@ Available in the languages:
 * English
 * German
 * Bulgarian provided by Peter Toushkov
-* Russian provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
-* Uzbek provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
-* Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of http://kakesh.com or http://nainitalsamachar.in/")
+* Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
+* Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
+* Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
 == Installation ==
 
@@ -143,7 +143,6 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 = v0.9.5 =
 * new feature: you are free to define more than one custom field name and print e.g. a list with several hierarchy levels. Further you can select one of these custom field as an order column.
-* new feature: you can choose the sort sequence (ascending / descending)
 * added Hindi language files (Thanks to [Kakesh Kumar](http://kakesh.com "Kakesh Kumar"))
 * several small bugs fixed. the plugin is again useable with the IE.
 * (Russian and Uzbek language files are not updated)
