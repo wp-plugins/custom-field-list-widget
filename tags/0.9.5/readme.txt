@@ -144,7 +144,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 = v0.9.5 =
 * new feature: you are free to define more than one custom field name and print e.g. a list with several hierarchy levels. Further you can select one of these custom field as an order column.
 * new feature: you can choose the sort sequence (ascending / descending)
-* added Hindi language files (Thanks to [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of http://kakesh.com or http://nainitalsamachar.in/"))
+* added Hindi language files (Thanks to [Kakesh Kumar](http://kakesh.com "Kakesh Kumar"))
 * several small bugs fixed. the plugin is again useable with the IE.
 * (Russian and Uzbek language files are not updated)
 
