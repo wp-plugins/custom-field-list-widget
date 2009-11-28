@@ -1,11 +1,12 @@
 .customfieldtitle:hover {
 	text-decoration:underline;
 }
-
 .customfieldtitle, .customfieldplus {
 	cursor:pointer;
 }
-
 .customfieldlistpages {
 	display:none;
+}
+.customfieldlist_selectedpart {
+	font-weight:bold;
 }

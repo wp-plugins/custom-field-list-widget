@@ -1,4 +1,7 @@
-<?php // if jQuery is available and working then deflate the sublists and change the switch sign after the page is loaded ?>
+<?php 
+header('Content-type: application/x-javascript');
+?>
+// if jQuery is available and working then deflate the sublists and change the switch sign after the page is loaded 
 jQuery(window).load(function(){
 	jQuery(".customfieldplus").text("[ + ]");
 	jQuery(".customfieldsublist").hide();
@@ -16,7 +19,7 @@ jQuery(window).load(function(){
 	}
 });
 
-<?php // inflate or deflate the sublists ?>
+// inflate or deflate the sublists
 jQuery(document).ready(function(){
 	jQuery(".customfieldplus").click(function() {
 		var field = jQuery(this).parent().children(".customfieldplus");
@@ -40,6 +43,7 @@ jQuery(document).ready(function(){
 	});
 });
 
+// switch between the list parts
 function show_this_customfieldlistelements( list, lists, number ) {
 	for ( i=0; i <= lists; i++ ) {
 		if ( i == Number(list) ) {
@@ -47,5 +51,7 @@ function show_this_customfieldlistelements( list, lists, number ) {
 		} else {
 			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).hide("normal");
 		}
+		// mark the page number with a different appearence
+		jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).toggleClass("customfieldlist_selectedpart");
 	}
 }
