@@ -3,7 +3,7 @@ Contributors: ntm
 Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.8.1
+Tested up to: 2.8.3
 Stable tag: 0.9.4
 
 This plugin makes a list of custom field information in the sidebar.
@@ -30,6 +30,7 @@ Available in the languages:
 * German
 * Bulgarian provided by Peter Toushkov
 * Russian provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
+* Uzbek provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
 
 == Installation ==
@@ -42,12 +43,14 @@ Available in the languages:
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list\_individual\_href.php
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list\_individual\_href\_save\_data.php
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list.css
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.mo (german localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.po (german localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.mo (bulgarian localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.po (bulgarian localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.mo (russian localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.po (russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.mo (German localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.po (German localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.mo (Bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.po (Bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.mo (Russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.po (Russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-uz\_UZ.mo (Uzbek localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-uz\_UZ.po (Uzbek localization file)
 	* /wp-content/plugins/widget\_custom\_field\_list/uninstall.php
 	
 	* /wp-content/plugins/widget\_custom\_field\_list/custom\_field\_list\_k2\_widget.php (move this file into the /app/modules/-folder of the K2-theme if you are using the K2 theme e.g.: /wp-content/themes/k2/app/modules/)
@@ -93,6 +96,11 @@ The _ will not displayed in the sidebar.
 
 
 == Change Log ==
+
+= v0.9.4.1 =
+* new feature: you can choose the sort sequence (ascending / descending)
+* small bugs fixed. the plugin is again useable with the IE.
+* added Uzbek language files (Thanks to [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp."))
 
 = v0.9.4 =
 * added Russian language files (Thanks to [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp."))
