@@ -51,5 +51,7 @@ function show_this_customfieldlistelements( list, lists, number ) {
 		} else {
 			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).hide("normal");
 		}
+		// mark the page number with a different appearence
+		jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).toggleClass("customfieldlist_selectedpart");
 	}
 }

@@ -7,3 +7,6 @@
 .customfieldlistpages {
 	display:none;
 }
+.customfieldlist_selectedpart {
+	font-weight:bold;
+}
