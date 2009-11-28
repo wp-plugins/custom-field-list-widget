@@ -590,7 +590,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
 			echo __('part','customfieldlist').": ";
 			for ($i=0; $i<$j; $i++) {
-				echo '[<a href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+				if ( 0 === $i ) {
+					$css_class=' class="customfieldlist_selectedpart"';
+				} else {
+					$css_class='';
+				}
+				echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
 			}
 			echo "\n</p>\n";
 		}
