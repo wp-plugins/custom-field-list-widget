@@ -3,17 +3,19 @@ Contributors: ntm
 Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.8
-Stable tag: 0.9.2
+Tested up to: 2.8.3
+Stable tag: 0.9.4
 
 This plugin makes a list of custom field information in the sidebar.
 
 
 == Description ==
 
-This plugin lists all values of a choosable custom field name, groups the values of of a post and (hyper-) links the values to their posts
-as a sidebar widget.
-This allows you to create a list of one category of meta information. The custom field names and values can be used as categorizable tags and with this plugin you can create lists of tags of one category.
+This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways. 
+One possibility is to create a list of all values of a custom field (name), which will be groupped their post (or page) and (hyper-) linked automatically to this post (or page).
+Another possibility is that you can create a list of all unique values of of a custom field (name) and specify links as you like (or not).
+
+In other words: This plugin allows you to create lists of one category of meta information (on each list). The custom field names and values can be used as categorizable tags and with this plugin you can create lists of tags of one category.
 
 One example of usage could be: a list of the guest names of your podcast episodes. (with the default tags you can set the names
 as tags but the names will probably be mixed with other content describing tags)
@@ -22,7 +24,13 @@ This plugin supports multiple widgets (You can have more than one list at the sa
 
 Furthermore this plugin has got a Add On for the famous K2 theme. You can use it with the K2 Sidebar Manager.
 
-Available in the languages: English, German, Bulgarian
+Available in the languages:
+
+* English
+* German
+* Bulgarian provided by Peter Toushkov
+* Russian provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
+* Uzbek provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
 
 == Installation ==
@@ -32,11 +40,17 @@ Available in the languages: English, German, Bulgarian
 	
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list.php
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list\_js.php
+	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list\_individual\_href.php
+	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list\_individual\_href\_save\_data.php
 	* /wp-content/plugins/widget\_custom\_field\_list/widget\_custom\_field\_list.css
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.mo (german localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.po (german localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.mo (bulgarian localization file)
-	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.po (bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.mo (German localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-de\_DE.po (German localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.mo (Bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-bg\_BG.po (Bulgarian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.mo (Russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-ru\_RU.po (Russian localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-uz\_UZ.mo (Uzbek localization file)
+	* /wp-content/plugins/widget\_custom\_field\_list/customfieldlist-uz\_UZ.po (Uzbek localization file)
 	* /wp-content/plugins/widget\_custom\_field\_list/uninstall.php
 	
 	* /wp-content/plugins/widget\_custom\_field\_list/custom\_field\_list\_k2\_widget.php (move this file into the /app/modules/-folder of the K2-theme if you are using the K2 theme e.g.: /wp-content/themes/k2/app/modules/)
@@ -82,6 +96,17 @@ The _ will not displayed in the sidebar.
 
 
 == Change Log ==
+
+= v0.9.4.1 =
+* new feature: you can choose the sort sequence (ascending / descending)
+* small bugs fixed. the plugin is again useable with the IE.
+* added Uzbek language files (Thanks to [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp."))
+
+= v0.9.4 =
+* added Russian language files (Thanks to [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp."))
+
+= v0.9.3 =
+* added a new layout option to the widgets preferences: you can create a list of all (unique) custom field values of a custom field (name). Each value can be linked individually to a post or a page or to something else.
 
 = v0.9.2 =
 * Fix for v0.9 and v0.9.1: I have changed the HTML structure of the widgets setting form. That corrects a problem which appaers if your weblog runs on a Windows server. These changes inluding little changes in the language files, too.
