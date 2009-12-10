@@ -3,11 +3,10 @@ header('Content-type: application/x-javascript');
 ?>
 // if jQuery is available and working then deflate the sublists and change the switch sign after the page is loaded 
 jQuery(window).load(function(){
-	jQuery(".customfieldplus").text("[ + ]");
+	var signs = customfieldlist_the_collapse_sign();
+	jQuery(".customfieldplus").text(signs['plus']);
 	jQuery(".customfieldsublist").hide();
-	
 	var widget_numbers = jQuery("[name='customfieldlist_widget_id']");
-
 	for (var j=0; j < widget_numbers.length; j++) {
 		if ('yes' == jQuery("#customfieldlistpartlist_" + String(widget_numbers[j].value)).val()) {
 			var li_els=jQuery("#customfieldlistelements_" + String(widget_numbers[j].value)).val();
@@ -21,37 +20,48 @@ jQuery(window).load(function(){
 
 // inflate or deflate the sublists
 jQuery(document).ready(function(){
+	var signs = customfieldlist_the_collapse_sign();
+	var speed = customfieldlist_effect_speed();
+
 	jQuery(".customfieldplus").click(function() {
 		var field = jQuery(this).parent().children(".customfieldplus");
-		if ("[ + ]" == field.text()) {
-			field.text("[ - ]");
-			jQuery(this).parent().children(".customfieldsublist").show("slow");
+		if (signs['plus'] == field.text()) {
+			field.text(signs['minus']);
+			jQuery(this).parent().children(".customfieldsublist").show(speed);
 		} else {
-			field.text("[ + ]");
-			jQuery(this).parent().children(".customfieldsublist").hide("slow");
+			field.text(signs['plus']);
+			jQuery(this).parent().children(".customfieldsublist").hide(speed);
 		}
 	});
+	
 	jQuery(".customfieldtitle").click(function() {
 		var field = jQuery(this).parent().children(".customfieldplus");
-		if ("[ + ]" == field.text()) {
-			field.text("[ - ]");
-			jQuery(this).parent().children(".customfieldsublist").show("slow");
+		if (signs['plus'] == field.text()) {
+			field.text(signs['minus']);
+			jQuery(this).parent().children(".customfieldsublist").show(speed);
 		} else {
-			field.text("[ + ]");
-			jQuery(this).parent().children(".customfieldsublist").hide("slow");
+			field.text(signs['plus']);
+			jQuery(this).parent().children(".customfieldsublist").hide(speed);
 		}
 	});
 });
 
 // switch between the list parts
 function show_this_customfieldlistelements( list, lists, number ) {
+	var speed = customfieldlist_effect_speed();
 	for ( i=0; i <= lists; i++ ) {
 		if ( i == Number(list) ) {
-			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).show("normal");
+			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).show(speed);
+			// mark the page number with a different appearence
+			if ( false == jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).hasClass("customfieldlist_selectedpart") ) {
+				jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).addClass("customfieldlist_selectedpart");
+			}
 		} else {
-			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).hide("normal");
+			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).hide(speed);
+			// remove the special style class for the selected list part
+			if ( true == jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).hasClass("customfieldlist_selectedpart") ) {
+				jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).removeClass("customfieldlist_selectedpart");
+			}
 		}
-		// mark the page number with a different appearence
-		jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).toggleClass("customfieldlist_selectedpart");
 	}
 }

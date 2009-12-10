@@ -4,40 +4,25 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.5
+Version: 0.9.6 RC 4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
-Max WP Version: 2.8.6
+Max WP Version: 2.9 beta 2
 License: GNU General Public License
 
 Requirements:
 	- min. WP 2.5 
-	- max. WP 2.8.x
 	- a widgets supportting theme
 	
 Localization:
 	Bulgarian - Peter Toushkov
-	Russian (not updated for v0.9.5) - Michael Comfi (http://www.comfi.com/)
-	Uzbek (not updated for v0.9.5) - Alisher Safarov (http://www.comfi.com/) 
+	Russian (until v0.9.4.1) - Michael Comfi (http://www.comfi.com/)
+	Uzbek (until v0.9.4.1) - Alisher Safarov (http://www.comfi.com/) 
 	Hindi - Kakesh Kumar (http://kakesh.com/)
 	English (default) - Tim Berger
 	German - Tim Berger
 
-Usage when using "sort values by the last word":
-	
-	You can influence which word the last word is by using _ between the words. If you make a _ between two words it will be seen as one word.
-	
-	example:
-	names with more than one first and family name
-		
-		Jon Jake Stewart Brown
-		the last word is Brown
-		
-		Jon Jake Stewart_Brown
-		the last word is "Stewart Brown"
-		
-	The _ will not displayed in the sidebar.
-	
+For detailed information about the usage of this plugin, please read the readme.txt.	
 
 Copyright 2009  Tim Berger  (email : timberge@cs.tu-berlin.de)
 
@@ -81,20 +66,26 @@ if (function_exists('load_plugin_textdomain')) {
 
 // on plugin deactivation
 register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
-function customfieldlist_on_deactivation() { 
+function customfieldlist_on_deactivation() {
 	delete_option('widget_custom_field_list');
 }
 
-function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel , $list_style='standard', $i=0, $j=0, $k=0) {
+// This function prints specialy the lists of one widget
+function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel , $list_style='standard', $show_number_of_subelements=FALSE, $signs, $i=0, $j=0, $k=0) {
 	if ( $i < ($hierarchymaxlevel-1) ) {
 		$i++;
 		switch ($list_style) {
 			case 'each_element_with_sub_element' :
 				foreach ($n as $key => $value) {
 					if ( TRUE === is_array($value) ) { 
-						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t";
+						if ( TRUE === $show_number_of_subelements AND 0 < count($value) ) {
+							$nr_of_subelement_str = ' ('.count($value).')';
+						} else {
+							$nr_of_subelement_str = '';
+						}
+						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $i, $j, $k);
 						echo "</ul>\n";
 						echo "</li>\n";
 						if ( $i==1 ) { 
@@ -104,20 +95,25 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 							$k++;
 						}
 					} else {
-						echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
+						echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">test '.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
 					}
 				}
 			break;
 			case 'standard' :
 			default :
 				foreach ($n as $key => $value) {
-					if ( TRUE === is_array($value) AND 1 < count($value) ) { 
-						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span> <span class="customfieldplus">[ - ]</span>'."<br />\n\t";
+					if ( TRUE === is_array($value) AND 1 < count($value) ) {
+						if ( TRUE === $show_number_of_subelements ) {
+							$nr_of_subelement_str = ' ('.count($value).')';
+						} else {
+							$nr_of_subelement_str = '';
+						}
+						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $i, $j, $k);
 						echo "</ul>\n";
 						echo "</li>\n";
-						if ( $i==1 ) { 
+						if ( $i==1 ) {
 							$j++;
 						}
 						if ( $i==1 AND  0 === ($j % $partlength)  ) {
@@ -133,7 +129,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 								$k++;
 							}
 						} else {
-							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
+							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">test2 '.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
 						}
 					}
 				}
@@ -156,7 +152,7 @@ function customfieldlist_build_output_array($n, $j=0, $o=array()) {
 	return $o;
 }
 
-// This function is heavily inspired by a example in the comments to the explanation of array_merge_recursive at php.net
+// This function is heavily inspired by an example in the comments to the explanation of array_merge_recursive at php.net
 function customfieldlist_array_merge($arr, $ins, $hierarchymaxlevel, $i = 0) {
 	if ( is_array($arr) ) {
 		if ( is_array($ins) ) {
@@ -223,8 +219,53 @@ function customfieldlist_var_dump($var) {
 	if (is_file($filename)) {chmod ($filename, 0644);}
 }
 
+function customfieldlist_get_parts_of_strings($output_array=array(), $list_part_nr_type='1Lfront') {
+	$substrings=array();
+	switch ($list_part_nr_type) {
+		default:
+		case '1Lfront':
+		case '2Lfront':
+		case '3Lfront':
+			switch ($list_part_nr_type) {
+				default:
+				case '1Lfront':
+					$len = 1;
+				break;
+				case '2Lfront':
+					$len = 2;
+				break;
+				case '3Lfront':
+					$len = 3;
+				break;
+			}
+			if ( FALSE === function_exists('mb_substr') ) {
+				foreach ($output_array as $key => $value) {
+					$substrings[] = substr($key, 0, $len);
+				}
+			} else {
+				$blog_charset = get_bloginfo('charset');
+				foreach ($output_array as $key => $value) {
+					$substrings[] = mb_substr($key, 0, $len, $blog_charset);
+				}
+			}
+		break;
+		case 'firstword':
+			foreach ($output_array as $key => $value) {
+				$name_parts = explode(' ', trim($key));
+				$substrings[] = $name_parts[0];
+			}
+		break;
+		case 'lastword' :
+			foreach ($output_array as $key => $value) {
+				$name_parts = explode(' ', trim($key));
+				$substrings[] = end($name_parts);
+			}
+		break;
+	}
+	return $substrings;
+}
 
-// produces the list in the sidebar
+// produces the basic structure of the sidebar widget. the lists will be printed out by the function customfieldlist_print_widget_content()
 function customfieldlist($args=array(), $widget_args=1) {
 	global $wpdb;
 	extract( $args, EXTR_SKIP );
@@ -394,7 +435,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 									}
 								}
 								
-								// get all the post_status ofpost titles and IDs
+								// get all the post_status of post titles and IDs
 								$querystring = 'SELECT ID, post_status FROM '.$wpdb->posts." WHERE (post_type='post' or post_type='page') ORDER BY ID DESC";
 								$post_status_results =  $wpdb->get_results($querystring);
 								foreach ($post_status_results as $post_status_result) {
@@ -403,6 +444,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								
 								foreach ($individual_href as $meta_id => $link_target_post_id) {
 									$meta_value = $meta_values_array[$meta_id];
+									$output_array[$meta_value] = $meta_id;
 									$descr = attribute_escape($opt['individual_href']['descr'][$meta_id]);
 									if ('' != $only_public AND 'publish' != $meta_value_post_status[$meta_id]) {
 										$nr_meta_values--;
@@ -426,8 +468,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 										}
 									}
 								}
-								$j = floor($nr_meta_values / $partlength);
-								if ( 0 < ($nr_meta_values % $partlength) ) {
+								$nr_of_mainlistelements = $k;
+								$j = floor($nr_of_mainlistelements / $partlength);
+								if ( 0 < ($nr_of_mainlistelements % $partlength) ) {
 									$j++;
 								}
 							} else {
@@ -448,8 +491,22 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$none_empty = customfieldlist_remove_empty_array_elements($meta_keys);
 						$nr_meta_keys = count($none_empty);
 						
-						// build querystring
 						if (TRUE === is_array($meta_keys) AND 0 < $nr_meta_keys) {
+							$signslibrary = array(
+								'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
+								'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
+								'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
+								'plusminus_short' => array('minus' => '-', 'plus' => '+'),
+								'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+							);
+							
+							if ( FALSE == isset($opt['plusminusalt']) or FALSE == array_key_exists($opt['plusminusalt'], $signslibrary) ) {
+								$signsgroup = 'showhide';
+							} else {
+								$signsgroup = $opt['plusminusalt'];
+							}
+							
+							// build querystring
 							for ( $i = 0; $i < $nr_meta_keys; $i++ ) {
 								// select the values of the wp_postmeta table by different a name for each meta_key
 								$select_meta_value_str .= 'pm'.$i.'.meta_value AS meta_value'.$i.', ';
@@ -501,8 +558,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 									asort($mvals, SORT_LOCALE_STRING);
 								}
 								
-								//turn the locale back
-								$loc=setlocale(LC_COLLATE, $old_locale);
+								// turn the locale back
+								$loc = setlocale(LC_COLLATE, $old_locale);
 								
 								// get the keys with the new order
 								$mval_keys = array_keys($mvals);
@@ -518,7 +575,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							$clean_unique_values = customfieldlist_get_clean_unique_values($meta_keys);
 
 							$nr_none_empty_meta_keys = count($clean_unique_values);
-							$used_fields=$nr_none_empty_meta_keys;
+							$used_fields = $nr_none_empty_meta_keys;
 							
 							$dontshowthis_id = FALSE;
 							foreach ($opt['donnotshowthis_customfieldname'] as $key => $value) {
@@ -565,7 +622,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								$liststyleopt = 'standard';
 							}
 							
-							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $liststyleopt);
+							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup]);
 						} else {
 							echo "<li>".sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 						}
@@ -589,13 +646,54 @@ function customfieldlist($args=array(), $widget_args=1) {
 		if ($j > 0 AND $k > $partlength) {
 			echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
 			echo __('part','customfieldlist').": ";
+			
+			// check out which part name tape should be used
+			if ( !isset($opt['list_part_nr_type']) OR empty($opt['list_part_nr_type']) ) {
+				$partnumbertype='numbers';
+			} elseif ( 'numbers' != $opt['list_part_nr_type'] ) {
+				$partnumbertype='letters';
+			}
+			// get the parts 
+			if ( 'letters' == $partnumbertype ) {
+				if ( TRUE == is_array($output_array) ) {
+					$letters = customfieldlist_get_parts_of_strings($output_array, $opt['list_part_nr_type']);
+				} else {
+					$partnumbertype == 'numbers';
+				}
+			}
 			for ($i=0; $i<$j; $i++) {
 				if ( 0 === $i ) {
 					$css_class=' class="customfieldlist_selectedpart"';
 				} else {
 					$css_class='';
 				}
-				echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+				switch ($partnumbertype) {
+					case 'letters' :
+						$nr = $i*$partlength;
+						
+						//~ echo "\n <!-- ##### \n";
+						//~ var_dump($letters);
+						//~ echo "\n".'($nr) '.($nr)."\n";
+						//~ echo "\n".'($i) '.($i)."\n";
+						//~ echo "\n".'($nr+$partlength-1) '.($nr+$partlength-1)."\n";
+						//~ echo "\n".'$letters[($nr+$partlength-1)] '.$letters[($nr+$partlength-1)]."\n";
+						//~ echo "\n ##### --> \n";
+						if ( isset($letters[($nr+$partlength-1)]) ) {
+							$nr_last = $nr+$partlength-1;
+						} else {
+							$nr_last = count($letters)-1;
+						}
+						if ( $letters[$nr] != $letters[$nr_last] ) {
+							echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' - '.$letters[$nr_last].' </a>] ';
+						} else {
+							echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' </a>] ';
+						}
+					break;
+					case 'numbers' :
+					default:
+						echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+					break;
+				}
 			}
 			echo "\n</p>\n";
 		}
@@ -707,6 +805,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['list_style_opt1'] = 'no';
 			}
 			
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['show_number_of_subelements']) ) {
+				$opt[$widget_number]['show_number_of_subelements'] = TRUE;
+			} else {
+				$opt[$widget_number]['show_number_of_subelements'] = FALSE;
+			}
+			
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['partlist']) ) {
 				$opt[$widget_number]['partlist'] = 'yes';
 			} else {
@@ -732,6 +836,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['sortseq'] = $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'];
 			} else {
 				$opt[$widget_number]['sortseq'] = 'asc';
+			}
+			
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['list_part_nr_type']) ) {
+				$opt[$widget_number]['list_part_nr_type'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['list_part_nr_type'])));
+			} else {
+				$opt[$widget_number]['list_part_nr_type'] = 'numbers';
 			}
 		}
 		update_option('widget_custom_field_list', $opt);
@@ -763,12 +873,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$listlayoutopt1chk = '';
 				$listlayoutopt3chk = ' checked="checked"';
 				$liststyleopt1disabled = ' disabled="disabled"';
+				$liststyleopt3disabled = ' disabled="disabled"';
 			break;
 			case 'standard' :
 			default :
 				$listlayoutopt1chk = ' checked="checked"';
 				$listlayoutopt3chk = '';
 				$liststyleopt1disabled = '';
+				$liststyleopt3disabled = '';
 			break;
 		}
 		
@@ -1009,8 +1121,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$customfieldsortseq_DESC_checked=' checked="checked"';
 		}
 		echo '<fieldset><legend>'.__('sort sequence','customfieldlist').':</legend>';
-			echo '<label for="customfieldsortseq_'.$number.'_asc">'.__('ascending (ASC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_asc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="asc"'.$customfieldsortseq_ASC_checked.' /><br />';
-			echo '<label for="customfieldsortseq_'.$number.'_desc">'.__('descending (DESC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_desc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="desc"'.$customfieldsortseq_DESC_checked.' /><br />';
+			echo '<div><label for="customfieldsortseq_'.$number.'_asc" class="customfieldlist_label">'.__('ascending (ASC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_asc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="asc"'.$customfieldsortseq_ASC_checked.' /></div>';
+			echo '<div><label for="customfieldsortseq_'.$number.'_desc" class="customfieldlist_label">'.__('descending (DESC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_desc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="desc"'.$customfieldsortseq_DESC_checked.' /></div>';
 		echo '</fieldset>';
 	
 		// section: select DB_CHARSET
@@ -1034,8 +1146,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 					$message_os .= __('1. enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:92%;" /><br />';
 					$message_os .= __('2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': ';
 					$message_os .= '<select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
+					$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
 					foreach ($encodings as $keyname => $encoding) {
-						$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
 						if ($encoding == $stored_encoding) {
 							$message_os .= '<option value="'.$encoding.'" selected="selected">'.$keyname.'</option>';
 						} else {
@@ -1055,9 +1167,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$message_setloc = '';
 		}
 		if ( 'lastword' === $opt[$number]['orderelement'] ) {
-			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'">'.__('sort the values by the last word','customfieldlist').':</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" /></div>'.$message_os.$message_setloc.''."\n";
+			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" /></div>'.$message_os.$message_setloc.''."\n";
 		} else {
-			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'">'.__('sort the values by the last word','customfieldlist').':</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
+			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
 		}
 	echo '</div>'."\n";
 
@@ -1065,12 +1177,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Types','customfieldlist').'</h5>'."\n";
 		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt1_explanation" class="customfieldlist_explanation">'.__('Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title.','customfieldlist').'</p>'."\n";
+		echo '</div>'."\n";
 		
 		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";	
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";	
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";	
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt2_explanation" class="customfieldlist_explanation">'.__('A simple list of all unique custom field values of one custom field name. Each value can be linked individually.','customfieldlist').'</p>'."\n";
+		echo '</div>'."\n";
 		echo '<input type="button" class="button" id="customfieldlist_opt_'.$number.'_set_links" title="'.sprintf(__('Set a Link for each custom field value of the custom field: %1$s','customfieldlist'), $thecustomfieldname).'" value="'.__('Set the links','customfieldlist').'" onclick="customfieldlist_set_links(\'\', '.$number.', this.id);" />'."\n";
 		echo '<input type="hidden" id="customfieldlist_opt_'.$number.'_set_links_helper" value="'.sprintf(__('Set a Link for each custom field value of the custom field: %1$s','customfieldlist'), $thecustomfieldname).'" />'."\n";
 	echo '</div>'."\n";
@@ -1079,23 +1193,69 @@ function customfieldlist($args=array(), $widget_args=1) {
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Appearance','customfieldlist').'</h5>'."\n";
 		
+		// ### Opt ###
 		if ( 'yes' == $opt[$number]['list_style_opt1'] ) {
 			$liststyleopt1chk = ' checked="checked"';
 		} else {
 			$liststyleopt1chk = '';
 		}
 		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' /></div>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' /></div>'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
+		echo '</div>'."\n";
 
+		// ### Opt ###
+		if ( TRUE === $opt[$number]['show_number_of_subelements'] ) {
+			$liststyleopt3chk = ' checked="checked"';
+		} else {
+			$liststyleopt3chk = '';
+		}
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt3_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt3" class="customfieldlist_label">'.__('show the number of sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][show_number_of_subelements]" id="customfieldlist_opt_'.$number.'_list_style_opt3" value="yes"'.$liststyleopt3chk.''.$liststyleopt3disabled.' />'."\n";
+		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt3_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
+		echo '</div>'."\n";
+		
+	
+		echo '<fieldset><legend>'.__('partitioned list','customfieldlist').':</legend>';
+		
+		// ### Opt ###
 		if ( 'yes' == $opt[$number]['partlist'] ) {
 			$liststyleopt2chk = ' checked="checked"';
+			$liststyleoptpartlengthdisabled = '';
+			$liststyleopt4disabled = '';
 		} else {
 			$liststyleopt2chk = '';
+			$liststyleoptpartlengthdisabled = ' disabled="disabled"';
+			$liststyleopt4disabled = ' disabled="disabled"';
 		}
-		echo '<label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').':</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' />'."\n";
+		echo '<div><label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').'</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' onclick="customfieldlist_partitionedlist_optionsswitch(this.id, '.$number.');" /></div>'."\n";
 		
-		echo '<p>'.__('elements per part of the list','customfieldlist').' (X>=3): <input type="text" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;" /></p>'."\n";
+		// ### Opt ###
+		echo '<div><label for="customfieldlist_opt_'.$number.'_partlength" class="customfieldlist_label">'.__('elements per part of the list','customfieldlist').' (X>=3)</label> <input type="text" id="customfieldlist_opt_'.$number.'_partlength" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;"'.$liststyleoptpartlengthdisabled.' /></div>'."\n";
+		
+		// ### Opt ###
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt4_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt4" class="customfieldlist_label">'.__('pagination type','customfieldlist').' - '.__('use the','customfieldlist').'</label> ';
+		echo '<select id="customfieldlist_opt_'.$number.'_list_style_opt4" name="customfieldlist_opt['.$number.'][list_part_nr_type]"'.$liststyleopt4disabled.'>';
+		$list_part_nr_types = array(
+			'numbers' => __('numbers','customfieldlist'),
+			'1Lfront' => __('first letter','customfieldlist'),
+			'2Lfront' => __('first two letters','customfieldlist'),
+			'3Lfront' => __('first three letters','customfieldlist'),
+			'firstword' => __('first word','customfieldlist'),
+			'lastword' => __('last word','customfieldlist')
+		);
+		foreach ($list_part_nr_types as $keyname => $list_part_nr_type) {
+			if ($keyname == $opt[$number]['list_part_nr_type']) {
+				echo '<option value="'.$keyname.'" selected="selected">'.$list_part_nr_type.'</option>';
+			} else {
+				echo '<option value="'.$keyname.'">'.$list_part_nr_type.'</option>';
+			}
+		}
+		echo '</select>';
+		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt4_explanation" class="customfieldlist_explanation">'.sprintf(__('You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type "%1$s").','customfieldlist'),__('first two letters','customfieldlist')).'</p>'."\n";
+		echo '</div>';
+		
+		echo '</fieldset>';
+		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__)).'</p>'."\n";
 	echo '</div>'."\n";
 	echo '<input type="hidden" id="customfieldlist-submit-'.$number.'" name="customfieldlist-submit['.$number.'][submit]" value="1" />'."\n";
 }
@@ -1143,16 +1303,51 @@ function customfieldlist_widget_init() {
 // add jquery scripts for the appearance of the widgets lists
 add_action('wp_print_scripts', 'customfieldlist_widget_script');
 function customfieldlist_widget_script() {
+	$signslibrary = array(
+		'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
+		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
+		'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
+		'plusminus_short' => array('minus' => '-', 'plus' => '+'),
+		'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+	);
+	
+	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
+	
+	// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
+	?>
+<script type="text/javascript">
+	//<![CDATA[
+	function customfieldlist_the_collapse_sign() {
+		var signs = new Object();
+		<?php 
+			echo "signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES, get_bloginfo('charset'))."';\n\t";
+			echo "signs['plus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES, get_bloginfo('charset'))."';\n";
+		?>
+		return signs;
+	}
+	function customfieldlist_effect_speed() {
+		<?php 
+			echo "var speed = '".$customfieldlist_widgets_general_options['effect_speed']."';\n";
+		?>
+		return speed;
+	}
+	//]]>
+ </script>
+	<?php
+
+	// load the jQuery library of WP and the scripts which are responsible for the effects
 	wp_enqueue_script( 'jquery' );
 	$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
-	wp_enqueue_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
+	wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
+	wp_enqueue_script( 'customfieldlist_widget_script' );
 }
 
 // add styles for the appearance of the widgets lists 
 add_action('wp_print_styles', 'customfieldlist_widget_style');
 function customfieldlist_widget_style() {
 	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list.css';
-	wp_enqueue_style( 'customfieldlist_widget_style', $stylefile );
+	wp_register_style( 'customfieldlist_widget_style', $stylefile );
+	wp_enqueue_style( 'customfieldlist_widget_style' );
 }
 
 // add js on the widgets page
@@ -1161,6 +1356,16 @@ function customfieldlist_widget_admin_script() {
 	?>
 	<script type="text/javascript">
 	//<![CDATA[
+	function customfieldlist_partitionedlist_optionsswitch(chkb_id, number) {
+		if ( document.getElementById( chkb_id ).checked==true ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_partlength').disabled = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt4').disabled = false;
+		} else {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_partlength').disabled = true;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt4').disabled = true;
+		}
+	}
+	
 	function customfieldlist_set_links(link, number, this_id) {
 		if ( document.getElementById('customfieldlist_opt_' + String(number) + '_list_type_opt2').checked == true ) {
 			if ( 'unsaved_changes' != document.getElementById( this_id + '_helper' ).value ) {
@@ -1185,6 +1390,9 @@ function customfieldlist_widget_admin_script() {
 		if ( 'customfieldlist_opt_'+ String(number) +'_list_type_opt2' == opt_id ) {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').checked = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = true;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').checked = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').disabled = true;
+			
 			// which radio button is selected
 			var rb_elements_name = 'customfieldlist_opt[' + String(number) + '][sort_by_custom_field_name]';
 			var allrb = document.getElementsByName(rb_elements_name);
@@ -1252,6 +1460,7 @@ function customfieldlist_widget_admin_script() {
 			}
 		} else {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').disabled = false;
 			if ( true == alltxtb[2].readOnly ) {
 				for (var i = 2; i < number_of_txtb; i++ ) {
 					alltxtb[i].readOnly = false;
@@ -1501,6 +1710,106 @@ add_action('admin_print_styles-widgets.php', 'customfieldlist_widget_admin_style
 function customfieldlist_widget_admin_styles() {
 	wp_enqueue_style( 'thickbox' );
 	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_admin.css';
-	wp_enqueue_style( 'customfieldlist_widget_admin_style', $stylefile );
+	wp_register_style( 'customfieldlist_widget_admin_style', $stylefile );
+	wp_enqueue_style( 'customfieldlist_widget_admin_style' );
+}
+
+
+function customfieldlist_widget_general_options() {
+
+	$signslibrary = array(
+		'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
+		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
+		'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
+		'plusminus_short' => array('minus' => '-', 'plus' => '+'),
+		'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+	);
+	
+	$speeds = array(
+		'slow' => __('slow','customfieldlist'),
+		'normal' => __('normal','customfieldlist'),
+		'fast' => __('fast','customfieldlist')
+	);
+
+	if (isset($_POST['action']) AND 'update' == $_POST['action']) {
+		check_admin_referer('customfieldlist_general_options_security');
+		if ( isset($_POST['customfieldlist_plusminusalt']) AND TRUE == array_key_exists($_POST['customfieldlist_plusminusalt'], $signslibrary)) {
+			$opt['plusminusalt'] = $_POST['customfieldlist_plusminusalt'];
+		} else {
+			$opt['plusminusalt'] = 'default';
+		}
+		if ( isset($_POST['customfieldlist_effect_speed']) AND TRUE == array_key_exists($_POST['customfieldlist_effect_speed'], $speeds)) {
+			$opt['effect_speed'] = $_POST['customfieldlist_effect_speed'];
+		} else {
+			$opt['effect_speed'] = 'slow'; // default
+		}
+		$result = update_option('widget_custom_field_list_general_options', $opt);
+		//~ if (FALSE === $result) {
+			//~ echo '<div id="message" class="error fade"><p>' . __('No settings updated!','customfieldlist') . '</p></div>';
+		//~ } else {
+			echo '<div id="message" class="updated fade"><p>' . __('Changes saved') . '</p></div>';
+		//~ }
+	} else {
+		$opt = get_option('widget_custom_field_list_general_options');
+	}
+	
+	echo '<div class="wrap">'."\n";
+	echo '<h2>'.__('Custom Field List Widgets settings','customfieldlist').'</h2>'."\n";
+	echo '<form method="post" action="'.trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__).'">'."\n";
+	wp_nonce_field('customfieldlist_general_options_security');
+
+	echo '<table class="form-table">'."\n";
+
+	echo '<tr valign="top">'."\n";
+	echo '<th scope="row">'.__('symbols to deflate/inflate the sub list elements','customfieldlist').'</th>'."\n";
+	echo '<td>';
+		echo '<select id="customfieldlist_opt_plusminusalt" name="customfieldlist_plusminusalt">';
+			foreach ($signslibrary as $signsgroup => $signs) {
+				if ($signsgroup == $opt['plusminusalt']) {
+					echo '<option value="'.$signsgroup.'" selected="selected">'.$signs['minus'].' | '.$signs['plus'].'</option>';
+				} else {
+					echo '<option value="'.$signsgroup.'">'.$signs['minus'].' | '.$signs['plus'].'</option>';
+				}
+			}
+		echo '</select>';	
+		echo ' <span class="description">'.__('If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements.','customfieldlist').'</span>'."\n";
+	echo '</td>'."\n";
+	echo '</tr>'."\n";
+ 
+	echo '<tr valign="top">'."\n";
+	echo '<th scope="row">'.__('effect speed','customfieldlist').'</th>'."\n";
+	echo '<td>';
+		echo '<select id="customfieldlist_opt_effect_speed" name="customfieldlist_effect_speed">';
+			foreach ($speeds as $speed_keyname => $speed_displayname) {
+				if ($speed_keyname == $opt['effect_speed']) {
+					echo '<option value="'.$speed_keyname.'" selected="selected">'.$speed_displayname.'</option>';
+				} else {
+					echo '<option value="'.$speed_keyname.'">'.$speed_displayname.'</option>';
+				}
+			}
+		echo '</select>';	
+		echo ' <span class="description">'.__('How fast should the list elements show up or hide?','customfieldlist').'</span>'."\n";
+	echo '</td>'."\n";
+	echo '</tr>'."\n";
+
+	echo '</table>'."\n";
+
+	echo '<input type="hidden" name="action" value="update" />'."\n";
+
+	echo '<p class="submit">'."\n";
+	echo '<input type="submit" class="button-primary" value="'.__('Save Changes').'" />'."\n";
+	echo '</p>'."\n";
+
+	echo '</form>'."\n";
+	echo '</div>'."\n";
+}
+
+add_action('admin_menu', 'customfieldlist_add_options_page');
+function customfieldlist_add_options_page() {
+	if (function_exists('add_options_page')) {
+		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 8, basename(__FILE__), 'customfieldlist_widget_general_options'); 
+		//add_action( 'admin_print_scripts-'.$page, 'cronjob_control_add_js_to_admin_header' );
+		//add_action( 'admin_print_styles-'.$page, 'cronjob_control_add_css_to_admin_header' );
+	}
 }
 ?>
