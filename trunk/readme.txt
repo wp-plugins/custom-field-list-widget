@@ -1,6 +1,5 @@
 === Custom Field List Widget ===
 Contributors: ntm
-Donate link: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
 Tested up to: 2.8.6
@@ -32,6 +31,7 @@ Available in the languages:
 * Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
 * Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 * Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
+
 
 == Installation ==
 
@@ -140,6 +140,14 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Change Log ==
+
+= v0.9.6 =
+* new feature: you can now choose the type of the pagination of the list parts if you use the option "show only a part of the list elements at once". You can choose between pagination with consecutive numbers and several types of strings.
+* new feature: now it is possible to fade in the number of sub elements of a list element.
+* new feature: possibility to select the Hide/Show symbols (if a list element has sub elements) 
+* new feature: possibility to select the Hide/Show effect speed
+* fix for a bug in the pagination while the list type "a list with manually linked values"
+* fix for the highlighting of the pagination
 
 = v0.9.5 =
 * new feature: you are free to define more than one custom field name and print e.g. a list with several hierarchy levels. Further you can select one of these custom field as an order column.
