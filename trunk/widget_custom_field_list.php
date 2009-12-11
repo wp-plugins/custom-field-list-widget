@@ -497,7 +497,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
 								'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
 								'plusminus_short' => array('minus' => '-', 'plus' => '+'),
-								'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+								'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
 							);
 							
 							if ( FALSE == isset($opt['plusminusalt']) or FALSE == array_key_exists($opt['plusminusalt'], $signslibrary) ) {
@@ -1308,7 +1308,7 @@ function customfieldlist_widget_script() {
 		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
 		'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
 		'plusminus_short' => array('minus' => '-', 'plus' => '+'),
-		'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+		'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
 	);
 	
 	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
@@ -1722,7 +1722,7 @@ function customfieldlist_widget_general_options() {
 		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
 		'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
 		'plusminus_short' => array('minus' => '-', 'plus' => '+'),
-		'showhide' => array('minus' => '['.__('Hide').']', 'plus' => '['.__('Show').']')
+		'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
 	);
 	
 	$speeds = array(
