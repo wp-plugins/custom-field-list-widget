@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.6 RC 4
+Version: 0.9.6 RC 5
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 2.9 beta 2
@@ -1312,6 +1312,10 @@ function customfieldlist_widget_script() {
 	);
 	
 	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
+	
+	if (FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
+		$customfieldlist_widgets_general_options['plusminusalt']='default';
+	}
 	
 	// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
 	?>
