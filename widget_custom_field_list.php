@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.6 RC 5
+Version: 0.9.6 RC 7
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
-Max WP Version: 2.9 beta 2
+Max WP Version: 2.9
 License: GNU General Public License
 
 Requirements:
@@ -71,7 +71,7 @@ function customfieldlist_on_deactivation() {
 }
 
 // This function prints specialy the lists of one widget
-function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel , $list_style='standard', $show_number_of_subelements=FALSE, $signs, $i=0, $j=0, $k=0) {
+function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel , $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $i=0, $j=0, $k=0) {
 	if ( $i < ($hierarchymaxlevel-1) ) {
 		$i++;
 		switch ($list_style) {
@@ -83,9 +83,9 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						} else {
 							$nr_of_subelement_str = '';
 						}
-						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
+						echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
 						echo "</ul>\n";
 						echo "</li>\n";
 						if ( $i==1 ) { 
@@ -95,7 +95,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 							$k++;
 						}
 					} else {
-						echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">test '.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
+						echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">(1)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
 					}
 				}
 			break;
@@ -108,9 +108,9 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						} else {
 							$nr_of_subelement_str = '';
 						}
-						echo "\t<li name=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
+						echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
 						echo "</ul>\n";
 						echo "</li>\n";
 						if ( $i==1 ) {
@@ -121,7 +121,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						}
 					} else {
 						if ( TRUE === is_array($value) ) {
-							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.$value[0]['post_title'].'">'.$key."</a></li>\n";
+							echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
 							if ( $i == 1 ) { 
 								$j++;
 							}
@@ -129,7 +129,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 								$k++;
 							}
 						} else {
-							echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'">test2 '.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
+							echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">(2)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
 						}
 					}
 				}
@@ -137,7 +137,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 		}
 	} else {
 		foreach ($n as $key => $value) {
-			echo "\t".'<li name="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.$n[$key]['post_title'].'">'.$n[$key]['post_title']."</a></li>\n";
+			echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.htmlspecialchars($n[$key]['post_title'], ENT_COMPAT, $charset).'">'.$n[$key]['post_title']."</a></li>\n";
 		}
 	}
 }
@@ -294,7 +294,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 	
 	echo $before_widget."\n";
 		echo $before_title.$header . '' . $after_title . "\n";
-		//echo $before_title.$header.$after_title . '<span class="customfieldplusall">[ - ]</span>'. "\n";
 		echo '<input type="hidden" name="customfieldlist_widget_id" value="'.$number.'"'." />\n";
 		if ('yes' === $opt['partlist'] AND $partlength >= 3) {
 			echo '<input type="hidden" id="customfieldlistpartlist_'.$number.'" value="yes"'." />\n";
@@ -311,6 +310,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 		echo '<ul id="customfieldlist_mainlist_'.$number.'">'."\n";
 		if (FALSE !== $opt) {
 			if ( is_array($opt['custom_field_names']) AND 1 <= count($opt['custom_field_names']) AND FALSE === customfieldlist_are_the_array_elements_empty($opt['custom_field_names']) ) {
+				$charset=get_bloginfo('charset'); 
 				switch ($opt['list_type']) {
 					case 'individual_href' :
 						$only_public1='';
@@ -332,7 +332,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 										
 									// add a LEFT JOIN for each meta_key resp. custom field name // this useful to produce a data base request result which contains a column with the meta_values of each meta_key (originally the meta_values of all meta_keys are in one column in wp_postmeta)
 									if ( 0 < $i ) {
-										$from_left_join_str = 'LEFT JOIN wp_postmeta AS pm'.$i.' ON (pm0.post_id = pm'.$i.'.post_id AND pm'.$i.'.meta_key="'.$meta_keys[$i].'")';
+										$from_left_join_str = 'LEFT JOIN '.$wpdb->postmeta.' AS pm'.$i.' ON (pm0.post_id = pm'.$i.'.post_id AND pm'.$i.'.meta_key="'.$meta_keys[$i].'")';
 									}
 								}
 								
@@ -347,7 +347,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								} else {
 									$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
 								}
-								$querystring = 'SELECT pm0.meta_id, pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title, p.post_status FROM wp_postmeta AS pm0 '.$from_left_join_str.' LEFT JOIN wp_posts AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$customfieldname_show.'"'.$only_public1.' ORDER BY '.$order_by_str;
+								$querystring = 'SELECT pm0.meta_id, pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title, p.post_status FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$customfieldname_show.'"'.$only_public1.' ORDER BY '.$order_by_str;
 							}
 						} else {
 							// if there is only one custom field name then use the old method to produce the querystring:
@@ -445,7 +445,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								foreach ($individual_href as $meta_id => $link_target_post_id) {
 									$meta_value = $meta_values_array[$meta_id];
 									$output_array[$meta_value] = $meta_id;
-									$descr = attribute_escape($opt['individual_href']['descr'][$meta_id]);
+									$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
 									if ('' != $only_public AND 'publish' != $meta_value_post_status[$meta_id]) {
 										$nr_meta_values--;
 									} else {
@@ -453,14 +453,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 											// ... then look for an URL which was free entered into the text box
 											$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
 											if ('' == $url) {
-												echo "\n".'<li name="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
+												echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
 											} else {
-												echo "\n".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.$url.'" title="'.$descr.'">'.$meta_value."</a></li>\n";
+												echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.$url.'" title="'.$descr.'">'.$meta_value."</a></li>\n";
 											}
 										} elseif ( '' != $only_public AND 'publish' != $post_states[$link_target_post_id] ) { // if there is a post_id check if the most is published and if the user is logged in
-											echo "\n".'<li name="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
+											echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
 										} else {
-											echo "\n".'<li name="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink(intval($individual_href[$meta_id])).'" title="'.$descr.'">'.$meta_value."</a></li>\n";
+											echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink(intval($individual_href[$meta_id])).'" title="'.$descr.'">'.$meta_value."</a></li>\n";
 										}
 										$k++;
 										if (  ($k > 0) AND ($partlength < $nr_meta_values) AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
@@ -513,7 +513,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 									
 								// add a LEFT JOIN for each meta_key resp. custom field name // this useful to produce a data base request result which contains a column with the meta_values of each meta_key (originally the meta_values of all meta_keys are in one column in wp_postmeta)
 								if ( 0 < $i ) {
-									$from_left_join_str .= 'LEFT JOIN wp_postmeta AS pm'.$i.' ON (pm0.post_id = pm'.$i.'.post_id AND pm'.$i.'.meta_key="'.$meta_keys[$i].'")';
+									$from_left_join_str .= 'LEFT JOIN '.$wpdb->postmeta.' AS pm'.$i.' ON (pm0.post_id = pm'.$i.'.post_id AND pm'.$i.'.meta_key="'.$meta_keys[$i].'")';
 								}
 							}
 
@@ -528,7 +528,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							} else {
 								$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
 							}
-							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title FROM wp_postmeta AS pm0 '.$from_left_join_str.' LEFT JOIN wp_posts AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
+							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
 						
 							$meta_values =  $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
@@ -622,7 +622,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								$liststyleopt = 'standard';
 							}
 							
-							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup]);
+							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset);
 						} else {
 							echo "<li>".sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 						}
@@ -670,14 +670,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 				switch ($partnumbertype) {
 					case 'letters' :
 						$nr = $i*$partlength;
-						
-						//~ echo "\n <!-- ##### \n";
-						//~ var_dump($letters);
-						//~ echo "\n".'($nr) '.($nr)."\n";
-						//~ echo "\n".'($i) '.($i)."\n";
-						//~ echo "\n".'($nr+$partlength-1) '.($nr+$partlength-1)."\n";
-						//~ echo "\n".'$letters[($nr+$partlength-1)] '.$letters[($nr+$partlength-1)]."\n";
-						//~ echo "\n ##### --> \n";
 						if ( isset($letters[($nr+$partlength-1)]) ) {
 							$nr_last = $nr+$partlength-1;
 						} else {
@@ -1313,8 +1305,12 @@ function customfieldlist_widget_script() {
 	
 	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
 	
-	if (FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
+	if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
 		$customfieldlist_widgets_general_options['plusminusalt']='default';
+	}
+	
+	if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['effect_speed']) OR empty($customfieldlist_widgets_general_options['effect_speed']) ) {
+		$customfieldlist_widgets_general_options['effect_speed']='normal';
 	}
 	
 	// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets

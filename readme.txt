@@ -148,6 +148,9 @@ To keep your settings download the plugin archive file, unpack him and upload th
 * new feature: possibility to select the Hide/Show effect speed
 * fix for a bug in the pagination while the list type "a list with manually linked values"
 * fix for the highlighting of the pagination
+* fix for invalid usage of the attribute "name" with list elements
+* better escaping of the link titles
+* replaced some hard coded db table names with dynamic ones
 
 = v0.9.5 =
 * new feature: you are free to define more than one custom field name and print e.g. a list with several hierarchy levels. Further you can select one of these custom field as an order column.
