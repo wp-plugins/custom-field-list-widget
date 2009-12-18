@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.6 RC 7
+Version: 0.9.6
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 2.9
@@ -57,12 +57,10 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
-
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
 	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
 }
-
 
 // on plugin deactivation
 register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
@@ -198,7 +196,6 @@ function customfieldlist_are_the_array_elements_empty($ar) {
 function customfieldlist_clean_array_values($in) {
 	return (strip_tags(stripslashes(trim($in))));
 }
-
 
 function customfieldlist_get_clean_unique_values($in) {
 	$out = array_map('customfieldlist_clean_array_values', $in);
@@ -692,7 +689,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 	echo $after_widget."<!-- after_widget -->\n";
 }
 
-
 /*
  * the control- or preferences panel at the widgets page
  *
@@ -1083,7 +1079,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 		########## END: check if the custom field names are used for same posts #####################
 		
 	echo '</div>'."\n"; // section: custom field names
-	
 
 	// set the custom field name to variable which will be given to the link window, too
 	// are both custom field names (which are only possible for that option) in use? 
@@ -1098,7 +1093,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$thecustomfieldname = $opt[$number]['custom_field_names'][0];
 		}
 	}
-	
 	
 	// section: Sorting Options
 	echo '<div class="customfieldlist_section">'."\n";
@@ -1714,9 +1708,7 @@ function customfieldlist_widget_admin_styles() {
 	wp_enqueue_style( 'customfieldlist_widget_admin_style' );
 }
 
-
 function customfieldlist_widget_general_options() {
-
 	$signslibrary = array(
 		'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
 		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
