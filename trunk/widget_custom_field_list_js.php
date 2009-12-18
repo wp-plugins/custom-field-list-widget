@@ -11,7 +11,7 @@ jQuery(window).load(function(){
 		if ('yes' == jQuery("#customfieldlistpartlist_" + String(widget_numbers[j].value)).val()) {
 			var li_els=jQuery("#customfieldlistelements_" + String(widget_numbers[j].value)).val();
 			for ( i=1; i <= li_els; i++ ) {
-				jQuery("[name='customfieldlistelements_" + String(widget_numbers[j].value)+ "_" + String(i) + "']").hide();
+				jQuery(".customfieldlistelements_" + String(widget_numbers[j].value) + "_" + String(i)).hide();
 			}
 			jQuery("#customfieldlistpages_" + String(widget_numbers[j].value)).show();
 		}
@@ -51,13 +51,13 @@ function show_this_customfieldlistelements( list, lists, number ) {
 	var speed = customfieldlist_effect_speed();
 	for ( i=0; i <= lists; i++ ) {
 		if ( i == Number(list) ) {
-			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).show(speed);
+			jQuery( ".customfieldlistelements_" + String(number) + "_" + String(i)).show(speed);
 			// mark the page number with a different appearence
 			if ( false == jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).hasClass("customfieldlist_selectedpart") ) {
 				jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).addClass("customfieldlist_selectedpart");
 			}
 		} else {
-			jQuery( "[name='customfieldlistelements_" + String(number) + "_" + String(i) + "']" ).hide(speed);
+			jQuery( ".customfieldlistelements_" + String(number) + "_" + String(i) ).hide(speed);
 			// remove the special style class for the selected list part
 			if ( true == jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).hasClass("customfieldlist_selectedpart") ) {
 				jQuery( "[id='customfieldlistpart_" + String(number) + "_" + String(i) + "']" ).removeClass("customfieldlist_selectedpart");
