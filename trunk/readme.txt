@@ -3,7 +3,7 @@ Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
 Tested up to: 2.8.6
-Stable tag: 0.9.5
+Stable tag: 0.9.6
 
 This plugin makes a list of custom field information in the sidebar.
 
@@ -99,6 +99,8 @@ In this example the "datenname"s would be the main list elements and the post ti
 
 If you want to create a more sub-divided list (instead of "datename" something like "year", "month", "day") then you should keep an eye on the right hierarchy order.
 (e.g. 0. "realdate" (sort by / hide this), 1. "year", 2. "month", 3. "day"). The post titles will be sub elements of "day" and "day" will be sub elements of the months and so on - in the list in the side bar widget. (But for this special case there other plugins like [Collapsing Archives](http://wordpress.org/extend/plugins/collapsing-archives/ "Collapsing Archives on wordpress.org"))
+
+Other and even better examples (in English) are the book lists at the [weblog of Larry Wilson](http://www.wilsonld.com/weblog/ "Larry Wilson's blog"). He makes list of the books he has read.
 
 There are some basic things you should be aware of:
 * Overall you can use 5 hierarchical levels (if you want to have more then write me an email).
