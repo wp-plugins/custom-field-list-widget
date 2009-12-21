@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.8.6
+Tested up to: 2.9
 Stable tag: 0.9.6
 
 This plugin makes a list of custom field information in the sidebar.
