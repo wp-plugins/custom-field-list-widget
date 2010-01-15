@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.6
+Version: 0.9.7
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
-Max WP Version: 2.9
+Max WP Version: 2.9.1
 License: GNU General Public License
 
 Requirements:
@@ -205,7 +205,7 @@ function customfieldlist_get_clean_unique_values($in) {
 // helper function - only for development purposes
 function customfieldlist_var_dump($var) {
 	// write the out put to the log file
-	$filename = WP_PLUGIN_DIR.'/widget_custom_field_list/widget_custom_field_list_cronlog.dat';
+	$filename = CUSTOM_FIELD_LIST_WIDGET_DIR.'/widget_custom_field_list_cronlog.dat';
 	if (is_file($filename)) {
 		chmod ($filename, 0777);
 		if ((filesize($filename)/1024) > 100) { unlink($filename); } // delete the Logfile if it is bigger than 100 kByte
@@ -1289,26 +1289,27 @@ function customfieldlist_widget_init() {
 // add jquery scripts for the appearance of the widgets lists
 add_action('wp_print_scripts', 'customfieldlist_widget_script');
 function customfieldlist_widget_script() {
-	$signslibrary = array(
-		'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
-		'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
-		'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
-		'plusminus_short' => array('minus' => '-', 'plus' => '+'),
-		'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
-	);
-	
-	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
-	
-	if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
-		$customfieldlist_widgets_general_options['plusminusalt']='default';
-	}
-	
-	if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['effect_speed']) OR empty($customfieldlist_widgets_general_options['effect_speed']) ) {
-		$customfieldlist_widgets_general_options['effect_speed']='normal';
-	}
-	
-	// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
-	?>
+	if (FALSE == is_admin()) {
+		$signslibrary = array(
+			'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
+			'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
+			'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
+			'plusminus_short' => array('minus' => '-', 'plus' => '+'),
+			'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
+		);
+		
+		$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
+		
+		if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
+			$customfieldlist_widgets_general_options['plusminusalt']='default';
+		}
+		
+		if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['effect_speed']) OR empty($customfieldlist_widgets_general_options['effect_speed']) ) {
+			$customfieldlist_widgets_general_options['effect_speed']='normal';
+		}
+		
+		// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
+		?>
 <script type="text/javascript">
 	//<![CDATA[
 	function customfieldlist_the_collapse_sign() {
@@ -1327,13 +1328,14 @@ function customfieldlist_widget_script() {
 	}
 	//]]>
  </script>
-	<?php
+		<?php
 
-	// load the jQuery library of WP and the scripts which are responsible for the effects
-	wp_enqueue_script( 'jquery' );
-	$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
-	wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
-	wp_enqueue_script( 'customfieldlist_widget_script' );
+		// load the jQuery library of WP and the scripts which are responsible for the effects
+		wp_enqueue_script( 'jquery' );
+		$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
+		wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
+		wp_enqueue_script( 'customfieldlist_widget_script' );
+	}
 }
 
 // add styles for the appearance of the widgets lists 
@@ -1799,9 +1801,7 @@ function customfieldlist_widget_general_options() {
 add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
-		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 8, basename(__FILE__), 'customfieldlist_widget_general_options'); 
-		//add_action( 'admin_print_scripts-'.$page, 'cronjob_control_add_js_to_admin_header' );
-		//add_action( 'admin_print_styles-'.$page, 'cronjob_control_add_css_to_admin_header' );
+		add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 8, basename(__FILE__), 'customfieldlist_widget_general_options'); 
 	}
 }
 ?>
