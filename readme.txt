@@ -2,8 +2,8 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.9
-Stable tag: 0.9.6
+Tested up to: 2.9.1
+Stable tag: 0.9.7
 
 This plugin makes a list of custom field information in the sidebar.
 
@@ -142,6 +142,9 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Change Log ==
+
+= v0.9.7 =
+* this version adds the Javascript for the lists effects to the page heads only outside of the admin site
 
 = v0.9.6 =
 * new feature: you can now choose the type of the pagination of the list parts if you use the option "show only a part of the list elements at once". You can choose between pagination with consecutive numbers and several types of strings.
