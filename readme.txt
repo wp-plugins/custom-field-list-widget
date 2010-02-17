@@ -126,7 +126,7 @@ Example:
 The underline character will not displayed in the sidebar.
 
 
-== Upgrade ==
+== Upgrade Notice ==
 
 ATTENTION: The options of the plugin in the options table of your weblog database are going to be removed automatically during the plugin deactivation.
 This is important because the old plugin version will be deactivated during the automatic upgrade process!
@@ -141,7 +141,12 @@ To keep your settings download the plugin archive file, unpack him and upload th
 1. Delete the folders and files of the plugin (don't forget the file from the K2 theme folder if you have used that).
 
 
-== Change Log ==
+== Changelog ==
+= v0.9.9 (beta 2) =
+* new list appearance option: now it is to display the data in a drop down menu
+* internal changes of the way the list with individual linked list elements
+* possibility to leave the widget header/title blank
+* minor Javascript fixes
 
 = v0.9.7 =
 * this version adds the Javascript for the lists effects to the page heads only outside of the admin site

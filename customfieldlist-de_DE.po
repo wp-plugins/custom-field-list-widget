@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Field List Widget v0.9.6\n"
+"Project-Id-Version: Custom Field List Widget v0.9.9 beta 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-11 11:21+0100\n"
-"PO-Revision-Date: 2009-12-11 11:23+0100\n"
+"POT-Creation-Date: 2010-02-17 19:34+0100\n"
+"PO-Revision-Date: 2010-02-17 19:37+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "MIME-Version: 1.0\n"
@@ -15,409 +15,437 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp28en\\wp-content\\plugins\\widget_custom_field_list\n"
+"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp29en\\wp-content\\plugins\\custom-field-list-widget\n"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:292
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:854
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1293
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1294
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1298
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1299
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:400
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1023
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1485
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1486
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1490
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1491
 msgid "Custom Field List"
 msgstr "Spezialfeldliste"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:98
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:132
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:117
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:144
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:171
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:205
 msgid "Internal Plugin Error: value is no array"
 msgstr "Interner Pluginfehler: Wert ist kein Array"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:477
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:256
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:424
+msgid "Select:"
+msgstr "W&auml;hle:"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:627
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:256
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "Es gibt keine, mit dem Spezialfeldnamen \"%1$s\" in Verbindung stehenden, Werte in der Datenbank."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:481
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:631
 msgid "no value"
 msgstr "kein Wert"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:485
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr "Der aktuelle Spezialfeldname \"%1$s\" und der Spezialfeldname \"%2$s\", f&uuml;r den die Linkreferenzen abgespeichert wurden, sind unterschiedlich. Bitte speichern Sie die Links f&uuml;r die Werte des aktuellen Spezialfeldnamens."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:500
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1311
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1725
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:650
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1503
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1925
 msgid "Hide"
 msgstr "Anzeigen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:500
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1311
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1725
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:650
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1503
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1925
 msgid "Show"
 msgstr "Verbergen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:627
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:791
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "Es gibt keine Werte in der Datenbank, die mit den auf der Widgetseite definierten Spezialfeldnamen in Verbindung stehenden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:632
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:259
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:796
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:259
 msgid "Please, define a custom field name!"
 msgstr "Bitte, definieren Sie einen Spezialfeldnamen!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:635
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:799
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Es konnten keine Daten des Widgets aus der Datenbank geladen werde."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:648
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:817
 msgid "part"
 msgstr "Teil"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:861
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1030
 msgid "Header (optional)"
 msgstr "&Uuml;berschrift (optional)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:861
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1030
 msgid "Leave the field empty for no widget title"
 msgstr "kein Titel: das Feld leer lassen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:865
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1034
 msgid "Custom Field Names"
 msgstr "Spezialfeldnamen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:902
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1056
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1071
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1225
 msgid "custom field names"
 msgstr "Spezialfeldnamen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:905
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1074
 msgid "sort by"
 msgstr "sortieren nach"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:908
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1077
 msgid "hide this"
 msgstr "nicht anzeigen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:994
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1163
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr "Wenn Sie ein Liste mit mehreren Hierarchieebenen erstellen wollen, sollten Sie die Felder nach einander ausf&uuml;llen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1026
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1195
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr "Sie benutzen mehr als ein Spezialfeldname. Aber die Spezialfeldnamen wurden nicht in der gleichen Anzahl von Beitr&auml;gen bzw. der gleichen Anzahl pro Beitrag vergeben.<br />Es ist sehr wahrscheinlich, dass deshalb das Erscheinugsbild der Liste in der Seitenleiste nicht wie beabsichtigt ist.<br />Die Tabelle gibt einen &Uuml;berblick &uuml;ber die Verwendung der Spezialfeldnamen:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1057
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1226
 msgid "post IDs"
 msgstr "Beitrag IDs"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1113
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1280
 msgid "Sorting Options"
 msgstr "Sortieroptionen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1123
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1290
 msgid "sort sequence"
 msgstr "Sortierreihenfolge"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1124
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1291
 msgid "ascending (ASC)"
 msgstr "aufsteigend (ASC)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1125
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1292
 msgid "descending (DESC)"
 msgstr "absteigend (DESC)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1130
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1297
 msgid "database collation"
 msgstr "Datenbankkollation"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1138
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1305
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "Diese Option funtioniert wahrscheinlich nicht, weil es nicht m&ouml;glich ist \"setlocale(LC_COLLATE, ... \" zu verwenden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1145
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1312
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr "Das Serverbetriebssystem ist Windows (welches UTF-8 kodierte Zeichen nicht sortieren kann), weshalb es f&uuml;r das korrekte Funktionieren diese Option wahrscheinlich notwendig ist:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1146
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1313
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. die <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">Sprache</a> und den <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">Landesnamen</a> und eventuell die <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">Code Page Nummer</a> (z.B. german_germany oder german_germany.1252) einzugeben"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1147
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1314
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. die (gleiche) Code Page in der Form auszuw&auml;hlen, in der PHP damit umgehen kann ( z.B. Windows-1252)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1161
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1328
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "Diese Option funktioniert wahrscheinlich auf diesem Server nicht, weil dieses Plugin das Encoding der Spezialfeldwerte auf das des Serverbetriebssystems (Windows) &auml;ndert muss, wof&uuml;r es die Funktion mb_convert_encoding nutzt, die aber nicht verf&uuml;gbar ist."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1170
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1172
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1337
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1339
 msgid "sort the values by the last word"
 msgstr "die Werte nach deren letztem Wort sortieren"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1178
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1345
 msgid "List Types"
 msgstr "Listentypen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1180
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1204
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1214
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1347
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1404
 msgid "standard layout"
 msgstr "Standardlayout"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1181
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1348
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "Nur Listenlemente von Spezialfeldnamen mit mehr als einem Spezialfeldwert haben Unterpunkte. Diese Unterpunkte werden sichtbar, wenn man auf den Spezialfeldnamen oder das + Zeichen klickt. Die anderen Listenelemente mit nur einem Spezialfeldwert sind selbst die Links zu den Beitr&auml;gen und die Spezialfeldwerte die Linktitel. "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1185
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1352
 msgid "a list with manually linked values"
 msgstr "Liste mit manuell verlinkten Werten"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1186
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1353
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr "Eine einfache Liste der einmaligen Werte eines Spezialfeldes. Jeder Wert kann individuell verlinkt werden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1188
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1189
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1355
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1356
 #, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr "Verlinken Sie jeden Spezialfeldwert des Spezialfeldes: %1$s"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1188
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1355
 msgid "Set the links"
 msgstr "Links setzen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1194
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1372
 msgid "List Appearance"
 msgstr "Listenerscheinungsbild"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1203
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1374
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1385
+msgid "simple list"
+msgstr "einfache Liste"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
+msgid "Show the list elements in a simple list with bullets."
+msgstr "Zeige die Listenelemente in einer einfachen Liste"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1377
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1381
+msgid "drop down menu"
+msgstr "Auswahlmen&uuml;"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1378
+msgid "Show the list elements as a drop down menu."
+msgstr "Zeige die Listenelemente in einem Auswahlmen&uuml; (\"Drop Down\"-Men&uuml;)"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1382
+msgid "What should be the default value of the drop down menu?:"
+msgstr "Wie soll der Standardwert in dem Auswahlmen&uuml; sein?:"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1393
 msgid "each element with sub elements"
 msgstr "jedes Listenelement mit Unterpunkten"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1204
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
 #, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr "Stellt jeden Spezialfeldnamen als Listenelement mit dem Spezialfeldwert als Unterpunkt dar. Alle Unterpunkte sind jeder Zeit sichtbar und sie sind die Links zu den Beitr&auml;gen. (nur in Kombination mit dem Listentyp \"%1$s\")"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1213
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1403
 msgid "show the number of sub elements"
 msgstr "zeige die Anzahl der Unterpunkte"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1214
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1404
 #, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr "Zeigt nach jedem Listenelement, mit mindestens einem Unterelement, die Anzahl der Unterelemente an. (nur in Kombination mit dem Listentyp \"%1$s\")"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1218
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1408
 msgid "partitioned list"
 msgstr "aufgeteilte Liste"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1230
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
 msgid "show only a part of the list elements at once"
 msgstr "nur einen Teil der Listenelemente auf einmal anzeigen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1233
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1423
 msgid "elements per part of the list"
 msgstr "Elemente pro Listenteil"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1236
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1426
 msgid "pagination type"
 msgstr "Numerierungstyp"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1236
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1426
 msgid "use the"
 msgstr "Verwende den/die/das"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1239
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1429
 msgid "numbers"
 msgstr "Nummern"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1240
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1430
 msgid "first letter"
 msgstr "ersten Buchstaben"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1241
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1254
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1431
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1444
 msgid "first two letters"
 msgstr "ersten beiden Buchstaben"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1242
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1432
 msgid "first three letters"
 msgstr "ersten drei Buchstaben"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1243
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1433
 msgid "first word"
 msgstr "erste Wort"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1244
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1434
 msgid "last word"
 msgstr "letzte Wort"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1254
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1444
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr "Sie k&ouml;nnen w&auml;hlen, ob die Nummerierung der Listenteile eine durchgehende Nummerierung seien soll oder ob sie aus Teilen der Namen der Hauptlistenelemente bestehen soll. Wenn Sie die zweitgenannte Option w&auml;hlen, werden die Listenteilbezeichnungen aus einem Teil des jeweils ersten und letzten Hauptelementes (wenn sie unterschiedlich sind) zusammengesetzt z.B. [Am - Be] (wenn der Typ \"%1$s\" gew&auml;hlt wurde)."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1258
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1450
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr "Die Einstellungen f&uuml;r alle Widgets k&ouml;nnen auf der <a href=\"%1$s\">Einstellungsseite dieses Plugins</a> ver&auml;ndert werden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1272
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1464
 msgid "Displays a list of custom field values of a set key"
 msgstr "Zeigt eine Liste von Spezialfeldwerten eines bestimmten Spezialfeldnamens an"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1375
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1577
 msgid "Unsaved changes"
 msgstr "Ungespeicherte &Auml;nderungen"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1379
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1581
 msgid "Not available with these widget preferences."
 msgstr "Nicht verf&uuml;gbar mit diesen Widgeteinstellungen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1729
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1929
 msgid "slow"
 msgstr "langsam"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1730
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1930
 msgid "normal"
 msgstr "normal"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1731
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1931
 msgid "fast"
 msgstr "schnell"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1750
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1950
 msgid "Changes saved"
 msgstr ""
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1757
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1957
 msgid "Custom Field List Widgets settings"
 msgstr "Spezialfeldliste Widget - Einstellungsseite"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1764
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1964
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr "Symbole zum anzeigen/verbergen der (Sub)listenelemente"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1775
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1975
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr "Wenn ein Listenlement Unterelemente hat hat dann werden diese Symbole angezeigt, mit denen man die Unterlistenelementen anzeigen oder verbergen kann."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1780
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1980
 msgid "effect speed"
 msgstr "Effektgeschwindigkeit"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1791
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1991
 msgid "How fast should the list elements show up or hide?"
 msgstr "Mit welcher Geschwindigkeit sollen den Listenelemente ein/ausgeblendet werden?"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1800
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2000
 msgid "Save Changes"
 msgstr ""
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1810
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2010
 msgid "Custom Field List Widgets"
 msgstr "Spezialfeldliste Widgets"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:5
 msgid "Security Check failed!"
 msgstr "Sicherheits&uuml;berpr&uuml;fung fehlgeschlagen!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:11
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:11
 msgid "The widget number was not transmitted."
 msgstr "Die Widgetnummer wurde nicht &uuml;bertragen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:14
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:10
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:10
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:14
 msgid "You have to be logged in for this action."
 msgstr "Sie m&uuml;ssen eingeloggt sein, um diese Aktion ausf&uuml;hren zu k&ouml;nnen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:32
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:32
 msgid "Error: Could not process the formular data."
 msgstr "Fehler: Die Formulardaten konnten nicht verarbeitet werden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:59
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:59
 msgid "The formular contains to much data. It is not possible to send them to the database."
 msgstr "Das Formular enth&auml;lt zu viele Daten. Es ist nicht m&ouml;glich die Daten an die Datenbank zu senden."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:78
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:78
 msgid "It is not possible to create an XMLHTTP instance."
 msgstr "Es ist nicht m&ouml;glich eine XMLHTTP Instanz zu erzeugen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:89
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:89
 msgid "Saving the data"
 msgstr "Speichere die Daten"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:106
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:106
 msgid "Data saved!"
 msgstr "Daten gespeichert!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
 msgid "There was a problem during the request (Probably no data saved)."
 msgstr "Es gab ein Problem bei der Verarbeitung der Anfrage (Wahrscheinlich keine Daten gespeichert)."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "Error message:"
 msgstr "Fehlermeldung:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "There was a problem with the request (Probably no data saved)."
 msgstr "Es gab ein Problem mit der Anfrage. (Wahrscheinlich keine Daten gespeichert)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:207
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:207
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."
 msgstr "Sie k&ouml;nnen Links zu ver&ouml;ffentlichten Beitr&auml;gen oder Seiten Ihres Blogs oder andere Adressen angeben. Wenn Sie einen Beitrags- oder Seitentitel ausw&auml;hlen, dann wird der Spezialfeldwert mit diesem Beitrag oder dieser Seite verlinkt und nicht mit einem manuell eingegebenen Link.<br />Bitte schreiben Sie URLs mit einem http:// (oder https://, ftp://, etc.) vor der Adresse.<br /> Sie k&ouml;nnen auch Linkbeschreibungen eingeben, die dann erscheinen, wenn Sie den Mauspfeil &uuml;ber einem Linktext halten."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:210
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:252
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:210
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:252
 msgid "Save"
 msgstr "Speichern"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
 #, php-format
 msgid "Link \"%1$s\" to"
 msgstr "Verlinke \"%1$s\" mit"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:222
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:222
 msgid "a post or page"
 msgstr "einem Beitrag oder Seite"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:230
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:230
 msgid "page"
 msgstr "Seite"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:240
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:240
 msgid "or to this URL:"
 msgstr "oder mit dieser URL:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:242
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:242
 msgid "link description (title)"
 msgstr "Linkbeschreibung (Titel)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 #, php-format
 msgid "Please, choose the list type \"%1$s\" to able to set the link reference for the custom field name values."
 msgstr "Bitte w&auml;hlen Sie den Listentyp \"%1$s\", um die Linkreferenzen setzen zu k&ouml;nnen."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 msgid "a list of all values with manually set links"
 msgstr "Liste mit manuell verlinkten Werten"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:24
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
 msgid "Please, save the custom field names first."
 msgstr "Bitte speichern Sie den/die Spezialfeldnamen zuerst."
 
