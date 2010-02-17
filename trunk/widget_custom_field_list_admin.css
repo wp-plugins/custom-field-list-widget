@@ -83,6 +83,15 @@
 	/*margin: 0em 0.5em 0em 4em;*/
 	padding: 0em 0.5em 0em 3em;
 }
+.customfieldlist_fieldset_h2 {
+	border:1px solid #dddddd;
+	padding: 0.5em;
+}
+.customfieldlist_section fieldset legend {
+	text-align: left;
+	padding: 0em 0.5em 0em 0.5em;
+}
+
 .customfieldlist_section div input, .customfieldlist_section div select {
 	vertical-align:middle;
 }

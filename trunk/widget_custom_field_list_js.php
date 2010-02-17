@@ -65,3 +65,12 @@ function show_this_customfieldlistelements( list, lists, number ) {
 		}
 	}
 }
+
+// open the selected post - for the drop down menu option
+function customfieldlistwidget_go_to_target( menu_id, selectedindex ) {
+	var target_url = document.getElementById(String(menu_id)).options[Number(selectedindex)].value;
+	var trimed_target_url = target_url.replace(/\s/g, '');
+	if (0 < trimed_target_url.length && 'nothing' != target_url) {
+		top.location.href = target_url;
+	}
+}
