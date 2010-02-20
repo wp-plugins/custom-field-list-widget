@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.9 beta 2
+Version: 0.9.9 beta 3
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 2.9.2
@@ -57,6 +57,9 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
+if ( ! defined( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET' ) ) { define( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET', 'yes' ); }
+
+
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
 	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
@@ -70,13 +73,14 @@ function customfieldlist_on_deactivation() {
 
 // This function prints specialy the lists of one widget
 function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $i=0, $j=0, $k=0) {
+	$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
+	if ('dropdownmenu' == $list_format AND ('each_element_with_sub_element' == $list_style)) {
+		$internal_list_style = 'standard';
+	} else {
+		$internal_list_style = $list_style;
+	}
 	if ( $i < ($hierarchymaxlevel-1) ) {
 		$i++;
-		if ('dropdownmenu' == $list_format AND ('each_element_with_sub_element' == $list_style)) {
-			$internal_list_style = 'standard';
-		} else {
-			$internal_list_style = $list_style;
-		}
 		switch ($internal_list_style) {
 			case 'individual_href' :
 				switch ($list_format) {
@@ -84,9 +88,13 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						foreach ($n as $key => $value) {
 							if ( TRUE === is_array($value) ) {
 								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
+								if ( 'yes' == $opt['group_by_alphabet'] ) {//AND 0 < count($value) 
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+								} else {
 									if ('' != $value[0]['post_title']) {
 										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
 									}
+								}
 								echo "\t</optgroup>\n";
 							} else {
 								echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(3 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
@@ -97,10 +105,23 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 					default :
 						foreach ($n as $key => $value) {
 							if ( TRUE === is_array($value) ) {
-								if ( FALSE === empty($value[0]['post_guid']) ) {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
+								if ( FALSE === isset($value[0]['post_guid']) OR 1 < count($value) ) {
+									if ( TRUE === $show_number_of_subelements ) {
+										$nr_of_subelement_str = ' ('.count($value).')';
+									} else {
+										$nr_of_subelement_str = '';
+									}
+									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
+									echo '<ul class="customfieldsublist">'."\n";
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+									echo "\t</ul>\n";
+									echo "\t</li>\n";
 								} else {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
+									if ( FALSE === empty($value[0]['post_guid']) ) {
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
+									} else {
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
+									}
 								}
 								if ( $i == 1 ) { 
 									$j++;
@@ -148,12 +169,6 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
 								customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
 								echo "\t</optgroup>\n";
-								//~ if ( $i==1 ) { 
-									//~ $j++;
-								//~ }
-								//~ if ( $i==1 AND  0 === ($j % $partlength)  ) {
-									//~ $k++;
-								//~ }
 							} else {
 								echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
 							}
@@ -162,35 +177,29 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 					case 'ul_list' :
 					default :
 						foreach ($n as $key => $value) {
-							if ( TRUE === is_array($value) AND 1 < count($value) ) {
-								if ( TRUE === $show_number_of_subelements ) {
-									$nr_of_subelement_str = ' ('.count($value).')';
+							if ( TRUE === is_array($value) ) {
+								if ( FALSE === isset($value[0]['post_guid']) OR 1 < count($value) ) {
+									if ( TRUE === $show_number_of_subelements ) {
+										$nr_of_subelement_str = ' ('.count($value).')';
+									} else {
+										$nr_of_subelement_str = '';
+									}
+									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
+									echo '<ul class="customfieldsublist">'."\n";
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+									echo "\t</ul>\n";
+									echo "\t</li>\n";
 								} else {
-									$nr_of_subelement_str = '';
+									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
 								}
-								echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
-								echo '<ul class="customfieldsublist">'."\n";
-								customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
-								echo "\t</ul>\n";
-								echo "\t</li>\n";
-								if ( $i==1 ) {
+								if ( $i == 1 ) { 
 									$j++;
 								}
-								if ( $i==1 AND  0 === ($j % $partlength)  ) {
+								if ( $i == 1 AND  0 === ($j % $partlength)  ) {
 									$k++;
 								}
 							} else {
-								if ( TRUE === is_array($value) ) {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
-									if ( $i == 1 ) { 
-										$j++;
-									}
-									if ( $i == 1 AND  0 === ($j % $partlength)  ) {
-										$k++;
-									}
-								} else {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">(2)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
-								}
+								echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">(2)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</li>\n";
 							}
 						}
 					break;
@@ -200,8 +209,16 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 	} else {
 		switch ($list_format) { 
 			case 'dropdownmenu' :
-				foreach ($n as $key => $value) {
-					echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+				if ( 'yes' == $opt['group_by_alphabet'] AND 'individual_href' == $internal_list_style) {
+					foreach ($n as $key => $value) {
+						if ('' != $n[$key]['post_title']) {
+							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+						}
+					}
+				} else {
+					foreach ($n as $key => $value) {
+						echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+					}
 				}
 			break;
 			case 'ul_list' :
@@ -587,21 +604,26 @@ function customfieldlist($args=array(), $widget_args=1) {
 											$output_array[$meta_value][0]['post_title'] = $descr;
 											//echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink(intval($individual_href[$meta_id])).'" title="'.$descr.'">'.$meta_value."</a></li>\n";
 										}
-										$k++;
-										if (  ($k > 0) AND ($partlength < $nr_meta_values) AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
-											$j++;
-										}
+										//~ $k++;
+										//~ if (  ($k > 0) AND ($partlength < $nr_meta_values) AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
+											//~ $j++;
+										//~ }
 									}
 								}
 								$hierarchymaxlevel=2;
-								//customfieldlist_var_dump($output_array);
-								$opt['group_by_alphabet']='no';
+								$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
 								if ( 'yes' == $opt['group_by_alphabet'] ) {
 									$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 									$hierarchymaxlevel++;
-									//customfieldlist_var_dump($output_array);
 								}								
-								$nr_of_mainlistelements = $k;
+								//~ $nr_of_mainlistelements = $k;
+								//~ $j = floor($nr_of_mainlistelements / $partlength);
+								//~ if ( 0 < ($nr_of_mainlistelements % $partlength) ) {
+									//~ $j++;
+								//~ }
+								
+								$nr_of_mainlistelements = count($output_array);
+								$k = $nr_of_mainlistelements;
 								$j = floor($nr_of_mainlistelements / $partlength);
 								if ( 0 < ($nr_of_mainlistelements % $partlength) ) {
 									$j++;
@@ -630,15 +652,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 						
 						if (TRUE === is_array($meta_keys) AND 0 < $nr_meta_keys) {
 							$signslibrary = array(
-								'default' => array('minus' => '[ - ]', 'plus' => '[ + ]'),
 								'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
 								'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
 								'plusminus_short' => array('minus' => '-', 'plus' => '+'),
-								'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']')
+								'showhide' => array('minus' => '['.__('Hide','customfieldlist').']', 'plus' => '['.__('Show','customfieldlist').']'),
+								'default' => array('minus' => '[ - ]', 'plus' => '[ + ]')
 							);
-							
 							if ( FALSE == isset($opt['plusminusalt']) or FALSE == array_key_exists($opt['plusminusalt'], $signslibrary) ) {
-								$signsgroup = 'showhide';
+								$signsgroup = 'default';
 							} else {
 								$signsgroup = $opt['plusminusalt'];
 							}
@@ -751,7 +772,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							}
 							
 							//customfieldlist_var_dump($output_array);
-							$opt['group_by_alphabet']='no';
+							$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
 							if ( 'yes' == $opt['group_by_alphabet'] ) {
 								$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 								$liststyleopt = 'each_element_with_sub_element';
@@ -1508,7 +1529,7 @@ function customfieldlist_widget_script() {
 	function customfieldlist_the_collapse_sign() {
 		var signs = new Object();
 		<?php 
-			echo "signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES, get_bloginfo('charset'))."';\n\t";
+			echo "signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES, get_bloginfo('charset'))."';\n\t\t";
 			echo "signs['plus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES, get_bloginfo('charset'))."';\n";
 		?>
 		return signs;
