@@ -1,11 +1,11 @@
 # Petar Toushkov <pt.launchpad@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Field List Widget v0.9.6\n"
+"Project-Id-Version: Custom Field List Widget v0.9.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-09 18:56+0100\n"
-"PO-Revision-Date: 2009-12-18 10:16+0200\n"
-"Last-Translator: Petar Toushkov <pt.launchpad@gmail.com>\n"
+"POT-Creation-Date: 2010-02-21 23:26+0100\n"
+"PO-Revision-Date: 2010-02-21 23:26+0100\n"
+"Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,409 +17,450 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp28en\\wp-content\\plugins\\widget_custom_field_list\n"
+"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp29en\\wp-content\\plugins\\custom-field-list-widget\n"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:307
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:869
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1308
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1309
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1313
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1314
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:403
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1036
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1505
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1506
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1510
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1511
 msgid "Custom Field List"
 msgstr "Списък с потребителски полета"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:113
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:147
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:99
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:132
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:158
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:172
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:201
 msgid "Internal Plugin Error: value is no array"
 msgstr "Разширението засече вътрешна грешка: стойността не е масив"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:492
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:256
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:427
+msgid "Select:"
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:271
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "В базата от данни няма стойности, свързани с потребителското поле \"%1$s\"."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:496
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:639
 msgid "no value"
 msgstr "няма стойност"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:500
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:643
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr "Действителното потребителско име на поле \"%1$s\" и потребителското име на поле \"%2$s\", за които бяха запазени връзките, са различни. Моля, запазете връзките за стойностите на действителното потребителско име на поле."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:515
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1326
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1740
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
 msgid "Hide"
 msgstr "Скриване"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:515
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1326
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1740
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
 msgid "Show"
 msgstr "Показване"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:642
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:798
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "Не съществуват стойности, отнасящи се към потребителските имена на полета, зададени на страницата на джаджата."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:647
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:259
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:803
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:274
 msgid "Please, define a custom field name!"
 msgstr "Моля, задайте потребителско име на поле!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:650
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:806
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Неуспех при извличането от базата с данни с информацията за списъка с потребителски полета."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:663
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:824
 msgid "part"
 msgstr "част"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:876
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
 msgid "Header (optional)"
 msgstr "Заглавна част (по желание)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:876
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
 msgid "Leave the field empty for no widget title"
 msgstr "Оставете полето празно за джаджа без заглавие"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:880
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1047
 msgid "Custom Field Names"
 msgstr "Имена на потребителски полета"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:917
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1071
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1084
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1236
 msgid "custom field names"
 msgstr "имена на потребителски полета"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:920
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1087
 msgid "sort by"
 msgstr "сортиране по"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:923
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1090
 msgid "hide this"
 msgstr "скриване"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1009
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1174
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr "Ако искате да създадете списък с няколко йерархични нива, попълнете потребителските полета едно по едно."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1041
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1206
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr "Използвате повече от едно потребителско име на поле. Но тези имена на потребителски полета не са използвани в същото количество публикации или в същото количество за публикация.<br />Вероятно външният вид на списъка в страничната лента изглежда както трябва.<br />Таблицата предоставя информация за това, как и колко често е използвано дадено име на потребителско поле:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1072
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1237
 msgid "post IDs"
 msgstr "ID-та на публикации"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1128
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1278
+#, fuzzy
+msgid "group the values by the first character"
+msgstr "сортиране на стойностите по последна дума"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
+#, php-format
+msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
+msgid "show only a part of the list elements at once"
+msgstr "показване само на част от списъка с елементи"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1299
 msgid "Sorting Options"
 msgstr "Настройки за сортиране"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1138
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1309
 msgid "sort sequence"
 msgstr "последователност на сортирането"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1139
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1310
 msgid "ascending (ASC)"
 msgstr "възходящо"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1140
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1311
 msgid "descending (DESC)"
 msgstr "низходящо"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1145
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1315
 msgid "database collation"
 msgstr "колация на базата от данни"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1153
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1323
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "Тази опция вероятно няма да проработи, защото на този сървър не може да се използва \"setlocale(LC_COLLATE, ... \"."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1160
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1330
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr "Сървърната ОС е Windows (която не може да сортира в UTF-8), което, за коректното функциониране на тази настройка, вероятно налага да:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1161
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1331
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. въведете вашия <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">език</a> и <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> име, и евентуално <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">номер на кодовата таблица</a> (като bulgarian_bulgaria или bulgarian_bulgaria.1251 за български)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1162
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1332
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. изберете (същата) кодова таблица във формат, с който може да се справи PHP (например Windows-1251 за български)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1176
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1346
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "Тази опция вероятно няма да проработи на този сървър, защото разширението конвертира кодировката на мета стойностите към кодировката на операционната система (Windows) с помощта на функцията mb_convert_encoding, но тази функция не е в наличност."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1185
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1187
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1355
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1357
 msgid "sort the values by the last word"
 msgstr "сортиране на стойностите по последна дума"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1193
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1365
 msgid "List Types"
 msgstr "Типове списъци"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1195
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1219
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1229
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1367
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
 msgid "standard layout"
 msgstr "стандартно разположение"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1196
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1368
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "Само елементите от списъка с имена на потребителски полета с повече от една стойност на потребителското поле имат поделементи. Тези поделементи се появяват след щракване върху елемент от списъка с имена на потребителски полета или след щракване на знака \"+\" до тях. Другите елементи от списъка с по една стойност са хипервръзки към съответните постове, а стойностите им са в заглавната (title) част на връзката."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1200
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1372
 msgid "a list with manually linked values"
 msgstr "списък с ръчно свързани стойности"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1201
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1373
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr "Прост списък с всички уникални стойности на полета за едно име на потребителско поле. Към всяка стойност може да има индивидуална връзка."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1203
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1204
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1376
 #, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr "Задаване на връзка за всяка стойност на потребителското поле: %1$s"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1203
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
 msgid "Set the links"
 msgstr "Задаване на връзките"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1209
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1392
 msgid "List Appearance"
 msgstr "Изглед на списъка"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1218
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1401
+msgid "simple list"
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1395
+msgid "Show the list elements in a simple list with bullets."
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
+msgid "drop down menu"
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
+#, fuzzy
+msgid "Show the list elements as a drop down menu."
+msgstr "показване само на част от списъка с елементи"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1409
 msgid "each element with sub elements"
 msgstr "всеки елемент с поделементи"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
 #, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr "Показва всяко име на потребителско поле като елемент от списъка със стойност на потребителското поле като поделемент. Всички поделементи са видими през цялото време и са хипервръзки към съответните постове. (Налично е единствено със списъка тип \"%1$s\".)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1228
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1419
 msgid "show the number of sub elements"
 msgstr "показване броя на поделементите"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1229
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
 #, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr "Показва броя поделементи след всеки елемент от списък с поне един поделемент. (Налично е единствено със списъка тип \"%1$s\".)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1233
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1424
 msgid "partitioned list"
 msgstr "страниран списък"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1245
-msgid "show only a part of the list elements at once"
-msgstr "показване само на част от списъка с елементи"
-
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1248
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1439
 msgid "elements per part of the list"
 msgstr "брой елементи за част от списъка"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1251
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
 msgid "pagination type"
 msgstr "тип страниране"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1251
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
 msgid "use the"
 msgstr "да се използват"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1254
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1445
 msgid "numbers"
 msgstr "числа"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1255
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1446
 msgid "first letter"
 msgstr "бърква буква"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1256
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1269
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1447
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 msgid "first two letters"
 msgstr "първи две букви"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1257
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1448
 msgid "first three letters"
 msgstr "първи три букви"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1258
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1449
 msgid "first word"
 msgstr "първа дума"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1259
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1450
 msgid "last word"
 msgstr "последна дума"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1269
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr "Можете да изберете дали странирането на частите от списъка да бъде на основата на поредни числа или низове, взети от главните елементи на списъка. Ако изберете странирането да се извършва по зададен низ, тогава списъкът от имената на части ще се състои от части, взети от от първия и последния елемент на главния списък в съответната част от списъка (ако са различни), като например [Am - Be] с тип \"%1$s\")."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1273
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
+msgid "What should be the default value of the drop down menu?:"
+msgstr ""
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1470
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr "настройките за всички джаджи могат да бъдат зададени от <a href=\"%1$s\">страницата с настройки на джаджата Списък с потребителски полета</a>"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1287
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1484
 msgid "Displays a list of custom field values of a set key"
 msgstr "Показва списък със стойности на потребителски полета за зададен ключ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1390
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1597
 msgid "Unsaved changes"
 msgstr "Незапазени промени"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1394
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
 msgid "Not available with these widget preferences."
 msgstr "Не работи с тези настройки на джаджата."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1744
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1949
 msgid "slow"
 msgstr "бавно"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1745
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1950
 msgid "normal"
 msgstr "нормално"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1746
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1951
 msgid "fast"
 msgstr "бързо"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1765
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1970
 msgid "Changes saved"
 msgstr "Промените запазени"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1772
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1977
 msgid "Custom Field List Widgets settings"
 msgstr "Настройки на джаджата Списък с потребителски полета"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1779
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1984
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr "символи за отваряне/затваряне на списъка с поделементи"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1790
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1995
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr "Ако елемент от списъка има поделементи, ще бъде изобразен символ, с чиято помощ потребителят да отваря или затваря списъка с поделементи."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1795
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2000
 msgid "effect speed"
 msgstr "скорост на ефекта"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1806
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2011
 msgid "How fast should the list elements show up or hide?"
 msgstr "Колко бързо да се показва или скрива списъкът с елементи?"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1815
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2020
 msgid "Save Changes"
 msgstr "Запазване на промените"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1825
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2030
 msgid "Custom Field List Widgets"
 msgstr "Джаджи Списък с потребителски полета"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:5
 msgid "Security Check failed!"
 msgstr "Тестът за сигурност беше неуспешен!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:11
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:11
 msgid "The widget number was not transmitted."
 msgstr "Номерът на джаджата не беше ппредаден."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:14
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:10
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:10
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:14
 msgid "You have to be logged in for this action."
 msgstr "За това действие се налага да влезете в профила си."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:32
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:32
 msgid "Error: Could not process the formular data."
 msgstr "Грешка: неуспех при обработката на данните от формата."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:59
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:59
 msgid "The formular contains to much data. It is not possible to send them to the database."
 msgstr "Формата съдържа твърде много информация. Информацията не може да бъде въведена в базата от данни."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:78
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:78
 msgid "It is not possible to create an XMLHTTP instance."
 msgstr "Не е възможно да бъде създадено XMLHTTP работно копие (обект)."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:89
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:89
 msgid "Saving the data"
 msgstr "Запазване на данните"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:106
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:106
 msgid "Data saved!"
 msgstr "Данните бяха запазени!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
 msgid "There was a problem during the request (Probably no data saved)."
 msgstr "По време на заявката възникна проблем. (Вероятно незапазени данни)."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "Error message:"
 msgstr "Съобщение за грешка:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "There was a problem with the request (Probably no data saved)."
 msgstr "При заявката възникна проблем. (Вероятно незапазени данни)."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr "http_request.status:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:207
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:216
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."
 msgstr "Можете да уточните връзки към постове или страници в блога, или да въведете различни адреси. Ако изберете пост или име на страница, стойността на потребителското поле ще бъде обвързана с тези пост или страница, а не с ръчно зададена връзка.<br />Моля, изписвайте URL адресите с предхождащи http:// (или https://, ftp://, и пр).<br />Освен това можете да въвеждате описания, които ще се появяват при задържане на курсора на мишката над връзките."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:210
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:252
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:267
 msgid "Save"
 msgstr "Запазване"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:234
 #, php-format
 msgid "Link \"%1$s\" to"
 msgstr "Връзка \"%1$s\" към"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:222
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:237
 msgid "a post or page"
 msgstr "пост или страница"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:230
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:245
 msgid "page"
 msgstr "страница"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:240
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:255
 msgid "or to this URL:"
 msgstr "или към този URL:"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:242
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:257
 msgid "link description (title)"
 msgstr "описание на връзката (title)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 #, php-format
 msgid "Please, choose the list type \"%1$s\" to able to set the link reference for the custom field name values."
 msgstr "Моля, изберете типа на списъка \"%1$s\", за да има възможност за задаване на връзка за стойностите на имената на потребителските имена."
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 msgid "a list of all values with manually set links"
 msgstr "списък на всички стойности с ръчно зададени връзки"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:24
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
 msgid "Please, save the custom field names first."
 msgstr "Моля, първо запазете потребителските имена на полета!"
 
