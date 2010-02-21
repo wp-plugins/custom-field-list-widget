@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.9 beta 3
+Version: 0.9.9 beta 4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 2.9.2
@@ -72,8 +72,7 @@ function customfieldlist_on_deactivation() {
 }
 
 // This function prints specialy the lists of one widget
-function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $i=0, $j=0, $k=0) {
-	$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
+function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $group_by_firstchar='no', $i=0, $j=0, $k=0) {
 	if ('dropdownmenu' == $list_format AND ('each_element_with_sub_element' == $list_style)) {
 		$internal_list_style = 'standard';
 	} else {
@@ -88,8 +87,8 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						foreach ($n as $key => $value) {
 							if ( TRUE === is_array($value) ) {
 								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
-								if ( 'yes' == $opt['group_by_alphabet'] ) {//AND 0 < count($value) 
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+								if ( 'yes' == $group_by_firstchar ) {//AND 0 < count($value) 
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 								} else {
 									if ('' != $value[0]['post_title']) {
 										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
@@ -113,7 +112,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									}
 									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 									echo '<ul class="customfieldsublist">'."\n";
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
@@ -146,7 +145,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						}
 						echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 						echo "\t</ul>\n";
 						echo "\t</li>\n";
 						if ( $i==1 ) { 
@@ -167,7 +166,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						foreach ($n as $key => $value) {
 							if ( TRUE === is_array($value) ) { 
 								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
-								customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+								customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 								echo "\t</optgroup>\n";
 							} else {
 								echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
@@ -186,7 +185,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									}
 									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 									echo '<ul class="customfieldsublist">'."\n";
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $i, $j, $k);
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
@@ -209,7 +208,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 	} else {
 		switch ($list_format) { 
 			case 'dropdownmenu' :
-				if ( 'yes' == $opt['group_by_alphabet'] AND 'individual_href' == $internal_list_style) {
+				if ( 'yes' == $group_by_firstchar AND 'individual_href' == $internal_list_style) {
 					foreach ($n as $key => $value) {
 						if ('' != $n[$key]['post_title']) {
 							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
@@ -611,8 +610,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 									}
 								}
 								$hierarchymaxlevel=2;
-								$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
-								if ( 'yes' == $opt['group_by_alphabet'] ) {
+								//$opt['group_by_firstchar']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
+								if ( 'yes' == $opt['group_by_firstchar'] ) {
 									$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 									$hierarchymaxlevel++;
 								}								
@@ -631,7 +630,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								
 								$liststyleopt = 'individual_href';
 								
-								customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset);
+								customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar']);
 							} else {
 								echo "<li>".sprintf(__('There are no values in connection to the custom field name "%1$s" in the data base.','customfieldlist'), $customfieldname_show)."</li>\n";
 							}
@@ -772,8 +771,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 							}
 							
 							//customfieldlist_var_dump($output_array);
-							$opt['group_by_alphabet']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
-							if ( 'yes' == $opt['group_by_alphabet'] ) {
+							//$opt['group_by_firstchar']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
+							if ( 'yes' == $opt['group_by_firstchar'] ) {
 								$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 								$liststyleopt = 'each_element_with_sub_element';
 								$hierarchymaxlevel++;
@@ -794,7 +793,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								$liststyleopt = 'standard';
 							}
 							
-							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset);
+							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar']);
 						} else {
 							echo "<li>".sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 						}
@@ -942,6 +941,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['custom_field_names'] = array_fill(0, CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL, '');
 			}
 			
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['group_by_firstchar']) ) {
+				$opt[$widget_number]['group_by_firstchar'] = 'yes';
+			} else {
+				$opt[$widget_number]['group_by_firstchar'] = 'no';
+			}
+
 			if (TRUE === $hierarchy_error) {
 				$opt[$widget_number]['sort_by_custom_field_name'] = 0;
 			} else {
@@ -1133,7 +1138,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '&nbsp;<input type="radio" name="customfieldlist_opt['.$number.'][sort_by_custom_field_name]" value="'.$i.'"'.$checked.' onclick="customfieldlist_radio_button_changed(this.name, '.$number.', '.$i.');"'.$disable_radio_buttons.' />';
 			echo '</div>';
 			
-			
 			########## CHECKBOX column ########################
 			$checked='';
 			if ( 'sel' === $opt[$number]['donnotshowthis_customfieldname'][$i] ) {
@@ -1163,7 +1167,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 			//~ echo '</select>';
 			echo '</div>';
 			echo '</div>';
-			
 			$i++;
 		}
 		echo '</div>'."\n";
@@ -1267,7 +1270,15 @@ function customfieldlist($args=array(), $widget_args=1) {
 		}
 		########## END: check if the custom field names are used for same posts #####################
 		
-	echo '</div>'."\n"; // section: custom field names
+		if ( 'yes' == $opt[$number]['group_by_firstchar']) {
+			$group_by_firstchar = ' checked="checked"';
+		} else {
+			$group_by_firstchar = '';
+		}
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_group_by_firstchar_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_group_by_firstchar" class="customfieldlist_label">'.__('group the values by the first character','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][group_by_firstchar]" id="customfieldlist_opt_'.$number.'_group_by_firstchar" value="yes"'.$group_by_firstchar.' />'."\n";
+		echo '<p id="customfieldlist_opt_'.$number.'_group_by_firstchar_explanation" class="customfieldlist_explanation">'.sprintf(__('Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option "%1$s" to keep the list in the sidebar short.)','customfieldlist'), __('show only a part of the list elements at once','customfieldlist')).'</p>'."\n";
+		echo '</div>'."\n";
+	echo '</div>'."\n"; // end of section: custom field names
 
 	// set the custom field name to variable which will be given to the link window, too
 	// are both custom field names (which are only possible for that option) in use? 
@@ -1295,57 +1306,58 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$customfieldsortseq_ASC_checked='';
 			$customfieldsortseq_DESC_checked=' checked="checked"';
 		}
-		echo '<fieldset><legend>'.__('sort sequence','customfieldlist').':</legend>';
+		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('sort sequence','customfieldlist').':</legend>';
 			echo '<div><label for="customfieldsortseq_'.$number.'_asc" class="customfieldlist_label">'.__('ascending (ASC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_asc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="asc"'.$customfieldsortseq_ASC_checked.' /></div>';
 			echo '<div><label for="customfieldsortseq_'.$number.'_desc" class="customfieldlist_label">'.__('descending (DESC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_desc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="desc"'.$customfieldsortseq_DESC_checked.' /></div>';
-		echo '</fieldset>';
-	
-		// section: select DB_CHARSET
-		if (FALSE == defined('DB_COLLATE')) {
-			echo '<p><a href="http://dev.mysql.com/doc/refman/5.1/en/charset-charsets.html" target="_blank">'.__('database collation','customfieldlist').'</a>: <input type="text" name="customfieldlist_opt['.$number.'][db_collate]" value="'.attribute_escape($opt[$number]['db_collate']).'" maxlength="200" /></p>'."\n";
-		}
-		
-		// section: "sort by the last word" preferences
-		$old_locale = setlocale(LC_COLLATE, "0");
-		$loc = setlocale(LC_COLLATE, WPLANG.'.'.get_bloginfo('charset'), WPLANG, 'english_usa');
-		setlocale(LC_COLLATE, $old_locale);
-		if (FALSE === $loc) {
-			$message_setloc = '<div class="customfieldlist_error">'.__('This option will probably not work. Because it is not possible to set "setlocale(LC_COLLATE, ... " on this server.','customfieldlist').'</div>';
-			$message_os_asterisk = ' class="customfieldlist_error_chkb"';
-		} else {
-			if (FALSE !== strpos(strtolower(php_uname('s')), 'win')) {
-				if (function_exists('mb_convert_encoding')) {
-					// the encoding which PHP multibyte supports  http://www.php.net/manual/en/mbstring.supported-encodings.php (without these: 'UTF-32', 'UTF-32BE', 'UTF-32LE', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-7', 'UTF7-IMAP', 'UTF-8',
-					$encodings = array('UCS-4' => 'UCS-4', 'UCS-4BE' => 'UCS-4BE', 'UCS-4LE' => 'UCS-4LE', 'UCS-2' => 'UCS-2', 'UCS-2BE' => 'UCS-2BE', 'UCS-2LE' => 'UCS-2LE', 'ASCII' => 'ASCII', 'EUC-JP' => 'EUC-JP', 'SJIS' => 'SJIS', 'eucJP-win' => 'eucJP-win', 'SJIS-win' => 'SJIS-win', 'ISO-2022-JP' => 'ISO-2022-JP', 'JIS' => 'JIS', 'ISO-8859-1' => 'ISO-8859-1', 'ISO-8859-2' => 'ISO-8859-2', 'ISO-8859-3' => 'ISO-8859-3', 'ISO-8859-4' => 'ISO-8859-4', 'ISO-8859-5' => 'ISO-8859-5', 'ISO-8859-6' => 'ISO-8859-6', 'ISO-8859-7' => 'ISO-8859-7', 'ISO-8859-8' => 'ISO-8859-8', 'ISO-8859-9' => 'ISO-8859-9', 'ISO-8859-10' => 'ISO-8859-10', 'ISO-8859-13' => 'ISO-8859-13', 'ISO-8859-14' => 'ISO-8859-14', 'ISO-8859-15' => 'ISO-8859-15', 'byte2be' => 'byte2be', 'byte2le' => 'byte2le', 'byte4be' => 'byte4be', 'byte4le' => 'byte4le', 'BASE64' => 'BASE64', 'HTML-ENTITIES' => 'HTML-ENTITIES', '7bit' => '7bit', '8bit' => '8bit', 'EUC-CN' => 'EUC-CN', 'CP936' => 'CP936', 'HZ' => 'HZ', 'EUC-TW' => 'EUC-TW', 'CP950' => 'CP950', 'BIG-5', 'EUC-KR' => 'EUC-KR', 'UHC' => 'CP949', 'ISO-2022-KR' => 'ISO-2022-KR', 'Windows-1251' => 'CP1251', 'Windows-1252' => 'CP1252', 'IBM866' => 'CP866', 'KOI8-R' => 'KOI8-R');
-					$message_os = '<div class="customfieldlist_advice">'.__('The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:','customfieldlist').'<br />';
-					$message_os .= __('1. enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:92%;" /><br />';
-					$message_os .= __('2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': ';
-					$message_os .= '<select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
-					$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
-					foreach ($encodings as $keyname => $encoding) {
-						if ($encoding == $stored_encoding) {
-							$message_os .= '<option value="'.$encoding.'" selected="selected">'.$keyname.'</option>';
-						} else {
-							$message_os .= '<option value="'.$encoding.'">'.$keyname.'</option>';
-						}
-					}
-					$message_os .= '</select>';
-					$message_os .= '</div>';
-					$message_os_asterisk = ' class="customfieldlist_advice_chkb"';
-				} else {
-					$message_os = '<div class="customfieldlist_error">'.__('This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available.','customfieldlist').'</div>';
-					$message_os_asterisk = ' class="customfieldlist_error_chkb"';
-				}
-			} else {
-				$message_os = '';
+
+			// section: select DB_CHARSET
+			if (FALSE == defined('DB_COLLATE')) {
+				echo '<p><a href="http://dev.mysql.com/doc/refman/5.1/en/charset-charsets.html" target="_blank">'.__('database collation','customfieldlist').'</a>: <input type="text" name="customfieldlist_opt['.$number.'][db_collate]" value="'.attribute_escape($opt[$number]['db_collate']).'" maxlength="200" /></p>'."\n";
 			}
-			$message_setloc = '';
-		}
-		if ( 'lastword' === $opt[$number]['orderelement'] ) {
-			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" /></div>'.$message_os.$message_setloc.''."\n";
-		} else {
-			echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
-		}
+			
+			// section: "sort by the last word" preferences
+			$old_locale = setlocale(LC_COLLATE, "0");
+			$loc = setlocale(LC_COLLATE, WPLANG.'.'.get_bloginfo('charset'), WPLANG, 'english_usa');
+			setlocale(LC_COLLATE, $old_locale);
+			if (FALSE === $loc) {
+				$message_setloc = '<div class="customfieldlist_error">'.__('This option will probably not work. Because it is not possible to set "setlocale(LC_COLLATE, ... " on this server.','customfieldlist').'</div>';
+				$message_os_asterisk = ' class="customfieldlist_error_chkb"';
+			} else {
+				if (FALSE !== strpos(strtolower(php_uname('s')), 'win')) {
+					if (function_exists('mb_convert_encoding')) {
+						// the encoding which PHP multibyte supports  http://www.php.net/manual/en/mbstring.supported-encodings.php (without these: 'UTF-32', 'UTF-32BE', 'UTF-32LE', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-7', 'UTF7-IMAP', 'UTF-8',
+						$encodings = array('UCS-4' => 'UCS-4', 'UCS-4BE' => 'UCS-4BE', 'UCS-4LE' => 'UCS-4LE', 'UCS-2' => 'UCS-2', 'UCS-2BE' => 'UCS-2BE', 'UCS-2LE' => 'UCS-2LE', 'ASCII' => 'ASCII', 'EUC-JP' => 'EUC-JP', 'SJIS' => 'SJIS', 'eucJP-win' => 'eucJP-win', 'SJIS-win' => 'SJIS-win', 'ISO-2022-JP' => 'ISO-2022-JP', 'JIS' => 'JIS', 'ISO-8859-1' => 'ISO-8859-1', 'ISO-8859-2' => 'ISO-8859-2', 'ISO-8859-3' => 'ISO-8859-3', 'ISO-8859-4' => 'ISO-8859-4', 'ISO-8859-5' => 'ISO-8859-5', 'ISO-8859-6' => 'ISO-8859-6', 'ISO-8859-7' => 'ISO-8859-7', 'ISO-8859-8' => 'ISO-8859-8', 'ISO-8859-9' => 'ISO-8859-9', 'ISO-8859-10' => 'ISO-8859-10', 'ISO-8859-13' => 'ISO-8859-13', 'ISO-8859-14' => 'ISO-8859-14', 'ISO-8859-15' => 'ISO-8859-15', 'byte2be' => 'byte2be', 'byte2le' => 'byte2le', 'byte4be' => 'byte4be', 'byte4le' => 'byte4le', 'BASE64' => 'BASE64', 'HTML-ENTITIES' => 'HTML-ENTITIES', '7bit' => '7bit', '8bit' => '8bit', 'EUC-CN' => 'EUC-CN', 'CP936' => 'CP936', 'HZ' => 'HZ', 'EUC-TW' => 'EUC-TW', 'CP950' => 'CP950', 'BIG-5', 'EUC-KR' => 'EUC-KR', 'UHC' => 'CP949', 'ISO-2022-KR' => 'ISO-2022-KR', 'Windows-1251' => 'CP1251', 'Windows-1252' => 'CP1252', 'IBM866' => 'CP866', 'KOI8-R' => 'KOI8-R');
+						$message_os = '<div class="customfieldlist_advice">'.__('The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:','customfieldlist').'<br />';
+						$message_os .= __('1. enter your <a href="http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx" target="_blank">language</a> and <a href="http://msdn.microsoft.com/en-gb/library/cdax410z.aspx" target="_blank">country</a> name and eventually the <a href="http://en.wikipedia.org/wiki/Windows_code_pages" target="_blank">code page number</a> (like german_germany or german_germany.1252 for German)','customfieldlist').': <input type="text" name="customfieldlist_opt['.$number.'][win_country_codepage]" value="'.attribute_escape($opt[$number]['win_country_codepage']).'" maxlength="200" style="width:92%;" /><br />';
+						$message_os .= __('2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)','customfieldlist').': ';
+						$message_os .= '<select name="customfieldlist_opt['.$number.'][encoding_for_win]">';
+						$stored_encoding = attribute_escape($opt[$number]['encoding_for_win']);
+						foreach ($encodings as $keyname => $encoding) {
+							if ($encoding == $stored_encoding) {
+								$message_os .= '<option value="'.$encoding.'" selected="selected">'.$keyname.'</option>';
+							} else {
+								$message_os .= '<option value="'.$encoding.'">'.$keyname.'</option>';
+							}
+						}
+						$message_os .= '</select>';
+						$message_os .= '</div>';
+						$message_os_asterisk = ' class="customfieldlist_advice_chkb"';
+					} else {
+						$message_os = '<div class="customfieldlist_error">'.__('This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available.','customfieldlist').'</div>';
+						$message_os_asterisk = ' class="customfieldlist_error_chkb"';
+					}
+				} else {
+					$message_os = '';
+				}
+				$message_setloc = '';
+			}
+			if ( 'lastword' === $opt[$number]['orderelement'] ) {
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" /></div>'.$message_os.$message_setloc.''."\n";
+			} else {
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
+			}
+		echo '</fieldset>';
+		
 	echo '</div>'."\n";
 
 	// section: select the list type
@@ -1409,7 +1421,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 		echo '</div>'."\n";
 		
 	
-		echo '<fieldset><legend>'.__('partitioned list','customfieldlist').':</legend>';
+		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('partitioned list','customfieldlist').':</legend>';
 		
 		// ### Opt ###
 		if ( 'yes' == $opt[$number]['partlist'] ) {

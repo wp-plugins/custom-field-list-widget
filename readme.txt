@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.9.1
+Tested up to: 2.9.2
 Stable tag: 0.9.7
 
 This plugin makes a list of custom field information in the sidebar.
@@ -142,10 +142,11 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
-= v0.9.9 (beta 2) =
+= v0.9.9 (beta 4) =
 * new list appearance option: now it is to display the data in a drop down menu
 * internal changes of the way the list with individual linked list elements
 * possibility to leave the widget header/title blank
+* new feature: you can group the custom field values by thier first character
 * minor Javascript fixes
 
 = v0.9.7 =
