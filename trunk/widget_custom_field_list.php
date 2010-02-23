@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.9 beta 4
+Version: 0.9.9 beta 5
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
-Max WP Version: 2.9.2
+Max WP Version: 3.0
 License: GNU General Public License
 
 Requirements:
@@ -16,11 +16,12 @@ Requirements:
 	
 Localization:
 	Bulgarian - Peter Toushkov
-	Russian (until v0.9.4.1) - Michael Comfi (http://www.comfi.com/)
-	Uzbek (until v0.9.4.1) - Alisher Safarov (http://www.comfi.com/) 
 	Hindi - Kakesh Kumar (http://kakesh.com/)
 	English (default) - Tim Berger
 	German - Tim Berger
+	
+	Russian (complete until v0.9.4.1) - Michael Comfi (http://www.comfi.com/)
+	Uzbek (complete until v0.9.4.1) - Alisher Safarov (http://www.comfi.com/) 
 
 For detailed information about the usage of this plugin, please read the readme.txt.	
 
@@ -57,7 +58,7 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
-if ( ! defined( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET' ) ) { define( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET', 'yes' ); }
+//if ( ! defined( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET' ) ) { define( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET', 'yes' ); }
 
 
 // load the translation file
@@ -422,7 +423,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			// decide whether it should be a drop down menu or ul-list ( list appearance )
 			switch ($opt['list_format']) {
 				case 'dropdownmenu' :
-					echo '<select id="customfieldlist_main_menu_'.$number.'" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
+					echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
 					if ('' == $opt['select_list_default']) {
 						echo "\t".'<option value="nothing">'.__('Select:','customfieldlist').'</option>'."\n";
 					} else {
@@ -1961,7 +1962,7 @@ function customfieldlist_widget_general_options() {
 		if ( isset($_POST['customfieldlist_effect_speed']) AND TRUE == array_key_exists($_POST['customfieldlist_effect_speed'], $speeds)) {
 			$opt['effect_speed'] = $_POST['customfieldlist_effect_speed'];
 		} else {
-			$opt['effect_speed'] = 'slow'; // default
+			$opt['effect_speed'] = 'normal'; // default
 		}
 		$result = update_option('widget_custom_field_list_general_options', $opt);
 		//~ if (FALSE === $result) {

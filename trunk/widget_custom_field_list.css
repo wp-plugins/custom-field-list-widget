@@ -10,3 +10,6 @@
 .customfieldlist_selectedpart {
 	font-weight:bold;
 }
+.customfieldlist_selectbox {
+	width:100%;
+}
