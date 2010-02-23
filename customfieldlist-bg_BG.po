@@ -1,11 +1,11 @@
-# Petar Toushkov <pt.launchpad@gmail.com>, 2009.
+# Petar Toushkov <pt.launchpad@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v0.9.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-21 23:26+0100\n"
-"PO-Revision-Date: 2010-02-21 23:26+0100\n"
-"Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
+"PO-Revision-Date: 2010-02-23 13:03+0200\n"
+"Last-Translator: Petar Toushkov <pt.launchpad@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "Разширението засече вътрешна грешка: с�
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:427
 msgid "Select:"
-msgstr ""
+msgstr "Избиране:"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:271
@@ -124,14 +124,13 @@ msgid "post IDs"
 msgstr "ID-та на публикации"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1278
-#, fuzzy
 msgid "group the values by the first character"
-msgstr "сортиране на стойностите по последна дума"
+msgstr "групиране на стойностите по първи символ"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
 #, php-format
 msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
-msgstr ""
+msgstr "Групира стойностите на потребителските полета по първи символ след извличането им от базата от данни. Това може да бъде полезно, ако имате много стойности и не искате да използвате опцията \"%1$s\", за да бъде запазен по-кратък списъкът в страничната лента.)"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
@@ -222,21 +221,20 @@ msgstr "Изглед на списъка"
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1401
 msgid "simple list"
-msgstr ""
+msgstr "прост списък"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1395
 msgid "Show the list elements in a simple list with bullets."
-msgstr ""
+msgstr "Показване на списъка от елементи като прост списък с водещи символи."
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
 msgid "drop down menu"
-msgstr ""
+msgstr "падащо меню"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
-#, fuzzy
 msgid "Show the list elements as a drop down menu."
-msgstr "показване само на част от списъка с елементи"
+msgstr "Показване на списъка от елементи като падащо меню."
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1409
 msgid "each element with sub elements"
@@ -278,7 +276,7 @@ msgstr "числа"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1446
 msgid "first letter"
-msgstr "бърква буква"
+msgstr "първа буква"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1447
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
@@ -304,7 +302,7 @@ msgstr "Можете да изберете дали странирането н�
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
 msgid "What should be the default value of the drop down menu?:"
-msgstr ""
+msgstr "Каква да бъде стойността по подразбиране на падащото меню:"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1470
 #, php-format
@@ -341,7 +339,7 @@ msgstr "Промените запазени"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1977
 msgid "Custom Field List Widgets settings"
-msgstr "Настройки на джаджата Списък с потребителски полета"
+msgstr "Настройки на Custom Field List Widget"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1984
 msgid "symbols to deflate/inflate the sub list elements"
