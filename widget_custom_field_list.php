@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.9 beta 5
+Version: 0.9.9
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 3.0
@@ -57,9 +57,6 @@ if ( ! defined( 'WP_PLUGIN_URL' ) ) { define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '
 if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
-
-//if ( ! defined( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET' ) ) { define( 'CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET', 'yes' ); }
-
 
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
@@ -611,7 +608,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 									}
 								}
 								$hierarchymaxlevel=2;
-								//$opt['group_by_firstchar']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
 								if ( 'yes' == $opt['group_by_firstchar'] ) {
 									$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 									$hierarchymaxlevel++;
@@ -771,8 +767,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 								$liststyleopt = 'standard';
 							}
 							
-							//customfieldlist_var_dump($output_array);
-							//$opt['group_by_firstchar']=CUSTOM_FIELD_LIST_GROUP_BY_ALPHABET;
 							if ( 'yes' == $opt['group_by_firstchar'] ) {
 								$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 								$liststyleopt = 'each_element_with_sub_element';
@@ -1719,12 +1713,10 @@ function customfieldlist_widget_admin_script() {
 		}
 		var message = document.getElementById('customfieldlist_hierarchy_vacancy_error_'+String(number));
 		if ( true == hierarchy_vacancy ) {
-			//formu.savewidget.style.display = 'none';
 			message.style.display = 'block';
 		} else {
 			if ( 'block' == message.style.display ) {
 				message.style.display = 'none';
-				//formu.savewidget.style.display = 'inline';
 			}
 		}
 		
