@@ -18,7 +18,7 @@ if (isset($_POST['abspath'])) {
 }
 
 function customfieldlist_save_data($widget_number) {
-	// Data should be stored as array:  array( number => data for that instance of the widget, ... )
+	// Data should be stored as an array:  array( number => data for that instance of the widget, ... )
 	$opt = get_option("widget_custom_field_list");
 	if ( !is_array($opt) ) {
 		$opt = array();

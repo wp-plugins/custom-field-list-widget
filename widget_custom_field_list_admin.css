@@ -74,15 +74,24 @@
 	font-size:1em;
 	text-align:left;
 }
-.customfieldlist_section fieldset {
+
+.customfieldlist_fieldset_h3  {
 	margin-bottom: 1em;
-	/*border:1px transparent #dddddd;*/
 }
-.customfieldlist_section fieldset legend {
+fieldset.customfieldlist_fieldset_h3 legend, fieldset.customfieldlist_fieldset_h2 fieldset.customfieldlist_fieldset_h3 legend{
 	text-align: left;
-	/*margin: 0em 0.5em 0em 4em;*/
 	padding: 0em 0.5em 0em 3em;
 }
+.customfieldlist_fieldset_h2  {
+	border:1px solid #dddddd;
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+fieldset.customfieldlist_fieldset_h2 legend {
+	text-align: left;
+	padding: 0em 0.5em 0em 0.5em;
+}
+
 .customfieldlist_section div input, .customfieldlist_section div select {
 	vertical-align:middle;
 }

@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Field List Widget v0.9.6\n"
+"Project-Id-Version: Custom Field List Widget v0.9.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-11 11:52+0100\n"
-"PO-Revision-Date: 2009-12-11 11:52+0100\n"
+"POT-Creation-Date: 2010-03-10 12:30+0100\n"
+"PO-Revision-Date: 2010-03-10 12:30+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
-"Language-Team: \n"
+"Language-Team: Kakesh Kumar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,409 +15,448 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp28en\\wp-content\\plugins\\widget_custom_field_list\n"
+"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp29en\\wp-content\\plugins\\custom-field-list-widget\n"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:292
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:854
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1293
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1294
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1298
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1299
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:403
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1036
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1505
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1506
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1510
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1511
 msgid "Custom Field List"
 msgstr "कस्टम फील्ड लिस्ट"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:98
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:132
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:99
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:132
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:158
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:172
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:201
 msgid "Internal Plugin Error: value is no array"
 msgstr "आंतरिक प्लगइन त्रुटि : ऐरे में कोई आंकड़ा नहीं है। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:477
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:256
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:427
+msgid "Select:"
+msgstr "चुनें:"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:271
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "आपने कस्टम फील्ड \"%1$s\" को चुना है लेकिन इससे संबंधित कोई भी जानकारी डाटाबेस में नहीं है। कोई दूसरा फील्ड चुनें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:481
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:639
 msgid "no value"
 msgstr "इस फील्ड में कोई वैल्यू नहीं है "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:485
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:643
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr "आपके द्वारा चुना गये कस्टम फील्ड का नाम \"%1$s\" है और जो कस्टम फील्ड आपने सहेजा है \"%2$s\" वे दोनों अलग अलग हैं। कृपया पहले चुने हुए कस्टम फील्ड की वैल्यूज जांच लें।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:500
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1311
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1725
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
 msgid "Hide"
 msgstr "छिपायें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:500
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1311
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1725
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
 msgid "Show"
 msgstr "दिखायें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:627
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:798
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "कस्टम फील्ड का नाम जो विजेट में चुना गया है उसके लिये कोई आंकड़ा उपलब्ध नहीं है।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:632
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:259
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:803
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:274
 msgid "Please, define a custom field name!"
 msgstr "कृपया, कस्टम फील्ड परिभाषित करें!"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:635
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:806
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "कस्टम फील्ड लिस्ट विजेट के लिये डाटबेस में कोई आंकड़ा नहीं है।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:648
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:824
 msgid "part"
 msgstr "अन्य भाग"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:861
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
 msgid "Header (optional)"
 msgstr "शीर्षक (वैकल्पिक) "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:861
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
 msgid "Leave the field empty for no widget title"
 msgstr "यदि आप कोई शीर्षक नहीं रखना चाहते हैं, तो यहाँ पर कुछ ना भरें, यानि इस फील्ड को खाली रखें।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:865
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1047
 msgid "Custom Field Names"
 msgstr "कस्टम फील्ड का नाम"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:902
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1056
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1084
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1236
 msgid "custom field names"
 msgstr "कस्टम फील्ड के नाम"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:905
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1087
 msgid "sort by"
 msgstr "क्रमबद्ध करें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:908
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1090
 msgid "hide this"
 msgstr "इसे छिपायें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:994
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1174
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr "यदि आप अनेक उपखंडो (हायरकी) से बनी लिस्ट बनाना चाहते है तो सभी कस्टम फील्ड के नाम एक के बाद एक भरें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1026
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1206
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr "आप एक से अधिक कस्टम फील्ड का उपयोग कर रहे हैं लेकिन ये फील्ड सभी पृष्ठों/लेखों में समान रूप से शामिल नहीं हैं। <br /> साइडबार में यह कुछ इस तरह से दिखेंगे। <br /> यह सूची यह बताती है कि कौन सा कस्टम फील्ड कब उपयोग में लिया गया है। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1057
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1237
 msgid "post IDs"
 msgstr "पोस्ट की आई.डी. "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1113
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1278
+msgid "group the values by the first character"
+msgstr "अंतिम शब्द से क्रमबद्ध करें। "
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
+#, php-format
+msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
+msgstr "कस्टम फील्ड वैल्य़ू को पहले अक्षर से क्रमबद्ध करें। यदि आपके पास बहुत से विकल्प हैं लेकिन आप  \"%1$s\"  साइडबार में उपयोग नहीं करना चाहते हैं। "
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
+msgid "show only a part of the list elements at once"
+msgstr "लिस्ट का केवल एक भाग ही दिखायें"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1299
 msgid "Sorting Options"
 msgstr "क्रमबद्ध करने के तरीके"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1123
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1309
 msgid "sort sequence"
 msgstr "इस क्रम में लगायें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1124
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1310
 msgid "ascending (ASC)"
 msgstr "आरोही (असेंडिंग)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1125
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1311
 msgid "descending (DESC)"
 msgstr "अवरोही (डिसेंडिंग)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1130
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1315
 msgid "database collation"
 msgstr "डाटाबेस कोलेशन"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1138
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1323
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "संभवत: यह विकल्प काम नहीं करेगा, क्योक़ि इस सर्वर पर \"setlocale(LC_COLLATE, ... \" को सैट करना संभव नहीं है। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1145
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1330
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr "इस सर्वर का ऑपरेटिंग सिस्टम विन्डोज है, जिस पर UTF-8 के द्वारा क्रमबद्ध करना संभव नहीं है, इसलिये आवश्यक है कि आप : "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1146
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1331
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. अपनी <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">भाषा</a> और <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">देश का </a> नाम डालें और <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">अपने कोड का नाम लिखेंr</a> "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1147
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1332
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. जिस कोड पेज को पी एच पी दिखा सकती हो वही कोड पेज डालें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1161
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1346
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "यह विकल्प संभवतया काम नहीं करेगा क्योंकि सर्वर का ऑपरेटिंग सिस्टम विंडोज है जिसमें फंक्शन mb_convert_encoding उपलब्ध नहीं है।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1170
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1172
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1355
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1357
 msgid "sort the values by the last word"
 msgstr "अंतिम शब्द से क्रमबद्ध करें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1178
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1365
 msgid "List Types"
 msgstr "लिस्ट का प्रकार"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1180
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1204
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1214
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1367
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
 msgid "standard layout"
 msgstr "स्टैंडर्ड ले-आउट "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1181
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1368
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "जिन खंड समूहों में उप खंड है उन खंड समूहों के सामने + का चिन्ह होगा, जहाँ केवल एक ही खंड है वहाँ कड़ी एक लेख की ओर इंगित करेगी। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1185
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1372
 msgid "a list with manually linked values"
 msgstr "खुद सैट की गई कडियों की लिस्ट"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1186
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1373
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr "सभी कस्टम फील्ड की "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1188
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1189
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1376
 #, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr "कस्टम फील्ड %1$s के लिये सभी आंकड़े दें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1188
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
 msgid "Set the links"
 msgstr "कड़ी सैट करें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1194
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1392
 msgid "List Appearance"
 msgstr "लिस्ट का प्रदर्शन"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1203
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1401
+msgid "simple list"
+msgstr "साधारण क्रम में "
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1395
+msgid "Show the list elements in a simple list with bullets."
+msgstr "लिस्ट को बुलेट पॉइंट के साथ दिखायें"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
+msgid "drop down menu"
+msgstr "नीचे खुलने वाले मीनू "
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
+msgid "Show the list elements as a drop down menu."
+msgstr "लिस्ट का केवल एक भाग ही दिखायें"
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1409
 msgid "each element with sub elements"
 msgstr "प्रत्येक कड़ी अपनी उप कडियों के साथ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1204
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
 #, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr "प्रत्येक कस्टम फील्ड को एक खंड के रूप में और फील्ड की वैल्यूज को उसके उपखंड के रूप में दिखायें। सभी उपखंड किसी ना किसी पृष्ठ से हायपर लिंक्ड होंगे। \"%1$s\" के साथ ही उपलब्ध।   "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1213
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1419
 msgid "show the number of sub elements"
 msgstr "प्रत्येक कड़ी अपनी उप कडियों के साथ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1214
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
 #, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr "प्रत्येक कस्टम फील्ड को एक खंड के रूप में और फील्ड की वैल्यूज को उसके उपखंड के रूप में दिखायें। सभी उपखंड किसी ना किसी पृष्ठ से हायपर लिंक्ड होंगे। \"%1$s\" के साथ ही उपलब्ध।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1218
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1424
 msgid "partitioned list"
 msgstr "विभक्त कड़ियाँ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1230
-msgid "show only a part of the list elements at once"
-msgstr "लिस्ट का केवल एक भाग ही दिखायें"
-
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1233
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1439
 msgid "elements per part of the list"
 msgstr "प्रत्येक भाग में कडियों की संख्या"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1236
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
 msgid "pagination type"
 msgstr "आप किस प्रकार पृष्ठ अलग करना चाहते हैं"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1236
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
 msgid "use the"
 msgstr "यहाँ से चुनें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1239
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1445
 msgid "numbers"
 msgstr "क्रमिक संख्याऐं"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1240
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1446
 msgid "first letter"
 msgstr "पहला अक्षर"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1241
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1254
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1447
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 msgid "first two letters"
 msgstr "पहले दो अक्षर"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1242
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1448
 msgid "first three letters"
 msgstr "पहले तीन अक्षर"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1243
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1449
 msgid "first word"
 msgstr "पहला शब्द"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1244
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1450
 msgid "last word"
 msgstr "अंतिम शब्द"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1254
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr "अनेक खंडो वाली कडियों के विभिन्न भाग दिखाने के लिये आप नम्बर या कड़ी के कुछ शब्दों को चुन सकते हैं। यदि आप कड़ी के शब्दों को चुन रहे हैं तो किसी भी खंड के पहले या अंतिम कड़ी में से शब्द चुना जायेगा। जैसे [अ-क]  \"%1$s\") । "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1258
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
+msgid "What should be the default value of the drop down menu?:"
+msgstr "ड्रॉप डाउन मेनू की डिफॉल्ट वैल्यू क्या होगी? "
+
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1470
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr "इस विजेट की सैटिग्स <a href=\"%1$s\">इसके सैंटिंग पेज से सैट करें</a>"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1272
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1484
 msgid "Displays a list of custom field values of a set key"
 msgstr "किसी निर्दिष्ट फील्ड के कस्टम फील्ड की सूची प्रदर्शित करें "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1375
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1597
 msgid "Unsaved changes"
 msgstr "ना सहेजे गये परिवर्तन"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1379
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
 msgid "Not available with these widget preferences."
 msgstr "इस विजेट के साथ उपलब्ध नहीं"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1729
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1949
 msgid "slow"
 msgstr "धीमी गति"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1730
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1950
 msgid "normal"
 msgstr "सामान्य गति"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1731
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1951
 msgid "fast"
 msgstr "तेज गति"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1750
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1970
 msgid "Changes saved"
 msgstr "परिवर्तन सहेजे गये"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1757
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1977
 msgid "Custom Field List Widgets settings"
 msgstr "कस्टम फील्ड लिस्ट"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1764
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1984
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr "उपखंड दिखाने/छिपाने के लिये चिन्ह"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1775
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1995
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr "यदि किसी खंड के उपखंड हैं तो उपखंड दिखाने या छिपाने के चिन्ह यहाँ से चुनें।  "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1780
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2000
 msgid "effect speed"
 msgstr "दिखाने/छिपाने की गति"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1791
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2011
 msgid "How fast should the list elements show up or hide?"
 msgstr "लिस्ट का केवल एक भाग ही दिखायें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1800
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2020
 msgid "Save Changes"
 msgstr "ना सहेजे गये परिवर्तन"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list.php:1810
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2030
 msgid "Custom Field List Widgets"
 msgstr "कस्टम फील्ड लिस्ट"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:5
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:5
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:5
 msgid "Security Check failed!"
 msgstr "सुरक्षा जांच असफल"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:11
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:11
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:11
 msgid "The widget number was not transmitted."
 msgstr "विजेट के नम्बर प्रसारित नहीं किये गये। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:14
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:10
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_save_data.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:14
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:10
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:14
 msgid "You have to be logged in for this action."
 msgstr "इस काम के संपादन के लिये पहले कृपया लॉग-इन करें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:32
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:32
 msgid "Error: Could not process the formular data."
 msgstr "त्रुटि : सभी आंकडों पर कार्य नहीं हो पाया। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:59
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:59
 msgid "The formular contains to much data. It is not possible to send them to the database."
 msgstr "इस विकल्प में बहुत ज्यादा आंकड़े है जिन्हे डाटाबेस में भेजना संभव नहीं है। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:78
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:78
 msgid "It is not possible to create an XMLHTTP instance."
 msgstr "कोई XMLHTTP इंस्टैंस बनाना संभव नहीं है। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:89
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:89
 msgid "Saving the data"
 msgstr "सहेजा जा रहा है"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:106
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:106
 msgid "Data saved!"
 msgstr "सहेजा गया।"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
 msgid "There was a problem during the request (Probably no data saved)."
 msgstr "रेक्वेस्ट में कोई समस्या है ( शायद आंकड़ों को सही से सहेजा नहीं गया है) "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:109
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "Error message:"
 msgstr "त्रुटि संदेश"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "There was a problem with the request (Probably no data saved)."
 msgstr "रेक्वेस्ट में कोई समस्या है ( शायद आंकड़ों को सही से सहेजा नहीं गया है) "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr "एच टी टी पी रिक्वेस्ट की ताजा स्थिति "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:207
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:216
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."
 msgstr "आप अपने साइट के पृष्ठों/लेखों के साथ या फिर किसी अन्य पतों के लिये कड़ी बना सकते हैं। यदि आप कोई पृष्ठ/लेख का शीर्षक देते हैं तो वह यह उस पृष्ठ से जुड़ जायेगा ना कि आपके द्वारा दी गयी कड़ी से।  <br /> कृपया पते से पहले  http:// या https:// या ftp:// आदि का प्रयोग अवश्य करें। आप कड़ी का विवरण भी डाल सकते हैं जो आपके माउस कर्सर को कड़ी के ऊपर ले जाने पर दिखेगा। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:210
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:252
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:267
 msgid "Save"
 msgstr "सहेजें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:234
 #, php-format
 msgid "Link \"%1$s\" to"
 msgstr "\"%1$s\" से जोड़ें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:222
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:237
 msgid "a post or page"
 msgstr "कोई लेख या पृष्ठ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:230
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:245
 msgid "page"
 msgstr "पृष्ठ"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:240
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:255
 msgid "or to this URL:"
 msgstr "या फिर इस कड़ी पर: "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href.php:242
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:257
 msgid "link description (title)"
 msgstr "कड़ी का विवरण (शीर्षक)"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 #, php-format
 msgid "Please, choose the list type \"%1$s\" to able to set the link reference for the custom field name values."
 msgstr "कस्टम फील्ड की वैल्यूज के लिये कृपया लिस्ट का प्रकार \"%1$s\" चुनें। "
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 msgid "a list of all values with manually set links"
 msgstr "अपनी कडियां स्वयं सैट करें"
 
-#: H:\xampp\htdocs\wp28en\wp-content\plugins\widget_custom_field_list/widget_custom_field_list_individual_href_advice.php:24
+#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
 msgid "Please, save the custom field names first."
 msgstr "कृपया, पहले कस्टम फील्ड परिभाषित करें!"
 
