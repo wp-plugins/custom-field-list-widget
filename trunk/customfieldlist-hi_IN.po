@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v0.9.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-21 23:27+0100\n"
-"PO-Revision-Date: 2010-02-21 23:27+0100\n"
+"POT-Creation-Date: 2010-03-10 12:30+0100\n"
+"PO-Revision-Date: 2010-03-10 12:30+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Kakesh Kumar\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "आंतरिक प्लगइन त्रुटि : ऐरे म
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:427
 msgid "Select:"
-msgstr ""
+msgstr "चुनें:"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:271
@@ -122,14 +122,13 @@ msgid "post IDs"
 msgstr "पोस्ट की आई.डी. "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1278
-#, fuzzy
 msgid "group the values by the first character"
 msgstr "अंतिम शब्द से क्रमबद्ध करें। "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
 #, php-format
 msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
-msgstr ""
+msgstr "कस्टम फील्ड वैल्य़ू को पहले अक्षर से क्रमबद्ध करें। यदि आपके पास बहुत से विकल्प हैं लेकिन आप  \"%1$s\"  साइडबार में उपयोग नहीं करना चाहते हैं। "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
@@ -220,19 +219,18 @@ msgstr "लिस्ट का प्रदर्शन"
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1401
 msgid "simple list"
-msgstr ""
+msgstr "साधारण क्रम में "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1395
 msgid "Show the list elements in a simple list with bullets."
-msgstr ""
+msgstr "लिस्ट को बुलेट पॉइंट के साथ दिखायें"
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
 msgid "drop down menu"
-msgstr ""
+msgstr "नीचे खुलने वाले मीनू "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
-#, fuzzy
 msgid "Show the list elements as a drop down menu."
 msgstr "लिस्ट का केवल एक भाग ही दिखायें"
 
@@ -302,7 +300,7 @@ msgstr "अनेक खंडो वाली कडियों के वि�
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
 msgid "What should be the default value of the drop down menu?:"
-msgstr ""
+msgstr "ड्रॉप डाउन मेनू की डिफॉल्ट वैल्यू क्या होगी? "
 
 #: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1470
 #, php-format

@@ -142,7 +142,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
-= v0.9.9 (beta 4) =
+= v0.9.9 =
 * new list appearance option: now it is to display the data in a drop down menu
 * internal changes of the way the list with individual linked list elements
 * possibility to leave the widget header/title blank
