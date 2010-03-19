@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 0.9.9
+Version: 1.0 RC 3
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 3.0
@@ -89,7 +89,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
 								} else {
 									if ('' != $value[0]['post_title']) {
-										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
+										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
 									}
 								}
 								echo "\t</optgroup>\n";
@@ -161,13 +161,29 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 			default :
 				switch ($list_format) {
 					case 'dropdownmenu' :
-						foreach ($n as $key => $value) {
-							if ( TRUE === is_array($value) ) { 
-								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
-								customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
-								echo "\t</optgroup>\n";
-							} else {
-								echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
+						if ( 'each_element_with_sub_element' == $list_style ) {
+							foreach ($n as $key => $value) {
+								if ( TRUE === is_array($value) ) { 
+									echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+									echo "\t</optgroup>\n";
+								} else {
+									echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
+								}
+							}
+						} else {
+							foreach ($n as $key => $value) {
+								if ( TRUE === is_array($value) ) { 
+									if ( FALSE === isset($value[0]['post_id']) OR 1 < count($value) ) {
+										echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
+										customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+										echo "\t</optgroup>\n";
+									} else {
+										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
+									}
+								} else {
+									echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
+								}
 							}
 						}
 					break;
@@ -209,12 +225,12 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 				if ( 'yes' == $group_by_firstchar AND 'individual_href' == $internal_list_style) {
 					foreach ($n as $key => $value) {
 						if ('' != $n[$key]['post_title']) {
-							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
 						}
 					}
 				} else {
 					foreach ($n as $key => $value) {
-						echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+						echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
 					}
 				}
 			break;
@@ -981,7 +997,13 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['list_style_opt1'] = 'no';
 			}
-			
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['list_style_opt1_hidden']) AND 'yes' == $_POST['customfieldlist_opt'][$widget_number]['list_style_opt1_hidden'] ) {
+				$opt[$widget_number]['list_style_opt1'] = 'yes';
+				$opt[$widget_number]['list_style_opt1_hidden'] = 'yes';
+			} else {
+				$opt[$widget_number]['list_style_opt1_hidden'] = 'no';
+			}
+			customfieldlist_var_dump($_POST['customfieldlist_opt'][$widget_number]['list_style_opt1_hidden']);
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['show_number_of_subelements']) ) {
 				$opt[$widget_number]['show_number_of_subelements'] = TRUE;
 			} else {
@@ -1270,7 +1292,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			$group_by_firstchar = '';
 		}
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_group_by_firstchar_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_group_by_firstchar" class="customfieldlist_label">'.__('group the values by the first character','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][group_by_firstchar]" id="customfieldlist_opt_'.$number.'_group_by_firstchar" value="yes"'.$group_by_firstchar.' />'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_group_by_firstchar_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_group_by_firstchar" class="customfieldlist_label">'.__('group the values by the first character','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][group_by_firstchar]" id="customfieldlist_opt_'.$number.'_group_by_firstchar" value="yes"'.$group_by_firstchar.' onclick="customfieldlist_group_by_firstchar_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_group_by_firstchar_explanation" class="customfieldlist_explanation">'.sprintf(__('Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option "%1$s" to keep the list in the sidebar short.)','customfieldlist'), __('show only a part of the list elements at once','customfieldlist')).'</p>'."\n";
 		echo '</div>'."\n";
 	echo '</div>'."\n"; // end of section: custom field names
@@ -1385,77 +1407,76 @@ function customfieldlist($args=array(), $widget_args=1) {
 	}
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Appearance','customfieldlist').'</h5>'."\n";
-		
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' />'."\n"; //onclick="customfieldlist_format_changed(this.id, '.$number.');"
+		// ### Opt ###
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt1_explanation" class="customfieldlist_explanation">'.__('Show the list elements in a simple list with bullets.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' />'."\n";// onclick="customfieldlist_format_changed(this.id, '.$number.');"	
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";// 	
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt2_explanation" class="customfieldlist_explanation">'.__('Show the list elements as a drop down menu.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
+		echo '<div id="customfieldlist_opt_'.$number.'_list_format_opt2_advice" class="customfieldlist_advice" style="display:none;">'.sprintf(__('It might be expedient to use the option "%1$s" or "%2$s" in combination with "%3$s".','customfieldlist'),__('each element with sub elements','customfieldlist'), __('group the values by the first character','customfieldlist'), __('drop down menu','customfieldlist')).'</div>'."\n";
 		
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('simple list','customfieldlist').':</legend>';
-		// ### Opt ###
-		if ( 'yes' == $opt[$number]['list_style_opt1'] ) {
-			$liststyleopt1chk = ' checked="checked"';
-		} else {
-			$liststyleopt1chk = '';
-		}
-		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' /></div>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' />'."\n";
-		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
-		echo '</div>'."\n";
-
-		// ### Opt ###
-		if ( TRUE === $opt[$number]['show_number_of_subelements'] ) {
-			$liststyleopt3chk = ' checked="checked"';
-		} else {
-			$liststyleopt3chk = '';
-		}
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt3_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt3" class="customfieldlist_label">'.__('show the number of sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][show_number_of_subelements]" id="customfieldlist_opt_'.$number.'_list_style_opt3" value="yes"'.$liststyleopt3chk.''.$liststyleopt3disabled.' />'."\n";
-		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt3_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
-		echo '</div>'."\n";
-		
-	
-		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('partitioned list','customfieldlist').':</legend>';
-		
-		// ### Opt ###
-		if ( 'yes' == $opt[$number]['partlist'] ) {
-			$liststyleopt2chk = ' checked="checked"';
-			$liststyleoptpartlengthdisabled = '';
-			$liststyleopt4disabled = '';
-		} else {
-			$liststyleopt2chk = '';
-			$liststyleoptpartlengthdisabled = ' disabled="disabled"';
-			$liststyleopt4disabled = ' disabled="disabled"';
-		}
-		echo '<div><label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').'</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' onclick="customfieldlist_partitionedlist_optionsswitch(this.id, '.$number.');" /></div>'."\n";
-		
-		// ### Opt ###
-		echo '<div><label for="customfieldlist_opt_'.$number.'_partlength" class="customfieldlist_label">'.__('elements per part of the list','customfieldlist').' (X>=3)</label> <input type="text" id="customfieldlist_opt_'.$number.'_partlength" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;"'.$liststyleoptpartlengthdisabled.' /></div>'."\n";
-		
-		// ### Opt ###
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt4_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt4" class="customfieldlist_label">'.__('pagination type','customfieldlist').' - '.__('use the','customfieldlist').'</label> ';
-		echo '<select id="customfieldlist_opt_'.$number.'_list_style_opt4" name="customfieldlist_opt['.$number.'][list_part_nr_type]"'.$liststyleopt4disabled.'>';
-		$list_part_nr_types = array(
-			'numbers' => __('numbers','customfieldlist'),
-			'1Lfront' => __('first letter','customfieldlist'),
-			'2Lfront' => __('first two letters','customfieldlist'),
-			'3Lfront' => __('first three letters','customfieldlist'),
-			'firstword' => __('first word','customfieldlist'),
-			'lastword' => __('last word','customfieldlist')
-		);
-		foreach ($list_part_nr_types as $keyname => $list_part_nr_type) {
-			if ($keyname == $opt[$number]['list_part_nr_type']) {
-				echo '<option value="'.$keyname.'" selected="selected">'.$list_part_nr_type.'</option>';
+			// ### Opt ###
+			if ( 'yes' == $opt[$number]['list_style_opt1'] OR 'yes' == $opt[$number]['list_style_opt1_hidden']) {
+				$liststyleopt1chk = ' checked="checked"';
 			} else {
-				echo '<option value="'.$keyname.'">'.$list_part_nr_type.'</option>';
+				$liststyleopt1chk = '';
 			}
-		}
-		echo '</select>';
-		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt4_explanation" class="customfieldlist_explanation">'.sprintf(__('You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type "%1$s").','customfieldlist'),__('first two letters','customfieldlist')).'</p>'."\n";
-		echo '</div>';
-		
-		echo '</fieldset>';
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' onclick="customfieldlist_list_style_opt1_changed(this.id, '.$number.');" />'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
+			if (FALSE == empty($liststyleopt1chk)) {$liststyleopt1hidden = 'yes';} else {$liststyleopt1hidden = 'no';}
+			echo '<input type="hidden" name="customfieldlist_opt['.$number.'][list_style_opt1_hidden]" id="customfieldlist_opt_'.$number.'_list_style_opt1_hidden" value="'.$liststyleopt1hidden.'" />'."\n";
+			echo '</div>'."\n";
+
+			// ### Opt ###
+			if ( TRUE === $opt[$number]['show_number_of_subelements'] ) {
+				$liststyleopt3chk = ' checked="checked"';
+			} else {
+				$liststyleopt3chk = '';
+			}
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt3_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt3" class="customfieldlist_label">'.__('show the number of sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][show_number_of_subelements]" id="customfieldlist_opt_'.$number.'_list_style_opt3" value="yes"'.$liststyleopt3chk.''.$liststyleopt3disabled.' />'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt3_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
+			echo '</div>'."\n";
+			
+			echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('partitioned list','customfieldlist').':</legend>';
+				// ### Opt ###
+				if ( 'yes' == $opt[$number]['partlist'] ) {
+					$liststyleopt2chk = ' checked="checked"';
+					$liststyleoptpartlengthdisabled = '';
+					$liststyleopt4disabled = '';
+				} else {
+					$liststyleopt2chk = '';
+					$liststyleoptpartlengthdisabled = ' disabled="disabled"';
+					$liststyleopt4disabled = ' disabled="disabled"';
+				}
+				echo '<div><label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').'</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' onclick="customfieldlist_partitionedlist_optionsswitch(this.id, '.$number.');" /></div>'."\n";
+				
+				// ### Opt ###
+				echo '<div><label for="customfieldlist_opt_'.$number.'_partlength" class="customfieldlist_label">'.__('elements per part of the list','customfieldlist').' (X>=3)</label> <input type="text" id="customfieldlist_opt_'.$number.'_partlength" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;"'.$liststyleoptpartlengthdisabled.' /></div>'."\n";
+				
+				// ### Opt ###
+				echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt4_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt4" class="customfieldlist_label">'.__('pagination type','customfieldlist').' - '.__('use the','customfieldlist').'</label> ';
+				echo '<select id="customfieldlist_opt_'.$number.'_list_style_opt4" name="customfieldlist_opt['.$number.'][list_part_nr_type]"'.$liststyleopt4disabled.'>';
+				$list_part_nr_types = array(
+					'numbers' => __('numbers','customfieldlist'),
+					'1Lfront' => __('first letter','customfieldlist'),
+					'2Lfront' => __('first two letters','customfieldlist'),
+					'3Lfront' => __('first three letters','customfieldlist'),
+					'firstword' => __('first word','customfieldlist'),
+					'lastword' => __('last word','customfieldlist')
+				);
+				foreach ($list_part_nr_types as $keyname => $list_part_nr_type) {
+					if ($keyname == $opt[$number]['list_part_nr_type']) {
+						echo '<option value="'.$keyname.'" selected="selected">'.$list_part_nr_type.'</option>';
+					} else {
+						echo '<option value="'.$keyname.'">'.$list_part_nr_type.'</option>';
+					}
+				}
+				echo '</select>';
+				echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt4_explanation" class="customfieldlist_explanation">'.sprintf(__('You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type "%1$s").','customfieldlist'),__('first two letters','customfieldlist')).'</p>'."\n";
+				echo '</div>';
+			echo '</fieldset>';
 		echo '</fieldset>';
 		
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('drop down menu','customfieldlist').':</legend>';
@@ -1570,9 +1591,31 @@ function customfieldlist_widget_style() {
 // add js on the widgets page
 add_action('admin_print_scripts-widgets.php', 'customfieldlist_widget_admin_script');
 function customfieldlist_widget_admin_script() {
+	wp_enqueue_script( 'thickbox' );
 	?>
 	<script type="text/javascript">
 	//<![CDATA[
+	function customfieldlist_group_by_firstchar_changed(id, number) {
+		if ( document.getElementById( id ).checked == true ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
+		}
+	}
+	
+	function customfieldlist_list_appearancetype_changed(id, number) {
+		if ( 'customfieldlist_opt_' + String(number) + '_list_format_opt2' == id && (document.getElementById('customfieldlist_opt_' + String(number) + '_group_by_firstchar').checked != true && document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').checked != true) ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'block';
+		}
+	}
+	
+	function customfieldlist_list_style_opt1_changed(id, number) {
+		if ( document.getElementById( id ).checked == true ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1_hidden').value = 'yes';
+		} else {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1_hidden').value = 'no';
+		}
+	}
+	
 	function customfieldlist_partitionedlist_optionsswitch(chkb_id, number) {
 		if ( document.getElementById( chkb_id ).checked==true ) {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_partlength').disabled = false;
@@ -1916,11 +1959,6 @@ function customfieldlist_widget_admin_script() {
 	<?php
 }
 
-add_action('admin_print_scripts-widgets.php', 'customfieldlist_widget_enqueue_thickbox');
-function customfieldlist_widget_enqueue_thickbox() {
-	wp_enqueue_script( 'thickbox' );
-}
-
 add_action('admin_print_styles-widgets.php', 'customfieldlist_widget_admin_styles');
 function customfieldlist_widget_admin_styles() {
 	wp_enqueue_style( 'thickbox' );
@@ -1965,12 +2003,11 @@ function customfieldlist_widget_general_options() {
 	} else {
 		$opt = get_option('widget_custom_field_list_general_options');
 	}
-	
+
 	echo '<div class="wrap">'."\n";
 	echo '<h2>'.__('Custom Field List Widgets settings','customfieldlist').'</h2>'."\n";
 	echo '<form method="post" action="'.trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__).'">'."\n";
 	wp_nonce_field('customfieldlist_general_options_security');
-
 	echo '<table class="form-table">'."\n";
 
 	echo '<tr valign="top">'."\n";
@@ -2021,8 +2058,6 @@ add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
 		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 8, basename(__FILE__), 'customfieldlist_widget_general_options'); 
-		//add_action( 'admin_print_scripts-'.$page, 'cronjob_control_add_js_to_admin_header' );
-		//add_action( 'admin_print_styles-'.$page, 'cronjob_control_add_css_to_admin_header' );
 	}
 }
 ?>
