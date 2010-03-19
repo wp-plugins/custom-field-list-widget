@@ -261,7 +261,6 @@ global $wpdb; ?>
 			}
 			echo '<input type="hidden" id="customfieldlist_individual_href_thecustomfieldname" value="'.$customfieldname_show.'" />';
 			echo '</div>'; // customfieldlist_individual_href_wrap
-			
 			?>
 			<p class="submit">
 				<input type="button" id="customfieldlist_individual_href_save2" value="<?php _e('Save', 'customfieldlist'); ?>" onclick="javascript:customfieldlist_macheRequest('<?php echo $number; ?>');" style="padding:0.5em 4em 0.5em 4em;" />

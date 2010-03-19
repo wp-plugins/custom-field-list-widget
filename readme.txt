@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 2.9.2
+Tested up to: 3.0-alpha
 Stable tag: 0.9.9
 
 This plugin makes a list of custom field information in the sidebar.
@@ -10,18 +10,15 @@ This plugin makes a list of custom field information in the sidebar.
 
 == Description ==
 
-This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways. 
-One possibility is to create a list of all values of a custom field (name), which will be groupped their post (or page) and (hyper-) linked automatically to this post (or page).
-Another possibility is that you can create a list of all unique values of of a custom field (name) and specify links as you like (or not).
+This plugin creates sidebar widgets with lists of the values of custom fields. The listed values can be (hyper-)linked in different ways. 
+One possibility is to create a list of all values of a custom field, which will be groupped by their post (or page) and (hyper-)linked automatically to this post (or page).
+Another possibility is that you can create a list of all unique values of a custom field and specify links as you like (or not).
 
 In other words: This plugin allows you to create lists of one category of meta information (on each list). The custom field names and values can be used as categorizable tags and with this plugin you can create lists of tags of one category.
 
-One example of usage could be: a list of the guest names of your podcast episodes. (with the default tags you can set the names
-as tags but the names will probably be mixed with other content describing tags)
+One example of usage could be: a list of the names of the guest of your podcast episodes. Or if you write about books hten you can have e.g. a list of the authors and as sub list elements the titles of the books linked to the posts containing the recension. For further details have a look to the [Other Notes](http://wordpress.org/extend/plugins/custom-field-list-widget/other_notes/) section.
 
 This plugin supports multiple widgets (You can have more than one list at the same time in one sidebar.) and uses the jQuery framework (which is delivered with WP automatically) to make the hide and show effects e.g. of a parted list (if the browser of a visiter of your does not allow or support Javascript the full list will be visible).
-
-Furthermore this plugin has got a Add On for the famous K2 theme. You can use it with the K2 Sidebar Manager.
 
 Available in the languages:
 
@@ -29,6 +26,7 @@ Available in the languages:
 * German
 * Bulgarian provided by Peter Toushkov
 * Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
+
 * Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 * Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
@@ -82,7 +80,13 @@ How can I keep the individual Links during an plugin upgrade?
 Don't deactivate the plugin. Because the options of the plugin in the options table of your weblog database are going to be removed automatically during the plugin deactivation.
 Further you have to upload the file of the new plugin version manually e.g. via FTP. Because during the automatic upgrade the old plugin would be deactivated. 
 
-(Please, have look to "Other notes" and "Usage" for further information, too.)
+Is it possible to use this widget with the K2 theme sidebar manager (plugin)?
+Yes, it is possible. Move the file custom\_field\_list\_k2\_widget.php to the /app/modules/-folder (e.g.: /wp-content/themes/k2/app/modules/) of the K2-theme if you are using the K2 theme with the old sidebar manager or the comparable plugin.
+
+
+(Please, have look to "[Other Notes](http://wordpress.org/extend/plugins/custom-field-list-widget/other_notes/)" / "Usage" for further information, too.)
+
+If you have question then ask them on the [plugins page](http://undeuxoutrois.de/custom_field_list_widget.shtml#kommentar_schreiben) or in the [WP.org forum "Plugins and Hacks"](http://wordpress.org/support/forum/10). If you use the WP.org forum then add the plugins name as a tag to your post.
 
 
 == Usage ==
@@ -125,6 +129,12 @@ Example:
 
 The underline character will not displayed in the sidebar.
 
+== Changing the appearance of the lists ==
+
+Since v1.0 all click-able drop down menu elements have the class "customfieldlist_opt_link" so you can adapt the appearance of these elements easier.
+
+The speed of the show/hide effects and the hide/show characters are changeable via the settings page of the plugin. The settings on this page are for all the widgets of this plugin.
+
 
 == Upgrade Notice ==
 
@@ -142,6 +152,13 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.0 =
+* Version 0.9.9 came with the new drop down menu option but it was only possible to have the values displayed like with the option "each element with sub elements" and there was no way to change by a setting on the widgets page. That is different in version 1.0. In that version you have to select this option actively.
+* additional CSS definition for the drop down menu width (=100%)
+* the widget_custom_field_list.css file contains now predefined CSS definition for making the clickable elements in the drop down menus look like links (<a> elements) (the color definitions are for the default themes)
+* all clickable drop down menu elements have the class "customfieldlist_opt_link"
+* small clean up of enqueue_script action
+
 = v0.9.9 =
 * new list appearance option: now it is to display the data in a drop down menu
 * internal changes of the way the list with individual linked list elements
