@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 3.0-alpha
+Tested up to: 3.0-beta_1
 Stable tag: 0.9.9
 
 This plugin makes a list of custom field information in the sidebar.
@@ -157,6 +157,8 @@ To keep your settings download the plugin archive file, unpack him and upload th
 * additional CSS definition for the drop down menu width (=100%)
 * the widget_custom_field_list.css file contains now predefined CSS definition for making the clickable elements in the drop down menus look like links (<a> elements) (the color definitions are for the default themes)
 * all clickable drop down menu elements have the class "customfieldlist_opt_link"
+* new function: it is now possible to sort the post titles (which are sub list elements) alphabetically (only in combination with the "standard layout" list type)
+* fix: "sort the values by the last word" works with "standard layout" list type again
 * small clean up of enqueue_script action
 
 = v0.9.9 =
