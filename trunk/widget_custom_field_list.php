@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.0 RC 3
+Version: 1.0 RC 4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 3.0
@@ -437,7 +437,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			switch ($opt['list_format']) {
 				case 'dropdownmenu' :
 					echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
-					if ('' == $opt['select_list_default']) {
+					if (FALSE == isset($opt['select_list_default']) OR '' == $opt['select_list_default']) {
 						echo "\t".'<option value="nothing">'.__('Select:','customfieldlist').'</option>'."\n";
 					} else {
 						echo "\t".'<option value="nothing">'.$opt['select_list_default'].'</option>'."\n";
@@ -532,23 +532,22 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 								
 								if ( 'lastword' === $opt['orderelement'] ) {
-									$mvals=array();
 									$old_locale = setlocale(LC_COLLATE, "0");
 									$nr_meta_values = count($meta_values_array);
 									if (FALSE !== strpos(strtolower(php_uname('s')), 'win') AND function_exists('mb_convert_encoding')) {
 										foreach ( $meta_values_array as $key => $value ) {
-											$meta_values_array_zw[$key] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/u", $value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
+											$meta_values_array_zw[$key] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
 										}
 										// build the charset name and setlocale on Windows machines 
 										$loc = setlocale(LC_COLLATE, $opt['win_country_codepage']);
 									} else {
 										foreach ( $meta_values_array as $key => $value ) {
-											$meta_values_array_zw[$key] = str_replace("_", " ", end(preg_split("/\s+/u", $value, -1, PREG_SPLIT_NO_EMPTY)));
+											$meta_values_array_zw[$key] = str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY)));
 										}
 										// build the charset name and setlocale on Linux (or other) machines 
 										$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
 									}
-									
+								
 									// sort the meta_values
 									if ( 'desc' === $opt['sortseq'] ) {
 										arsort($meta_values_array_zw, SORT_LOCALE_STRING);
@@ -694,33 +693,48 @@ function customfieldlist($args=array(), $widget_args=1) {
 								} else {
 									$collation_string = DB_COLLATE;
 								}
-								$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
+									if ( 'desc' === $opt['sortseq'] ) {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', p.post_title COLLATE '.$collation_string.' DESC';
+									} else {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.',  p.post_title COLLATE '.$collation_string.' ASC';
+									}
+								} else {
+									$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+								}
 							} else {
-								$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
+									if ( 'desc' === $opt['sortseq'] ) {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title DESC';
+									} else {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title ASC';
+									}
+								} else {
+									$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+								}
 							}
 							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
-						
 							$meta_values =  $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
 						
 							if ( 'lastword' === $opt['orderelement'] ) {
 								$mvals=array();
 								$old_locale = setlocale(LC_COLLATE, "0");
-								
+								$meta_value_name = meta_value.$opt['sort_by_custom_field_name'];
 								if (FALSE !== strpos(strtolower(php_uname('s')), 'win') AND function_exists('mb_convert_encoding')) {
 									for ( $i=0; $i < $nr_meta_values; $i++ ) {
-										$mvals[] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/u", $meta_values[$i]->meta_value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
+										$mvals[] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/", $meta_values[$i]->$meta_value_name, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
 									}
 									// build the charset name and setlocale on Windows machines 
 									$loc = setlocale(LC_COLLATE, $opt['win_country_codepage']);
 								} else {
 									for ( $i=0; $i < $nr_meta_values; $i++ ) {
-										$mvals[] = str_replace("_", " ", end(preg_split("/\s+/u", $meta_values[$i]->meta_value, -1, PREG_SPLIT_NO_EMPTY)));
+										$mvals[] = str_replace("_", " ", end(preg_split("/\s+/", $meta_values[$i]->$meta_value_name, -1, PREG_SPLIT_NO_EMPTY)));
 									}
 									// build the charset name and setlocale on Linux (or other) machines 
 									$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
 								}
-								
+
 								// sort the meta_values
 								if ( 'desc' === $opt['sortseq'] ) {
 									arsort($mvals, SORT_LOCALE_STRING);
@@ -733,6 +747,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 								
 								// get the keys with the new order
 								$mval_keys = array_keys($mvals);
+								
+								foreach ( $mval_keys as $mval_key ) {
+									$meta_values_tmp[] = $meta_values[$mval_key];
+								}
+								$meta_values = $meta_values_tmp;
+								unset($meta_values_tmp);
 							} else {
 								if ( 'desc' === $opt['sortseq'] ) {// reverse the sort sequence if the option says so
 									$meta_values_reverse = array_reverse($meta_values);
@@ -762,7 +782,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 							}
 							$used_fields = $new_used_fields;
-
+							
 							krsort($meta_value_key_names);
 							
 							$result=Array();
@@ -952,7 +972,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['custom_field_names'] = array_fill(0, CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL, '');
 			}
 			
-			if ( isset($_POST['customfieldlist_opt'][$widget_number]['group_by_firstchar']) ) {
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['group_by_firstchar']) AND 'yes' == $_POST['customfieldlist_opt'][$widget_number]['group_by_firstchar'] ) {
 				$opt[$widget_number]['group_by_firstchar'] = 'yes';
 			} else {
 				$opt[$widget_number]['group_by_firstchar'] = 'no';
@@ -979,6 +999,20 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['donnotshowthis_customfieldname'] = array_fill(0, CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL, 'notsel');
 			}
 			
+			if ( 'asc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] OR 'desc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] ) {
+				$opt[$widget_number]['sortseq'] = $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'];
+			} else {
+				$opt[$widget_number]['sortseq'] = 'asc';
+			}
+			$opt[$widget_number]['db_collate'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['db_collate'])));
+			$opt[$widget_number]['win_country_codepage'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['win_country_codepage'])));
+			$opt[$widget_number]['encoding_for_win'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['encoding_for_win'])));
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['sort_titles_alphab']) AND 'yes' == $_POST['customfieldlist_opt'][$widget_number]['sort_titles_alphab']) {
+				$opt[$widget_number]['sort_titles_alphab'] = 'yes';
+			} else {
+				$opt[$widget_number]['sort_titles_alphab'] = 'no';
+			}
+			
 			if ( 'standard' !== $_POST['customfieldlist_opt'][$widget_number]['list_type'] AND 'individual_href' !== $_POST['customfieldlist_opt'][$widget_number]['list_type'] ) {
 				$opt[$widget_number]['list_type'] = 'standard';
 			} else {
@@ -990,6 +1024,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['list_format'] = $_POST['customfieldlist_opt'][$widget_number]['list_format'];
 			}
+			
 			$opt[$widget_number]['select_list_default'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['select_list_default'])));
 			
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['list_style_opt1']) ) {
@@ -1003,7 +1038,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['list_style_opt1_hidden'] = 'no';
 			}
-			customfieldlist_var_dump($_POST['customfieldlist_opt'][$widget_number]['list_style_opt1_hidden']);
+
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['show_number_of_subelements']) ) {
 				$opt[$widget_number]['show_number_of_subelements'] = TRUE;
 			} else {
@@ -1022,20 +1057,10 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$opt[$widget_number]['orderelement'] = 'firstword';
 			}
 			
-			$opt[$widget_number]['db_collate'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['db_collate'])));
-			$opt[$widget_number]['win_country_codepage'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['win_country_codepage'])));
-			$opt[$widget_number]['encoding_for_win'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['encoding_for_win'])));
-			
 			$opt[$widget_number]['partlength'] = intval(strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['partlength']))));
 			if ( is_nan($opt[$widget_number]['partlength']) OR $opt[$widget_number]['partlength'] < 3 ) {
 				$opt[$widget_number]['partlength'] = 3;
 			} 
-			
-			if ( 'asc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] OR 'desc' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'] ) {
-				$opt[$widget_number]['sortseq'] = $_POST['customfieldlist_opt'][$widget_number]['customfieldsortseq'];
-			} else {
-				$opt[$widget_number]['sortseq'] = 'asc';
-			}
 			
 			if ( isset($_POST['customfieldlist_opt'][$widget_number]['list_part_nr_type']) ) {
 				$opt[$widget_number]['list_part_nr_type'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['list_part_nr_type'])));
@@ -1073,6 +1098,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$listlayoutopt3chk = ' checked="checked"';
 				$liststyleopt1disabled = ' disabled="disabled"';
 				$liststyleopt3disabled = ' disabled="disabled"';
+				$sort_titles_alphab_disabled = ' disabled="disabled"';
 			break;
 			case 'standard' :
 			default :
@@ -1080,6 +1106,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$listlayoutopt3chk = '';
 				$liststyleopt1disabled = '';
 				$liststyleopt3disabled = '';
+				$sort_titles_alphab_disabled = '';
 			break;
 		}
 		
@@ -1287,7 +1314,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 		}
 		########## END: check if the custom field names are used for same posts #####################
 		
-		if ( 'yes' == $opt[$number]['group_by_firstchar']) {
+		if ( 'yes' == $opt[$number]['group_by_firstchar'] ) {
 			$group_by_firstchar = ' checked="checked"';
 		} else {
 			$group_by_firstchar = '';
@@ -1326,7 +1353,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('sort sequence','customfieldlist').':</legend>';
 			echo '<div><label for="customfieldsortseq_'.$number.'_asc" class="customfieldlist_label">'.__('ascending (ASC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_asc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="asc"'.$customfieldsortseq_ASC_checked.' /></div>';
 			echo '<div><label for="customfieldsortseq_'.$number.'_desc" class="customfieldlist_label">'.__('descending (DESC)','customfieldlist').'</label> <input type="radio" id="customfieldsortseq_'.$number.'_desc" name="customfieldlist_opt['.$number.'][customfieldsortseq]" value="desc"'.$customfieldsortseq_DESC_checked.' /></div>';
-
+		echo '</fieldset>';
+		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('further sorting options','customfieldlist').':</legend>';
 			// section: select DB_CHARSET
 			if (FALSE == defined('DB_COLLATE')) {
 				echo '<p><a href="http://dev.mysql.com/doc/refman/5.1/en/charset-charsets.html" target="_blank">'.__('database collation','customfieldlist').'</a>: <input type="text" name="customfieldlist_opt['.$number.'][db_collate]" value="'.attribute_escape($opt[$number]['db_collate']).'" maxlength="200" /></p>'."\n";
@@ -1373,6 +1401,15 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
 			}
+			
+			if ( 'yes' == $opt[$number]['sort_titles_alphab'] AND 'standard' == $opt[$number]['list_type'] ) {
+				$sort_titles_alphab = ' checked="checked"';
+			} else {
+				$sort_titles_alphab = '';
+			}
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_sort_titles_alphab" class="customfieldlist_label">'.__('sort post titles alphabetically','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][sort_titles_alphab]" id="customfieldlist_opt_'.$number.'_sort_titles_alphab" value="yes"'.$sort_titles_alphab.$sort_titles_alphab_disabled.' />'."\n"; //onclick="customfieldlist_sort_titles_alphab_changed(this.id, '.$number.');" 
+			echo '<p id="customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation" class="customfieldlist_explanation">'.__('Arrange the post titles (which are sub list elements) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)','customfieldlist').'</p>'."\n";
+			echo '</div>'."\n";			
 		echo '</fieldset>';
 		
 	echo '</div>'."\n";
@@ -1411,14 +1448,10 @@ function customfieldlist($args=array(), $widget_args=1) {
 		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt1_explanation" class="customfieldlist_explanation">'.__('Show the list elements in a simple list with bullets.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";// 	
-		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt2_explanation" class="customfieldlist_explanation">'.__('Show the list elements as a drop down menu.','customfieldlist').'</p>'."\n";
-		echo '</div>'."\n";
-		echo '<div id="customfieldlist_opt_'.$number.'_list_format_opt2_advice" class="customfieldlist_advice" style="display:none;">'.sprintf(__('It might be expedient to use the option "%1$s" or "%2$s" in combination with "%3$s".','customfieldlist'),__('each element with sub elements','customfieldlist'), __('group the values by the first character','customfieldlist'), __('drop down menu','customfieldlist')).'</div>'."\n";
 		
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('simple list','customfieldlist').':</legend>';
 			// ### Opt ###
-			if ( 'yes' == $opt[$number]['list_style_opt1'] OR 'yes' == $opt[$number]['list_style_opt1_hidden']) {
+			if ( 'standard' == $opt[$number]['list_type'] AND ('yes' == $opt[$number]['list_style_opt1'] OR 'yes' == $opt[$number]['list_style_opt1_hidden']) ) {
 				$liststyleopt1chk = ' checked="checked"';
 			} else {
 				$liststyleopt1chk = '';
@@ -1479,8 +1512,17 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '</fieldset>';
 		echo '</fieldset>';
 		
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";// 	
+		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt2_explanation" class="customfieldlist_explanation">'.__('Show the list elements as a drop down menu.','customfieldlist').'</p>'."\n";
+		echo '</div>'."\n";
+		echo '<div id="customfieldlist_opt_'.$number.'_list_format_opt2_advice" class="customfieldlist_advice" style="display:none;">'.sprintf(__('It might be expedient to use the option "%1$s" or "%2$s" in combination with "%3$s".','customfieldlist'),__('each element with sub elements','customfieldlist'), __('group the values by the first character','customfieldlist'), __('drop down menu','customfieldlist')).'</div>'."\n";
+		if (FALSE == isset($opt['select_list_default']) OR '' == $opt['select_list_default']) {
+			$select_list_default_value = __('Select:','customfieldlist');
+		} else {
+			$select_list_default_value = attribute_escape($opt[$number]['select_list_default']);
+		}		
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('drop down menu','customfieldlist').':</legend>';
-			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.attribute_escape($opt[$number]['select_list_default']).'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
+			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
 		echo '</fieldset>';
 
 		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__)).'</p>'."\n";
@@ -1596,23 +1638,31 @@ function customfieldlist_widget_admin_script() {
 	<script type="text/javascript">
 	//<![CDATA[
 	function customfieldlist_group_by_firstchar_changed(id, number) {
-		if ( document.getElementById( id ).checked == true ) {
-			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
+		//~ if ( document.getElementById( id ).checked == true ) {
+			//~ document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
+		//~ }
+		if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2').checked ) {
+			customfieldlist_list_appearancetype_changed('customfieldlist_opt_' + String(number) + '_list_format_opt2', number);
 		}
 	}
 	
 	function customfieldlist_list_appearancetype_changed(id, number) {
-		if ( 'customfieldlist_opt_' + String(number) + '_list_format_opt2' == id && (document.getElementById('customfieldlist_opt_' + String(number) + '_group_by_firstchar').checked != true && document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').checked != true) ) {
+		// called when the user switches beween 'simple list' and 'drop down menu'
+		if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_type_opt1').checked && ('customfieldlist_opt_' + String(number) + '_list_format_opt2' == id && (document.getElementById('customfieldlist_opt_' + String(number) + '_group_by_firstchar').checked != true && document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').checked != true)) ) {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'block';
+		} else {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
 		}
 	}
 	
 	function customfieldlist_list_style_opt1_changed(id, number) {
 		if ( document.getElementById( id ).checked == true ) {
-			document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1_hidden').value = 'yes';
 		} else {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1_hidden').value = 'no';
+		}
+		if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2').checked ) {
+			customfieldlist_list_appearancetype_changed('customfieldlist_opt_' + String(number) + '_list_format_opt2', number);
 		}
 	}
 	
@@ -1646,12 +1696,18 @@ function customfieldlist_widget_admin_script() {
 		var txtb_elements_name = 'customfieldlist_opt[' + String(number) + '][custom_field_names][]';
 		var alltxtb = document.getElementsByName(txtb_elements_name);
 		var number_of_txtb = document.getElementsByName(txtb_elements_name).length;
+			// show the advice for using the 'each element with sub elements' option
+			if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2').checked ) {
+				customfieldlist_list_appearancetype_changed('customfieldlist_opt_' + String(number) + '_list_format_opt2', number);
+			}
 		// when opt2 was selected, make textareas, radio buttons and check boxes read only
 		if ( 'customfieldlist_opt_'+ String(number) +'_list_type_opt2' == opt_id ) {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').checked = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = true;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').checked = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').disabled = true;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').checked = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = true;
 			
 			// which radio button is selected
 			var rb_elements_name = 'customfieldlist_opt[' + String(number) + '][sort_by_custom_field_name]';
@@ -1719,6 +1775,7 @@ function customfieldlist_widget_admin_script() {
 				}
 			}
 		} else {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').disabled = false;
 			if ( true == alltxtb[2].readOnly ) {
