@@ -27,6 +27,7 @@ Available in the languages:
 * Bulgarian provided by Peter Toushkov
 * Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
 
+
 * Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 * Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
@@ -156,7 +157,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 = v1.0 =
 * Version 0.9.9 came with the new drop down menu option but it was only possible to have the values displayed like with the option "each element with sub elements" and there was no way to change by a setting on the widgets page. That is different in version 1.0. In that version you have to select this option actively.
 * additional CSS definition for the drop down menu width (=100%)
-* the widget_custom_field_list.css file contains now predefined CSS definition for making the clickable elements in the drop down menus look like links (<a> elements) (the color definitions are for the default themes)
+* the widget_custom_field_list.css file contains now predefined CSS definition for making the clickable elements in the drop down menus look like links (< a > elements) (the color definitions are for the default themes)
 * all clickable drop down menu elements have the class "customfieldlist_opt_link"
 * new function: it is now possible to sort the post titles (which are sub list elements) alphabetically (only in combination with the "standard layout" list type)
 * fix: "sort the values by the last word" works with "standard layout" list type again
