@@ -2,10 +2,10 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 3.0-beta_1
+Tested up to: 3.0 beta 1
 Stable tag: 0.9.9
 
-This plugin makes a list of custom field information in the sidebar.
+This plugin creates lists of custom field information in the form of sidebar widgets.
 
 
 == Description ==
@@ -51,12 +51,13 @@ Available in the languages:
 	* customfieldlist-de\_DE.po (German localization file)
 	* customfieldlist-bg\_BG.mo (Bulgarian localization file)
 	* customfieldlist-bg\_BG.po (Bulgarian localization file)
+	* customfieldlist-hi\_IN.mo (Hindi localization file)
+	* customfieldlist-hi\_IN.po (Hindi localization file)
+
 	* customfieldlist-ru\_RU.mo (Russian localization file)
 	* customfieldlist-ru\_RU.po (Russian localization file)
 	* customfieldlist-uz\_UZ.mo (Uzbek localization file)
 	* customfieldlist-uz\_UZ.po (Uzbek localization file)
-	* customfieldlist-hi\_IN.mo (Hindi localization file)
-	* customfieldlist-hi\_IN.po (Hindi localization file)
 	* uninstall.php
 	
 	* custom\_field\_list\_k2\_widget.php (move this file into the /app/modules/-folder (e.g.: /wp-content/themes/k2/app/modules/) of the K2-theme if you are using the K2 theme with the old sidebar manager or the comparable plugin)
@@ -86,7 +87,7 @@ Yes, it is possible. Move the file custom\_field\_list\_k2\_widget.php to the /a
 
 (Please, have look to "[Other Notes](http://wordpress.org/extend/plugins/custom-field-list-widget/other_notes/)" / "Usage" for further information, too.)
 
-If you have question then ask them on the [plugins page](http://undeuxoutrois.de/custom_field_list_widget.shtml#kommentar_schreiben) or in the [WP.org forum "Plugins and Hacks"](http://wordpress.org/support/forum/10). If you use the WP.org forum then add the plugins name as a tag to your post.
+If you have questions then ask them on the [plugins page](http://undeuxoutrois.de/custom_field_list_widget.shtml#kommentar_schreiben) or in the [WP.org forum "Plugins and Hacks"](http://wordpress.org/support/forum/10). If you use the WP.org forum then add the plugins name as a tag to your post.
 
 
 == Usage ==
