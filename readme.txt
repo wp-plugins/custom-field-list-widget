@@ -154,6 +154,9 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.1 =
+* contains fixes for the sorting order settings
+
 = v1.0 =
 * Version 0.9.9 came with the new drop down menu option but it was only possible to have the values displayed like with the option "each element with sub elements" and there was no way to change by a setting on the widgets page. That is different in version 1.0. In that version you have to select this option actively.
 * additional CSS definition for the drop down menu width (=100%)
