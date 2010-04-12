@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.0
+Version: 1.1
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 3.0
@@ -660,7 +660,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 						$meta_keys = $opt['custom_field_names'];
 						$none_empty = customfieldlist_remove_empty_array_elements($meta_keys);
 						$nr_meta_keys = count($none_empty);
-						
+						$nr_meta_values=0;
 						if (TRUE === is_array($meta_keys) AND 0 < $nr_meta_keys) {
 							$signslibrary = array(
 								'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
@@ -694,29 +694,39 @@ function customfieldlist($args=array(), $widget_args=1) {
 									$collation_string = DB_COLLATE;
 								}
 								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
-									if ( 'desc' === $opt['sortseq'] ) {
+									if ( 'desc' == $opt['sortseq'] ) {
 										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', p.post_title COLLATE '.$collation_string.' DESC';
 									} else {
 										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.',  p.post_title COLLATE '.$collation_string.' ASC';
 									}
 								} else {
-									$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									if ( 'desc' == $opt['sortseq'] ) {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									} else {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									}
 								}
 							} else {
 								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
-									if ( 'desc' === $opt['sortseq'] ) {
+									if ( 'desc' == $opt['sortseq'] ) {
 										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title DESC';
 									} else {
 										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title ASC';
 									}
 								} else {
-									$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									if ( 'desc' == $opt['sortseq'] ) {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									} else {
+										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+									}
 								}
 							}
 							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
 							$meta_values =  $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
-						
+						}
+
+						if (0 < $nr_meta_values) {
 							if ( 'lastword' === $opt['orderelement'] ) {
 								$mvals=array();
 								$old_locale = setlocale(LC_COLLATE, "0");
@@ -741,7 +751,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								} else {
 									asort($mvals, SORT_LOCALE_STRING);
 								}
-								
+
 								// turn the locale back
 								$loc = setlocale(LC_COLLATE, $old_locale);
 								
@@ -753,12 +763,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 								$meta_values = $meta_values_tmp;
 								unset($meta_values_tmp);
-							} else {
-								if ( 'desc' === $opt['sortseq'] ) {// reverse the sort sequence if the option says so
-									$meta_values_reverse = array_reverse($meta_values);
-									$meta_values = $meta_values_reverse;
-								}
-							}
+							} 
 							
 							$hierarchy = $opt['hierarchy'];
 
@@ -1396,20 +1401,21 @@ function customfieldlist($args=array(), $widget_args=1) {
 				}
 				$message_setloc = '';
 			}
-			if ( 'lastword' === $opt[$number]['orderelement'] ) {
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" /></div>'.$message_os.$message_setloc.''."\n";
-			} else {
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" /></div>'.$message_os.$message_setloc.''."\n";
-			}
-			
 			if ( 'yes' == $opt[$number]['sort_titles_alphab'] AND 'standard' == $opt[$number]['list_type'] ) {
 				$sort_titles_alphab = ' checked="checked"';
 			} else {
 				$sort_titles_alphab = '';
 			}
-			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_sort_titles_alphab" class="customfieldlist_label">'.__('sort post titles alphabetically','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][sort_titles_alphab]" id="customfieldlist_opt_'.$number.'_sort_titles_alphab" value="yes"'.$sort_titles_alphab.$sort_titles_alphab_disabled.' />'."\n"; //onclick="customfieldlist_sort_titles_alphab_changed(this.id, '.$number.');" 
+			if ( 'lastword' === $opt[$number]['orderelement'] ) {
+				$sort_titles_alphab = '';
+				$sort_titles_alphab_disabled = ' disabled="disabled"';
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');" /></div>'.$message_os.$message_setloc.''."\n";
+			} else {
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');" /></div>'.$message_os.$message_setloc.''."\n";
+			}
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_sort_titles_alphab" class="customfieldlist_label">'.__('sort post titles alphabetically','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][sort_titles_alphab]" id="customfieldlist_opt_'.$number.'_sort_titles_alphab" value="yes"'.$sort_titles_alphab.$sort_titles_alphab_disabled.' />'."\n";
 			echo '<p id="customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation" class="customfieldlist_explanation">'.__('Arrange the post titles (which are sub list elements) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)','customfieldlist').'</p>'."\n";
-			echo '</div>'."\n";			
+			echo '</div>'."\n";
 		echo '</fieldset>';
 		
 	echo '</div>'."\n";
@@ -1638,11 +1644,17 @@ function customfieldlist_widget_admin_script() {
 	<script type="text/javascript">
 	//<![CDATA[
 	function customfieldlist_group_by_firstchar_changed(id, number) {
-		//~ if ( document.getElementById( id ).checked == true ) {
-			//~ document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2_advice').style.display = 'none';
-		//~ }
 		if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_format_opt2').checked ) {
 			customfieldlist_list_appearancetype_changed('customfieldlist_opt_' + String(number) + '_list_format_opt2', number);
+		}
+	}
+	
+	function customfieldlist_sortbylastword_changed(id, number) {
+		if ( true == document.getElementById( id ).checked ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').checked = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = true;
+		} else {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
 		}
 	}
 	
