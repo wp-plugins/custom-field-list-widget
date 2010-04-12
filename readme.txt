@@ -54,7 +54,6 @@ Available in the languages:
 	* customfieldlist-bg\_BG.po (Bulgarian localization file)
 	* customfieldlist-hi\_IN.mo (Hindi localization file)
 	* customfieldlist-hi\_IN.po (Hindi localization file)
-
 	* customfieldlist-ru\_RU.mo (Russian localization file)
 	* customfieldlist-ru\_RU.po (Russian localization file)
 	* customfieldlist-uz\_UZ.mo (Uzbek localization file)
@@ -154,6 +153,9 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.1.1 =
+* bug fix for v1.1 - additional Javascript to enable/disable the checkbox in case the option "sort the values by the last word" is in use
+
 = v1.1 =
 * contains fixes for the sorting order settings
 

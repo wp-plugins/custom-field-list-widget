@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.1
+Version: 1.1.1
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.5
 Max WP Version: 3.0
@@ -1401,11 +1401,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 				}
 				$message_setloc = '';
 			}
-			if ( 'yes' == $opt[$number]['sort_titles_alphab'] AND 'standard' == $opt[$number]['list_type'] ) {
-				$sort_titles_alphab = ' checked="checked"';
-			} else {
-				$sort_titles_alphab = '';
-			}
+				if ( 'yes' == $opt[$number]['sort_titles_alphab'] AND 'standard' == $opt[$number]['list_type'] ) {
+					$sort_titles_alphab = ' checked="checked"';
+				} else {
+					$sort_titles_alphab = '';
+				}
 			if ( 'lastword' === $opt[$number]['orderelement'] ) {
 				$sort_titles_alphab = '';
 				$sort_titles_alphab_disabled = ' disabled="disabled"';
@@ -1654,7 +1654,9 @@ function customfieldlist_widget_admin_script() {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').checked = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = true;
 		} else {
-			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
+			if ( true == document.getElementById('customfieldlist_opt_' + String(number) + '_list_type_opt1').checked ) {
+				document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
+			}
 		}
 	}
 	
@@ -1787,7 +1789,9 @@ function customfieldlist_widget_admin_script() {
 				}
 			}
 		} else {
-			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
+			if ( false == document.getElementById('customfieldlist_sortbylastword_' + String(number)).checked ) {
+				document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
+			}
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = false;
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt3').disabled = false;
 			if ( true == alltxtb[2].readOnly ) {
