@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v0.9.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-21 23:27+0100\n"
-"PO-Revision-Date: 2010-02-21 23:28+0100\n"
+"POT-Creation-Date: 2010-05-20 13:51+0100\n"
+"PO-Revision-Date: 2010-05-20 13:51+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,464 +17,486 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp29en\\wp-content\\plugins\\custom-field-list-widget\n"
+"X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp30en\\wp-content\\plugins\\custom-field-list-widget\n"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:403
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1036
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1505
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1506
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1510
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1511
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:418
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1084
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1570
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1571
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1575
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1576
 msgid "Custom Field List"
 msgstr "Foydalanuvchi maydonlari Ro'yxati"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:99
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:132
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:158
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:172
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:201
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:98
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:131
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:157
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:172
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:186
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:216
 msgid "Internal Plugin Error: value is no array"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:427
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:442
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1527
 msgid "Select:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:635
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:271
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:648
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:270
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "Ma'lumotlar omborida foydalanuvchining \"%1$s\" maydoni bilan bog'liq hech qanday kattaliklar yo'q."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:639
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:652
 msgid "no value"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:643
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:656
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:670
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1588
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2050
 msgid "Hide"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:657
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1945
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:670
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1588
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2050
 msgid "Show"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:798
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:835
 #, fuzzy
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "Es gibt keine, mit dem Spezialfeldnamen %1$s in Verbindung stehenden, Werte in der Datenbank."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:803
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:274
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:840
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:273
 msgid "Please, define a custom field name!"
 msgstr "Marhamat, foydalanuvchi maydonining nomini belgilang!"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:806
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:843
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Ma'lumotlar omboridan foydalanuvchilar maydoni ro'yxati to'g'risida ma'lumot olib bo'lmadi."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:824
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:861
 msgid "part"
 msgstr "qism"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1091
 msgid "Header (optional)"
 msgstr "Sarlavha (zarur emas)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1043
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1091
 msgid "Leave the field empty for no widget title"
 msgstr "Vidjet sarlavhasiz bo'lishini hohlasangiz maydonni bo'sh qoldiring"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1047
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1095
 #, fuzzy
 msgid "Custom Field Names"
 msgstr "Foydalanuvchining Maydon Nomi"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1084
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1236
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1134
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1286
 #, fuzzy
 msgid "custom field names"
 msgstr "Foydalanuvchining Maydon Nomi"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1087
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1137
 msgid "sort by"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1090
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1140
 msgid "hide this"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1174
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1224
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1206
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1256
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1237
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1287
 msgid "post IDs"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1278
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1328
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
 #, fuzzy
 msgid "group the values by the first character"
 msgstr "ko'rsatkichlarni oxirgi so'z bo'yicha saralash"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1329
 #, php-format
 msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1279
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1329
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1493
 msgid "show only a part of the list elements at once"
 msgstr "bir vaqtda elementlar ro'yxatining bir qismini ko'rsatish"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1299
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1349
 msgid "Sorting Options"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1309
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1359
 msgid "sort sequence"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1310
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1360
 msgid "ascending (ASC)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1311
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1361
 msgid "descending (DESC)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1315
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1363
+msgid "further sorting options"
+msgstr ""
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1366
 msgid "database collation"
 msgstr "ma'lumotlar omborini solishtirish"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1323
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1374
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "Ehtimol, bu parametr ishlamasligi mumkin. Chunki bu serverda \"setlocale(LC_COLLATE, ... \" paramatrinii qo'llash imkoni yo'q."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1330
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1381
 #, fuzzy
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr "Serverning operatsion tizimi (OT) Windowsligi (unda UTF-8ni saralash imkoni yo'q) uchun quyidagilar bajarilishi talab etiladi:"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1331
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1382
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. O'zingizning <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">til </a> va <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">mamlakat nomini va oxirida <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">sahifa kod raqamini kiriting</a> (xuddi nemis tili uchun \"nemis_germaniya\" yoki \"nemis_germaniya.1252\" kabi)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1332
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1383
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. PHP qo'llay oladigan sahifa kodini tanlang (masalan, nemis tili uchun Windows-1251)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1346
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "Ehtimol, opsiya bu serverda ishlamaydi. Chunki bu plagin meta ko'rsatkichlarning kodlamasini mb_convert_encoding funksiyasi orqali OT (Windows)ning kodlamasiga aylantiradi. Bu funksiya esa mavjud emas."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1355
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1357
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1413
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1415
 msgid "sort the values by the last word"
 msgstr "ko'rsatkichlarni oxirgi so'z bo'yicha saralash"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1365
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1417
+msgid "sort post titles alphabetically"
+msgstr ""
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1418
+msgid "Arrange the post titles (which are sub list elements) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)"
+msgstr ""
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1426
 msgid "List Types"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1367
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1428
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1479
 msgid "standard layout"
 msgstr "standat joylashuv"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1368
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1429
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "Faqatgina birtadan ortiq foydalanuvchi maydon kattaligiga ega bo'lgan foydalanuvchi maydon nomi ro'yxat elementlari o'z kichik elementlariga ega. Bu kichik elementlarni foydalanuvchi maydon nomi elementlari ro'yxatini yoki + belgisini chertish orqali ko'rish mumkin. Bitta kattalikka ega bo'lgan elementlar ro'yxati xabarlarga eltuvchi giperishoratlardir, kattaliklar esa murojaat sarlavhasida joylashgan."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1372
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1433
 #, fuzzy
 msgid "a list with manually linked values"
 msgstr "qo'lda o'rnatilgan ishoratlardan iborat barcha kattaliklar ro'yxati"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1373
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1434
 #, fuzzy
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr "Foydalanuvchi maydonlari (nomi)ning barcha kattaliklari ro'yxati. Har bir ko'rsatkichga individual ishorat belgilash mumkin."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1376
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1437
 #, fuzzy, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr "Foydalanuvchi maydonining har bir ko'rsatkichi uchun ishorat o'rnating: %1$"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1375
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1436
 #, fuzzy
 msgid "Set the links"
 msgstr "Ishoratlar o'rnatish"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1392
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1453
 msgid "List Appearance"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1394
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1401
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1455
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1459
 msgid "simple list"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1395
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1456
 msgid "Show the list elements in a simple list with bullets."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
-msgid "drop down menu"
-msgstr ""
-
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
-#, fuzzy
-msgid "Show the list elements as a drop down menu."
-msgstr "bir vaqtda elementlar ro'yxatining bir qismini ko'rsatish"
-
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1409
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1466
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
 msgid "each element with sub elements"
 msgstr "kichik elaementlarga ega har bir element"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1410
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
 #, fuzzy, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr "Har bir foydalanuvchining maydon nomini foydalanuvchining maydon ko'rsatkichiga ega element ro'yxati va kichik element sifatida ko'rsatadi. Barcha kichik elementlar doimo ko'rinarli bo'lib, ular xabarlarga eltuvchi giperishoratlar sifatida xizmat qiladi."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1419
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1478
 #, fuzzy
 msgid "show the number of sub elements"
 msgstr "kichik elaementlarga ega har bir element"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1420
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1479
 #, fuzzy, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr "Har bir foydalanuvchining maydon nomini foydalanuvchining maydon ko'rsatkichiga ega element ro'yxati va kichik element sifatida ko'rsatadi. Barcha kichik elementlar doimo ko'rinarli bo'lib, ular xabarlarga eltuvchi giperishoratlar sifatida xizmat qiladi."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1424
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1482
 msgid "partitioned list"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1439
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1496
 msgid "elements per part of the list"
 msgstr "ro'yxatning har bir qismi elementlari"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1499
 msgid "pagination type"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1442
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1499
 msgid "use the"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1445
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
 msgid "numbers"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1446
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1503
 msgid "first letter"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1447
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1504
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1517
 msgid "first two letters"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1448
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1505
 msgid "first three letters"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1449
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1506
 msgid "first word"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1450
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1507
 msgid "last word"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1517
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1467
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1522
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1531
+msgid "drop down menu"
+msgstr ""
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
+#, fuzzy
+msgid "Show the list elements as a drop down menu."
+msgstr "bir vaqtda elementlar ro'yxatining bir qismini ko'rsatish"
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
+#, php-format
+msgid "It might be expedient to use the option \"%1$s\" or \"%2$s\" in combination with \"%3$s\"."
+msgstr ""
+
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1532
 msgid "What should be the default value of the drop down menu?:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1470
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1535
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1484
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1549
 msgid "Displays a list of custom field values of a set key"
 msgstr "Foydalanuvchi maydonlarining parametrlari ro'yxati va ularning ko'rsatkichlarini ko'rsatish"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1597
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1700
 msgid "Unsaved changes"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1704
 msgid "Not available with these widget preferences."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1949
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2054
 msgid "slow"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1950
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2055
 msgid "normal"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1951
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2056
 msgid "fast"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1970
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2075
 msgid "Changes saved"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1977
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2082
 #, fuzzy
-msgid "Custom Field List Widgets settings"
+msgid "Custom Field List Widget - settings"
 msgstr "Foydalanuvchi maydonlari Ro'yxati"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1984
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2088
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1995
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2099
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2000
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2104
 msgid "effect speed"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2011
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2115
 #, fuzzy
 msgid "How fast should the list elements show up or hide?"
 msgstr "bir vaqtda elementlar ro'yxatining bir qismini ko'rsatish"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2020
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2124
 msgid "Save Changes"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2030
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2134
 #, fuzzy
 msgid "Custom Field List Widgets"
 msgstr "Foydalanuvchi maydonlari Ro'yxati"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:5
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:5
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:5
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:5
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:5
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:5
 msgid "Security Check failed!"
 msgstr "Xavfsizlik tekshiruvi muvaffaqiyatsiz yakunlandi!"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:11
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:11
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:11
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:11
 msgid "The widget number was not transmitted."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:14
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:10
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:14
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:14
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:10
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_save_data.php:14
 msgid "You have to be logged in for this action."
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:32
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:32
 msgid "Error: Could not process the formular data."
 msgstr "Xato: Ma'lumotlarga ishlov berib bo'lmadi."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:59
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:59
 msgid "The formular contains to much data. It is not possible to send them to the database."
 msgstr "Formulyarda juda ko'p ma'lumot mavjud. Ularni ma'lumotlar omboriga joylashtirish imkoni yo'q."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:78
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:78
 msgid "It is not possible to create an XMLHTTP instance."
 msgstr "XMLHTTP namuna yaratish imkoni yo'q."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:89
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:89
 msgid "Saving the data"
 msgstr "Ma'lumotlar saqlanmoqda"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:106
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:106
 msgid "Data saved!"
 msgstr "Ma'lumotlar saqlandi!"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
 #, fuzzy
 msgid "There was a problem during the request (Probably no data saved)."
 msgstr "Talabni bajarishning imkoni yo'q. (Ehtimol, ma'lumotlar saqlangani yo'q)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:109
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "Error message:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 #, fuzzy
 msgid "There was a problem with the request (Probably no data saved)."
 msgstr "Talabni bajarishning imkoni yo'q. (Ehtimol, ma'lumotlar saqlangani yo'q)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:216
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:216
 #, fuzzy
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."
 msgstr "Siz o'z blogingiz xabarlari va sahifalariga ishoratlar o'rnatishingiz yoki boshqa manzillarni kiritishingiz mumkin. Agar Siz xabar yoki sahifani tanlasangiz foydalanuvchi maydon ko'rsatkichi qo'lda belgilangan ishoratga emas, balki tanlangan xabar yoki sahifaga yo'naltiriladi. <br />Iltimos, manzil oldidan http:// (yoki https://, ftp:// va boshqalar)ni yozing. <br/>Shuningdek Siz  ishoratlar uchun kursorni ishoratlar ustiga keltirganda paydo bo'ladigan tavsif kiritishingiz mumkin."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:267
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:266
 msgid "Save"
 msgstr "Saqlamoq"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:234
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:234
 #, php-format
 msgid "Link \"%1$s\" to"
 msgstr "\"%1$s\" ishorat "
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:237
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:237
 msgid "a post or page"
 msgstr "xabarga yoki sahifaga"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:245
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:245
 msgid "page"
 msgstr "sahifaga"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:255
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:255
 msgid "or to this URL:"
 msgstr "yoki ushbu URLga:"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:257
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:257
 msgid "link description (title)"
 msgstr "ishorat tavsifi (sarlavha)"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 #, fuzzy, php-format
 msgid "Please, choose the list type \"%1$s\" to able to set the link reference for the custom field name values."
 msgstr "Foydalanuvchining yangi maydon nomi kattaliklari uchun ishoratlarni belgilashdan oldin Siz vidjet parametrlarini saqlashingiz zarur."
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:20
 msgid "a list of all values with manually set links"
 msgstr "qo'lda o'rnatilgan ishoratlardan iborat barcha kattaliklar ro'yxati"
 
-#: H:\xampp\htdocs\wp29en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
+#: H:\xampp\htdocs\wp30en\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
 #, fuzzy
 msgid "Please, save the custom field names first."
 msgstr "Marhamat, foydalanuvchi maydonining nomini belgilang!"
