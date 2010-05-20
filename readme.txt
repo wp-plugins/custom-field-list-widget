@@ -2,8 +2,8 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.5
-Tested up to: 3.0 beta 1
-Stable tag: 1.1.1
+Tested up to: 3.0 beta 2
+Stable tag: 1.1
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
 
@@ -22,15 +22,15 @@ This plugin supports multiple widgets (You can have more than one list at the sa
 
 Available in the languages:
 
-* English
-* German
 * Bulgarian provided by Peter Toushkov
 * Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
-
-
+* Danish (frontend only) provided by [Peter Kirring](http://http://www.fotoblogger.dk/ "Peter Kirring of fotoblogger.dk/")
+* German
+* English
 * Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 * Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
+If like to translate this plugin into your language or if you like to continue the existing translations then you are very welcome. Contact me and I will help you with the first steps.
 
 == Installation ==
 
@@ -54,6 +54,8 @@ Available in the languages:
 	* customfieldlist-bg\_BG.po (Bulgarian localization file)
 	* customfieldlist-hi\_IN.mo (Hindi localization file)
 	* customfieldlist-hi\_IN.po (Hindi localization file)
+	* customfieldlist-dk\_DK.mo (Danish localization file)
+	* customfieldlist-dk\_DK.po (Danish localization file)
 	* customfieldlist-ru\_RU.mo (Russian localization file)
 	* customfieldlist-ru\_RU.po (Russian localization file)
 	* customfieldlist-uz\_UZ.mo (Uzbek localization file)
@@ -153,6 +155,10 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.1.2 =
+* all frontend text passages are now translated into Danish (Thanks to [Peter Kirring](http://http://www.fotoblogger.dk/ "Peter Kirring of fotoblogger.dk/"))
+* I have enhanced the German language files and switch from the old translation of custom fields "Spezialfelder" to the new one "Benutzerdefinierte Felder".
+
 = v1.1.1 =
 * bug fix for v1.1 - additional Javascript to enable/disable the checkbox in case the option "sort the values by the last word" is in use
 
