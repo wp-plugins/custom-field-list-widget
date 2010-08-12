@@ -75,6 +75,10 @@
 	text-align:left;
 }
 
+.customfieldlist_option_with_top_space {
+	margin-top:1em;
+}
+
 .customfieldlist_fieldset_h3  {
 	margin-bottom: 1em;
 }
