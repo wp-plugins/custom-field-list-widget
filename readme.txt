@@ -1,9 +1,9 @@
 === Custom Field List Widget ===
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
-Requires at least: 2.5
-Tested up to: 3.0 beta 2
-Stable tag: 1.1.2
+Requires at least: 2.7
+Tested up to: 3.0.1
+Stable tag: 1.1
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
 
@@ -155,6 +155,11 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.1.3 =
+* the way, how the language files are loaded, has been updated
+* since the "each element with sub elements" option is an option for "simple list" as well as for "Drop Down Menu", it haved moved a little bit
+* if the header of the widget is empty then there will be no empty header-tag
+
 = v1.1.2 =
 * all frontend text passages are now translated into Danish (Thanks to [Peter Kirring](http://http://www.fotoblogger.dk/ "Peter Kirring of fotoblogger.dk/"))
 * I have enhanced the German language files and switch from the old translation of custom fields "Spezialfelder" to the new one "Benutzerdefinierte Felder".

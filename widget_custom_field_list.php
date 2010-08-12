@@ -4,14 +4,14 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.1.2
+Version: 1.1.3
 Author URI: http://undeuxoutrois.de/
-Min WP Version: 2.5
-Max WP Version: 3.0
+Min WP Version: 2.7
+Max WP Version: 3.0.1
 License: GNU General Public License
 
 Requirements:
-	- min. WP 2.5 
+	- min. WP 2.7 
 	- a widgets supportting theme
 	
 Localization:
@@ -61,7 +61,7 @@ if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_
 
 // load the translation file
 if (function_exists('load_plugin_textdomain')) {
-	load_plugin_textdomain( 'customfieldlist', str_replace(ABSPATH, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+	load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
 }
 
 // on plugin deactivation
@@ -419,7 +419,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 	}
 	
 	echo $before_widget."\n";
-		echo $before_title.$header . '' . $after_title . "\n";
+		if (FALSE === empty($header)) {
+			echo $before_title . $header . $after_title . "\n";
+		}
 		echo '<input type="hidden" name="customfieldlist_widget_id" value="'.$number.'"'." />\n";
 		if ('yes' === $opt['partlist'] AND $partlength >= 3) {
 			echo '<input type="hidden" id="customfieldlistpartlist_'.$number.'" value="yes"'." />\n";
@@ -1452,23 +1454,23 @@ function customfieldlist($args=array(), $widget_args=1) {
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Appearance','customfieldlist').'</h5>'."\n";
 		// ### Opt ###
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";
+		if ( 'standard' == $opt[$number]['list_type'] AND ('yes' == $opt[$number]['list_style_opt1'] OR 'yes' == $opt[$number]['list_style_opt1_hidden']) ) {
+			$liststyleopt1chk = ' checked="checked"';
+		} else {
+			$liststyleopt1chk = '';
+		}
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' onclick="customfieldlist_list_style_opt1_changed(this.id, '.$number.');" />'."\n";
+		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
+		if (FALSE == empty($liststyleopt1chk)) {$liststyleopt1hidden = 'yes';} else {$liststyleopt1hidden = 'no';}
+		echo '<input type="hidden" name="customfieldlist_opt['.$number.'][list_style_opt1_hidden]" id="customfieldlist_opt_'.$number.'_list_style_opt1_hidden" value="'.$liststyleopt1hidden.'" />'."\n";
+		echo '</div>'."\n";
+
+		// ### Opt ###
+		echo '<div class="customfieldlist_option_with_top_space"><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt1_explanation" class="customfieldlist_explanation">'.__('Show the list elements in a simple list with bullets.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('simple list','customfieldlist').':</legend>';
-			// ### Opt ###
-			if ( 'standard' == $opt[$number]['list_type'] AND ('yes' == $opt[$number]['list_style_opt1'] OR 'yes' == $opt[$number]['list_style_opt1_hidden']) ) {
-				$liststyleopt1chk = ' checked="checked"';
-			} else {
-				$liststyleopt1chk = '';
-			}
-			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' onclick="customfieldlist_list_style_opt1_changed(this.id, '.$number.');" />'."\n";
-			echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
-			if (FALSE == empty($liststyleopt1chk)) {$liststyleopt1hidden = 'yes';} else {$liststyleopt1hidden = 'no';}
-			echo '<input type="hidden" name="customfieldlist_opt['.$number.'][list_style_opt1_hidden]" id="customfieldlist_opt_'.$number.'_list_style_opt1_hidden" value="'.$liststyleopt1hidden.'" />'."\n";
-			echo '</div>'."\n";
-
 			// ### Opt ###
 			if ( TRUE === $opt[$number]['show_number_of_subelements'] ) {
 				$liststyleopt3chk = ' checked="checked"';
@@ -2131,7 +2133,7 @@ function customfieldlist_widget_general_options() {
 add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
-		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 8, basename(__FILE__), 'customfieldlist_widget_general_options'); 
+		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 'editor', basename(__FILE__), 'customfieldlist_widget_general_options'); 
 	}
 }
 ?>
