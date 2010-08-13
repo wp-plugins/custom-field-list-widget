@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.1.3
+Version: 1.1.4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -116,7 +116,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</li>\n";
 								} else {
 									if ( FALSE === empty($value[0]['post_guid']) ) {
-										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attributes_escape($value[0]['post_title']).'">'.$key."</a></li>\n";
 									} else {
 										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
 									}
@@ -204,7 +204,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.htmlspecialchars($value[0]['post_title'], ENT_COMPAT, $charset).'">'.$key."</a></li>\n";
+									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attributes_escape($value[0]['post_title']).'">'.$key."</a></li>\n";
 								}
 								if ( $i == 1 ) { 
 									$j++;
@@ -238,7 +238,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 			case 'ul_list' :
 			default:
 				foreach ($n as $key => $value) {
-					echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.htmlspecialchars($n[$key]['post_title'], ENT_COMPAT, $charset).'">'.$n[$key]['post_title']."</a></li>\n";
+					echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.attributes_escape($n[$key]['post_title']).'">'.$n[$key]['post_title']."</a></li>\n";
 				}
 			break;
 		}
