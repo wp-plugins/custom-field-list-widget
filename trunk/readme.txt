@@ -155,6 +155,9 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
+= v1.1.4 =
+* a different way to escape the link titles
+
 = v1.1.3 =
 * the way, how the language files are loaded, has been updated
 * since the "each element with sub elements" option is an option for "simple list" as well as for "Drop Down Menu", it haved moved a little bit
