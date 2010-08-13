@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.1.4
+Version: 1.2 beta 1
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -116,7 +116,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</li>\n";
 								} else {
 									if ( FALSE === empty($value[0]['post_guid']) ) {
-										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attributes_escape($value[0]['post_title']).'">'.$key."</a></li>\n";
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
 									} else {
 										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
 									}
@@ -204,7 +204,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attributes_escape($value[0]['post_title']).'">'.$key."</a></li>\n";
+									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
 								}
 								if ( $i == 1 ) { 
 									$j++;
@@ -238,7 +238,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 			case 'ul_list' :
 			default:
 				foreach ($n as $key => $value) {
-					echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.attributes_escape($n[$key]['post_title']).'">'.$n[$key]['post_title']."</a></li>\n";
+					echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($n[$key]['post_id']).'" title="'.attribute_escape($n[$key]['post_title'].' - '.$n[$key]['post_date']).'">'.$n[$key]['post_title']."</a></li>\n";
 				}
 			break;
 		}
@@ -451,7 +451,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 					echo '<ul id="customfieldlist_mainlist_'.$number.'">'."\n";
 				break;
 			}
-			
+
 			// get the data from the data base depending on the list type
 			if ( is_array($opt['custom_field_names']) AND 1 <= count($opt['custom_field_names']) AND FALSE === customfieldlist_are_the_array_elements_empty($opt['custom_field_names']) ) {
 				$charset=get_bloginfo('charset'); 
@@ -479,7 +479,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 										$from_left_join_str = 'LEFT JOIN '.$wpdb->postmeta.' AS pm'.$i.' ON (pm0.post_id = pm'.$i.'.post_id AND pm'.$i.'.meta_key="'.$meta_keys[$i].'")';
 									}
 								}
-								
 								// build "Order By" string:
 								if ( (defined('DB_COLLATE') AND '' != DB_COLLATE) OR (isset($opt['db_collate']) AND !empty($opt['db_collate'])) ) {
 									if ( '' == DB_COLLATE ) {
@@ -501,16 +500,18 @@ function customfieldlist($args=array(), $widget_args=1) {
 							} elseif ( empty($customfieldname_0) AND !empty($customfieldname_1) ) {
 								$customfieldname_show = $opt['custom_field_names'][1];
 							}
+
 							if ( (defined('DB_COLLATE') AND '' != DB_COLLATE) OR (isset($opt['db_collate']) AND !empty($opt['db_collate'])) ) {
 								if ( '' == DB_COLLATE ) {
 									$collation_string = $opt['db_collate'];
 								} else {
 									$collation_string = DB_COLLATE;
 								}
-								$querystring = 'SELECT pm.meta_id, pm.post_id, pm.meta_value, p.post_status FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$customfieldname_show.'"'.$only_public1.' ORDER BY pm.meta_value COLLATE '.$collation_string.', LENGTH(pm.meta_value)';
+								$order_by_str = 'pm.meta_value COLLATE '.$collation_string.', LENGTH(pm.meta_value)';
 							} else {
-								$querystring = 'SELECT pm.meta_id, pm.post_id, pm.meta_value, p.post_status FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$customfieldname_show.'"'.$only_public1.' ORDER BY pm.meta_value, LENGTH(pm.meta_value)';
-							}
+								$order_by_str = 'pm.meta_value, LENGTH(pm.meta_value)';
+							}													
+							$querystring = 'SELECT pm.meta_id, pm.post_id, pm.meta_value, p.post_status FROM '.$wpdb->postmeta.' AS pm LEFT JOIN '.$wpdb->posts.' AS p ON (p.ID = pm.post_id) WHERE pm.meta_key = "'.$customfieldname_show.'"'.$only_public1.' ORDER BY '.$order_by_str;
 						}
 
 						if ( $customfieldname_show == $opt['individual_href']['thecustomfieldname'] ) {
@@ -533,108 +534,171 @@ function customfieldlist($args=array(), $widget_args=1) {
 									$meta_values_array[$meta_value->meta_id]=$meta_value->$meta_valuenameindex;
 									$meta_value_post_status[$meta_value->meta_id]=$meta_value->post_status;
 								}
-								
-								if ( 'lastword' === $opt['orderelement'] ) {
-									$old_locale = setlocale(LC_COLLATE, "0");
-									$nr_meta_values = count($meta_values_array);
-									if (FALSE !== strpos(strtolower(php_uname('s')), 'win') AND function_exists('mb_convert_encoding')) {
-										foreach ( $meta_values_array as $key => $value ) {
-											$meta_values_array_zw[$key] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
-										}
-										// build the charset name and setlocale on Windows machines 
-										$loc = setlocale(LC_COLLATE, $opt['win_country_codepage']);
-									} else {
-										foreach ( $meta_values_array as $key => $value ) {
-											$meta_values_array_zw[$key] = str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY)));
-										}
-										// build the charset name and setlocale on Linux (or other) machines 
-										$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
-									}
-								
-									// sort the meta_values
-									if ( 'desc' === $opt['sortseq'] ) {
-										arsort($meta_values_array_zw, SORT_LOCALE_STRING);
-									} else {
-										asort($meta_values_array_zw, SORT_LOCALE_STRING);
-									}
-									
-									$individual_href_keys=array_keys($opt['individual_href']['id']);
-									
-									foreach ( $meta_values_array_zw as $key => $value ) {
-										foreach ( $individual_href_keys as $individual_href_key ) {
-											if ( $individual_href_key === $key ) {
-												$individual_href[$key] = $opt['individual_href']['id'][$key];
+								if ( 'alphabetically' === $opt['sortby'] ) {
+									if ( 'lastword' === $opt['orderelement'] ) {
+										$old_locale = setlocale(LC_COLLATE, "0");
+										$nr_meta_values = count($meta_values_array);
+										if (FALSE !== strpos(strtolower(php_uname('s')), 'win') AND function_exists('mb_convert_encoding')) {
+											foreach ( $meta_values_array as $key => $value ) {
+												$meta_values_array_zw[$key] = mb_convert_encoding(str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY))), $opt['encoding_for_win']);
 											}
-										}
-									}
-									// turn the locale back
-									$loc=setlocale(LC_COLLATE, $old_locale);
-								} else {
-									// reverse the sort sequence if the option says so
-									if ( 'desc' === $opt['sortseq'] ) {
-										$individual_href = array_reverse($opt['individual_href']['id'], TRUE);
-									} else {
-										$individual_href = $opt['individual_href']['id'];
-									}
-								}
-								
-								// get all the post_status of post titles and IDs
-								$querystring = 'SELECT ID, post_title, post_status, guid FROM '.$wpdb->posts." WHERE (post_type='post' or post_type='page') ORDER BY ID DESC";
-								$post_status_results =  $wpdb->get_results($querystring);
-								foreach ($post_status_results as $post_status_result) {
-									$post_data[$post_status_result->ID]['post_id']=$post_status_result->ID;
-									$post_data[$post_status_result->ID]['post_title']=$post_status_result->post_title;
-									$post_data[$post_status_result->ID]['post_status']=$post_status_result->post_status;
-									$post_data[$post_status_result->ID]['post_guid']=$post_status_result->guid;
-								}
-								
-								foreach ($individual_href as $meta_id => $link_target_post_id) {
-									$meta_value = $meta_values_array[$meta_id];
-									$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
-									if ('' != $only_public AND 'publish' != $meta_value_post_status[$meta_id]) {
-										$nr_meta_values--;
-									} else {
-										if ('none' == $link_target_post_id) { // if there is no post or page id ...
-											$output_array[$meta_value][0]['post_id'] = '';
-											
-											// ... then look for an URL which was free entered into the text box
-											$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
-											if ('' == $url) {
-											$output_array[$meta_value][0]['post_guid'] = '';
-											$output_array[$meta_value][0]['post_title'] = '';
-												//echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
-											} else {
-												$output_array[$meta_value][0]['post_guid'] = $url;
-												$output_array[$meta_value][0]['post_title'] = $descr;
-												//echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.$url.'" title="'.$descr.'">'.$meta_value."</a></li>\n";
-											}
-										} elseif ( '' != $only_public AND 'publish' != $post_data[$link_target_post_id]['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
-											$output_array[$meta_value][0]['post_id'] = $post_data[$link_target_post_id]['post_id'];
-											$output_array[$meta_value][0]['post_guid'] = $post_data[$link_target_post_id]['post_guid'];
-											$output_array[$meta_value][0]['post_title'] = $descr;
-											//echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'">'.$meta_value."</li>\n";
+											// build the charset name and setlocale on Windows machines 
+											$loc = setlocale(LC_COLLATE, $opt['win_country_codepage']);
 										} else {
-											$output_array[$meta_value][0]['post_id'] = $post_data[$link_target_post_id]['post_id'];
-											$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href[$meta_id]));
-											$output_array[$meta_value][0]['post_title'] = $descr;
-											//echo "\n".'<li class="customfieldlistelements_'.$number.'_'.$j.'"><a href="'.get_permalink(intval($individual_href[$meta_id])).'" title="'.$descr.'">'.$meta_value."</a></li>\n";
+											foreach ( $meta_values_array as $key => $value ) {
+												$meta_values_array_zw[$key] = str_replace("_", " ", end(preg_split("/\s+/", $value, -1, PREG_SPLIT_NO_EMPTY)));
+											}
+											// build the charset name and setlocale on Linux (or other) machines 
+											$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
 										}
-										//~ $k++;
-										//~ if (  ($k > 0) AND ($partlength < $nr_meta_values) AND 0 === ($k % $partlength) ) {//($k > 0) AND ($partlength < $nr_meta_values) AND
-											//~ $j++;
-										//~ }
+									
+										// sort the meta_values
+										if ( 'desc' === $opt['sortseq'] ) {
+											arsort($meta_values_array_zw, SORT_LOCALE_STRING);
+										} else {
+											asort($meta_values_array_zw, SORT_LOCALE_STRING);
+										}
+										
+										$individual_href_keys=array_keys($opt['individual_href']['id']);
+										
+										foreach ( $meta_values_array_zw as $key => $value ) {
+											foreach ( $individual_href_keys as $individual_href_key ) {
+												if ( $individual_href_key === $key ) {
+													$individual_href[$key] = $opt['individual_href']['id'][$key];
+												}
+											}
+										}
+										// turn the locale back
+										$loc=setlocale(LC_COLLATE, $old_locale);
+									} else {
+										// reverse the sort sequence if the option says so
+										if ( 'desc' === $opt['sortseq'] ) {
+											$individual_href = array_reverse($opt['individual_href']['id'], TRUE);
+										} else {
+											$individual_href = $opt['individual_href']['id'];
+										}
+									}
+								} else {
+									$individual_href = $opt['individual_href']['id'];
+								}
+								
+								// built WHERE string
+								foreach ($individual_href as $meta_id => $link_target_post_id) {
+									if ('none' !== $link_target_post_id) {
+										$where_ar[] = 'ID = '.$link_target_post_id;
 									}
 								}
+								
+								// if where_ar is no array then not links to own blog posts has been set ( all $link_target_post_id values are 'none')
+								if (is_array($where_ar)) {
+									$where = implode(' OR ', $where_ar);
+									switch ($opt['sortby']) {
+										default :
+											$opt['sortby'] = 'alphabetically';
+										case 'alphabetically' :
+											$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY ID DESC";
+										break;
+										case 'post_date' :
+											if ( 'desc' == $opt['sortseq'] ) {
+												$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date DESC";
+											} else {
+												$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date ASC";
+											}
+										break;
+									}
+									$post_status_results =  $wpdb->get_results($querystring);
+									foreach ($post_status_results as $post_status_result) {
+										$post_data[$post_status_result->ID]['post_id']=$post_status_result->ID;
+										$post_data[$post_status_result->ID]['post_title']=$post_status_result->post_title;
+										$post_data[$post_status_result->ID]['post_status']=$post_status_result->post_status;
+										$post_data[$post_status_result->ID]['post_date']=$post_status_result->post_date;
+										$post_data[$post_status_result->ID]['post_guid']=$post_status_result->guid;
+									}
+								}
+
+								switch ($opt['sortby']) {
+									default :
+										$opt['sortby'] = 'alphabetically';
+									case 'alphabetically' :
+										foreach ($individual_href as $meta_id => $link_target_post_id) {
+											$meta_value = $meta_values_array[$meta_id];
+											$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
+											//~ if ('' != $only_public AND 'publish' != $meta_value_post_status[$meta_id]) {
+												//~ $nr_meta_values--;
+											//~ } else {
+												if ('none' == $link_target_post_id) { // if there is no post or page id ...
+													$output_array[$meta_value][0]['post_id'] = '';
+													
+													// ... then look for an URL which was free entered into the text box
+													$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
+													if ('' == $url) {
+														$output_array[$meta_value][0]['post_guid'] = '';
+														$output_array[$meta_value][0]['post_title'] = '';
+													} else {
+														$output_array[$meta_value][0]['post_guid'] = $url;
+														$output_array[$meta_value][0]['post_title'] = $descr;
+													}
+													$output_array[$meta_value][0]['post_date'] = '';
+												} elseif ( '' != $only_public AND 'publish' != $post_data[$link_target_post_id]['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
+													$output_array[$meta_value][0]['post_id'] = '';
+													$output_array[$meta_value][0]['post_guid'] = '';
+													$output_array[$meta_value][0]['post_title'] = '';
+													$output_array[$meta_value][0]['post_date'] = '';
+												} else {
+													$output_array[$meta_value][0]['post_id'] = $post_data[$link_target_post_id]['post_id'];
+													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href[$meta_id]));
+													$output_array[$meta_value][0]['post_title'] = $descr;
+													$output_array[$meta_value][0]['post_date'] = $post_data[$link_target_post_id]['post_date'];
+												}
+											//~ }
+										}
+									break;
+									case 'post_date' :
+										// build output for the list elements which have a link to a local post
+										foreach ($post_data as $post_dat) {
+											$meta_id = array_search($post_dat['post_id'], $individual_href);
+											if (FALSE !== $meta_id) {
+												if ( '' != $only_public AND 'publish' != $post_dat['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
+													$output_array[$meta_value][0]['post_id'] = '';
+													$output_array[$meta_value][0]['post_guid'] = '';
+													$output_array[$meta_value][0]['post_title'] = '';
+													$output_array[$meta_value][0]['post_date'] = '';
+												} else {
+													$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
+													$meta_value = $meta_values_array[$meta_id];
+													$output_array[$meta_value][0]['post_id'] = $post_dat['post_id'];
+													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href[$meta_id]));
+													$output_array[$meta_value][0]['post_title'] = $descr;
+													$output_array[$meta_value][0]['post_date'] = $post_dat['post_date'];
+												}
+											}
+										}
+										// build output for the list elements which have a link to remote web site no link
+										foreach ($individual_href as $meta_id => $link_target_post_id) {
+											$meta_value = $meta_values_array[$meta_id];
+											$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
+											if ('none' == $link_target_post_id) { // if there is no post or page id ...
+												$output_array[$meta_value][0]['post_id'] = '';
+												// ... then look for an URL which was free entered into the text box
+												$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
+												if ('' == $url) {
+													$output_array[$meta_value][0]['post_guid'] = '';
+													$output_array[$meta_value][0]['post_title'] = '';
+												} else {
+													$output_array[$meta_value][0]['post_guid'] = $url;
+													$output_array[$meta_value][0]['post_title'] = $descr;
+												}
+												$output_array[$meta_value][0]['post_date'] = '';
+											}
+										}
+									break;
+								}
+								
 								$hierarchymaxlevel=2;
 								if ( 'yes' == $opt['group_by_firstchar'] ) {
 									$output_array = customfieldlist_group_main_list_items($output_array, $group_criteria);
 									$hierarchymaxlevel++;
 								}								
-								//~ $nr_of_mainlistelements = $k;
-								//~ $j = floor($nr_of_mainlistelements / $partlength);
-								//~ if ( 0 < ($nr_of_mainlistelements % $partlength) ) {
-									//~ $j++;
-								//~ }
 								
 								$nr_of_mainlistelements = count($output_array);
 								$k = $nr_of_mainlistelements;
@@ -689,48 +753,61 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 							}
 
-							// build "Order By" string:
-							if ( (defined('DB_COLLATE') AND '' != DB_COLLATE) OR (isset($opt['db_collate']) AND !empty($opt['db_collate'])) ) {
-								if ( '' == DB_COLLATE ) {
-									$collation_string = $opt['db_collate'];
-								} else {
-									$collation_string = DB_COLLATE;
-								}
-								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
-									if ( 'desc' == $opt['sortseq'] ) {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', p.post_title COLLATE '.$collation_string.' DESC';
+							switch ($opt['sortby']) {
+								default :
+									$opt['sortby'] = 'alphabetically';
+								case 'alphabetically' :
+									// build "Order By" string:
+									if ( (defined('DB_COLLATE') AND '' != DB_COLLATE) OR (isset($opt['db_collate']) AND !empty($opt['db_collate'])) ) {
+										if ( '' == DB_COLLATE ) {
+											$collation_string = $opt['db_collate'];
+										} else {
+											$collation_string = DB_COLLATE;
+										}
+										if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
+											if ( 'desc' == $opt['sortseq'] ) {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.', p.post_title COLLATE '.$collation_string.' DESC';
+											} else {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.',  p.post_title COLLATE '.$collation_string.' ASC';
+											}
+										} else {
+											if ( 'desc' == $opt['sortseq'] ) {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+											} else {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+											}
+										}
 									} else {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.',  p.post_title COLLATE '.$collation_string.' ASC';
+										if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
+											if ( 'desc' == $opt['sortseq'] ) {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title DESC';
+											} else {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title ASC';
+											}
+										} else {
+											if ( 'desc' == $opt['sortseq'] ) {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+											} else {
+												$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+											}
+										}
 									}
-								} else {
-									if ( 'desc' == $opt['sortseq'] ) {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+								break;
+								case 'post_date' :
+									if ( 'desc' === $opt['sortseq'] ) {
+										$order_by_str = 'p.post_date DESC';
 									} else {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value COLLATE '.$collation_string.' ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
+										$order_by_str = 'p.post_date ASC';
 									}
-								}
-							} else {
-								if (isset($opt['sort_titles_alphab']) AND 'yes' === $opt['sort_titles_alphab']) {
-									if ( 'desc' == $opt['sortseq'] ) {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title DESC';
-									} else {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value, p.post_title ASC';
-									}
-								} else {
-									if ( 'desc' == $opt['sortseq'] ) {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value DESC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
-									} else {
-										$order_by_str = 'pm'.$opt['sort_by_custom_field_name'].'.meta_value ASC, LENGTH(pm'.$opt['sort_by_custom_field_name'].'.meta_value)';
-									}
-								}
+								break;
 							}
-							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
+							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title, p.post_date FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
 							$meta_values =  $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
 						}
 
 						if (0 < $nr_meta_values) {
-							if ( 'lastword' === $opt['orderelement'] ) {
+							if ( 'alphabetically' === $opt['sortby'] AND 'lastword' === $opt['orderelement'] ) {
 								$mvals=array();
 								$old_locale = setlocale(LC_COLLATE, "0");
 								$meta_value_name = meta_value.$opt['sort_by_custom_field_name'];
@@ -777,7 +854,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							
 							$dontshowthis_id = FALSE;
 							foreach ($opt['donnotshowthis_customfieldname'] as $key => $value) {
-								if ( 'sel' === $value ) { // there are custom field  name which should not be included in the hierarchy
+								if ( 'sel' === $value ) { // there are custom field names which should not be included in the hierarchy
 									$dontshowthis_id = $key;
 								} 
 							}
@@ -801,7 +878,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								foreach ( $meta_value_key_names as $meta_value_key_name ) {
 									$output_key_names[] = $meta_value->$meta_value_key_name;
 								}
-								$result_zw = customfieldlist_build_output_array($output_key_names, 0, Array(Array('post_id' => $meta_value->post_id, 'post_guid' => $meta_value->guid, 'post_title' => $meta_value->post_title)));
+								$result_zw = customfieldlist_build_output_array($output_key_names, 0, Array(Array('post_id' => $meta_value->post_id, 'post_guid' => $meta_value->guid, 'post_title' => $meta_value->post_title, 'post_date' => $meta_value->post_date)));
 								$output_array = customfieldlist_array_merge($output_array, $result_zw, $hierarchymaxlevel);
 							}
 
@@ -1012,6 +1089,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['sortseq'] = 'asc';
 			}
+			if ( 'alphabetically' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortby'] OR 'post_date' === $_POST['customfieldlist_opt'][$widget_number]['customfieldsortby'] ) {
+				$opt[$widget_number]['sortby'] = $_POST['customfieldlist_opt'][$widget_number]['customfieldsortby'];
+			} else {
+				$opt[$widget_number]['sortby'] = 'alphabetically';
+			}
+			
 			$opt[$widget_number]['db_collate'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['db_collate'])));
 			$opt[$widget_number]['win_country_codepage'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['win_country_codepage'])));
 			$opt[$widget_number]['encoding_for_win'] = strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['encoding_for_win'])));
@@ -1349,8 +1432,23 @@ function customfieldlist($args=array(), $widget_args=1) {
 	// section: Sorting Options
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('Sorting Options','customfieldlist').'</h5>';
-		$customfieldsortseq_DESC_selected='';
-		$customfieldsortseq_ASC_selected='';
+		
+		if ( TRUE !== isset($opt[$number]['sortby']) OR FALSE !== empty($opt[$number]['sortby']) OR 'alphabetically' === $opt[$number]['sortby'] ) {
+			$customfieldsortby_alphabetically_checked=' checked="checked"';
+			$customfieldsortby_post_date_checked='';
+		} else {
+			$customfieldsortby_alphabetically_checked='';
+			$customfieldsortby_post_date_checked=' checked="checked"';
+			$customfieldsortby_last_word_checked='';
+			$customfieldsortby_lastword_disabled=' disabled="disabled"';
+		}
+		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('sort criterion','customfieldlist').':</legend>';
+			echo '<div><label for="customfieldsortby_'.$number.'_alphabetically" class="customfieldlist_label">'.__('custom field values (alphabetically)','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_alphabetically" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="alphabetically"'.$customfieldsortby_alphabetically_checked.' onclick="customfieldlist_sort_by_changed(this.id, '.$number.');" /></div>';
+			echo '<div>'.'<a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_by_post_date_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldsortby_'.$number.'_post_date" class="customfieldlist_label">'.__('post date','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_post_date" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="post_date"'.$customfieldsortby_post_date_checked.' onclick="customfieldlist_sort_by_changed(this.id, '.$number.');"  />';
+			echo '<p id="customfieldlist_opt_'.$number.'_sort_by_post_date_explanation" class="customfieldlist_explanation">'.__('A core function of this plugin is to link custom field values to posts. By using this option the custom field values will be arranged by the date of the posts they are linked to.','customfieldlist').'</p>'."\n";
+			echo '</div>';
+		echo '</fieldset>';
+		
 		if ( TRUE !== isset($opt[$number]['sortseq']) OR TRUE === empty($opt[$number]['sortseq']) OR 'asc' === $opt[$number]['sortseq'] ) {
 			$customfieldsortseq_ASC_checked=' checked="checked"';
 			$customfieldsortseq_DESC_checked='';
@@ -1412,12 +1510,16 @@ function customfieldlist($args=array(), $widget_args=1) {
 			if ( 'lastword' === $opt[$number]['orderelement'] ) {
 				$sort_titles_alphab = '';
 				$sort_titles_alphab_disabled = ' disabled="disabled"';
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');" /></div>'.$message_os.$message_setloc.''."\n";
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
 			} else {
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');" /></div>'.$message_os.$message_setloc.''."\n";
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
 			}
-			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_sort_titles_alphab" class="customfieldlist_label">'.__('sort post titles alphabetically','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][sort_titles_alphab]" id="customfieldlist_opt_'.$number.'_sort_titles_alphab" value="yes"'.$sort_titles_alphab.$sort_titles_alphab_disabled.' />'."\n";
-			echo '<p id="customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation" class="customfieldlist_explanation">'.__('Arrange the post titles (which are sub list elements) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)','customfieldlist').'</p>'."\n";
+			if ( TRUE === isset($opt[$number]['sortby']) AND 'post_date' === $opt[$number]['sortby'] ) {
+				$sort_titles_alphab = '';
+				$sort_titles_alphab_disabled = ' disabled="disabled"';
+			}
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_sort_titles_alphab" class="customfieldlist_label">'.__('sort sub list elements alphabetically','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][sort_titles_alphab]" id="customfieldlist_opt_'.$number.'_sort_titles_alphab" value="yes"'.$sort_titles_alphab.$sort_titles_alphab_disabled.' />'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_sort_titles_alphab_explanation" class="customfieldlist_explanation">'.__('Arrange the sub list elements (which are e.g. post titles) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)','customfieldlist').'</p>'."\n";
 			echo '</div>'."\n";
 		echo '</fieldset>';
 		
@@ -1652,6 +1754,21 @@ function customfieldlist_widget_admin_script() {
 		}
 	}
 	
+	function customfieldlist_sort_by_changed(id, number) {
+		if ( true == document.getElementById('customfieldsortby_' + String(number) + '_post_date').checked ) {
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').checked = false;
+			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = true;
+			document.getElementById('customfieldlist_sortbylastword_' + String(number)).checked = false;
+			document.getElementById('customfieldlist_sortbylastword_' + String(number)).disabled = true;
+		} else {
+			if ( false == document.getElementById('customfieldlist_opt_' + String(number) + '_list_type_opt2').checked ) {
+				document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
+			}
+			document.getElementById('customfieldlist_sortbylastword_' + String(number)).disabled = false;
+		}
+	}
+	
+	
 	function customfieldlist_sortbylastword_changed(id, number) {
 		if ( true == document.getElementById( id ).checked ) {
 			document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').checked = false;
@@ -1792,7 +1909,7 @@ function customfieldlist_widget_admin_script() {
 				}
 			}
 		} else {
-			if ( false == document.getElementById('customfieldlist_sortbylastword_' + String(number)).checked ) {
+			if ( false == document.getElementById('customfieldlist_sortbylastword_' + String(number)).checked && false == document.getElementById('customfieldsortby_' + String(number) + '_post_date').checked) {
 				document.getElementById('customfieldlist_opt_' + String(number) + '_sort_titles_alphab').disabled = false;
 			}
 			document.getElementById('customfieldlist_opt_' + String(number) + '_list_style_opt1').disabled = false;
