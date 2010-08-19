@@ -155,8 +155,11 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
-= v1.2 =
-* new option: sort list element by publication date of the post
+= v1.1.5 =
+* Bugfix: fixed wrong function name: attribute_escape instead of attributes_escape
+
+= v1.1.4 =
+* a different way to escape the link titles
 
 = v1.1.3 =
 * the way, how the language files are loaded, has been updated
