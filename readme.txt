@@ -3,7 +3,7 @@ Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
 
@@ -155,8 +155,14 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 
 == Changelog ==
-= v1.2 =
-* new option: sort list element by publication date of the post
+= v1.1.6 =
+* Bugfix: fixed a problem with the settings page of this plugin. Users will need the capability "<a href="http://codex.wordpress.org/Roles_and_Capabilities#manage_links" target="_blank">manage_links</a>" to access this page. (In older version it was Level 8 which means Editor and an editor can manage links. (User levels are deprecated.))
+
+= v1.1.5 =
+* Bugfix: fixed wrong function name: attribute_escape instead of attributes_escape
+
+= v1.1.4 =
+* a different way to escape the link titles
 
 = v1.1.3 =
 * the way, how the language files are loaded, has been updated
