@@ -156,7 +156,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 == Changelog ==
 = v1.1.6 =
-* Bugfix: fixed a problem with the settings page of this plugin. Users will need the capability "<a href="http://codex.wordpress.org/Roles_and_Capabilities#manage_links" target="_blank">manage_links</a>" to access this page. (In older version it was Level 8 which means Editor and an editor can manage links. (User levels are deprecated.))
+* Bugfix: fixed a problem with the settings page of this plugin. Users will need the capability [manage_links](http://codex.wordpress.org/Roles_and_Capabilities#manage_links) to access this page. (In older version it was Level 8 which means Editor and an editor can manage links. (User levels are deprecated.))
 
 = v1.1.5 =
 * Bugfix: fixed wrong function name: attribute_escape instead of attributes_escape
