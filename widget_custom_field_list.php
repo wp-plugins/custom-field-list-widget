@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 2
+Version: 1.2 beta 3
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -116,7 +116,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</li>\n";
 								} else {
 									if ( FALSE === empty($value[0]['post_guid']) ) {
-										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
 									} else {
 										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
 									}
@@ -204,7 +204,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
-									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
+									echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
 								}
 								if ( $i == 1 ) { 
 									$j++;
@@ -929,12 +929,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 			default:
 				echo "</ul><!-- ul end --> \n";
 				echo '<input type="hidden" id="customfieldlistelements_'.$number.'" value="'.$j.'"'." />\n";
-				// $k := nr of list elements //$i := list // $j := lists
-				//~ echo "\n <!-- ##### \n";
-				//~ echo 'k '.$k."\n";
-				//~ echo 'j '.$j."\n";
-				//~ echo 'partlength '.$partlength."\n";
-				//~ echo "\n ##### --> \n";
 				if ($j > 0 AND $k > $partlength) {
 					echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
 					echo __('part','customfieldlist').": ";
