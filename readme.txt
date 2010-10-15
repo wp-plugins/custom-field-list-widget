@@ -156,7 +156,8 @@ To keep your settings download the plugin archive file, unpack him and upload th
 
 == Changelog ==
 = v1.2 =
-* new option: sort list element by publication date of the post
+* new option: sort list elements by publication date of the post
+* new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
 
 = v1.1.7 =
 * Bugfix: all hyper links will be created with get_permalink instead of the GUID value of an article

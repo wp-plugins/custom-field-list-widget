@@ -1,3 +1,4 @@
+/*  styles for the widgets page */
 .customfieldlist_help, .customfieldlist_explanation, .customfieldlist_more_settings_advice {
 	color:#999;
 }
@@ -172,4 +173,8 @@ fieldset.customfieldlist_fieldset_h2 legend {
 }
 .alternate {
 	background-color: #eee;
+}
+.customfieldlist_radiobox {
+	background-color: #fee;
+	display:block;
 }

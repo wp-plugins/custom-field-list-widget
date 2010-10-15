@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 3
+Version: 1.2 beta 4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -439,7 +439,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 			// decide whether it should be a drop down menu or ul-list ( list appearance )
 			switch ($opt['list_format']) {
 				case 'dropdownmenu' :
-					echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
+					if (TRUE == isset($opt['use_fullscreen_selectbox']) OR TRUE === $opt['use_fullscreen_selectbox']) {
+						echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);" onfocus="customfieldlistwidget_show_list_in_thickbox('.$number.', this.id);" title="'.attribute_escape($header).'">'."\n";
+					} else {
+						echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
+					}
 					if (FALSE == isset($opt['select_list_default']) OR '' == $opt['select_list_default']) {
 						echo "\t".'<option value="nothing">'.__('Select:','customfieldlist').'</option>'."\n";
 					} else {
@@ -1152,6 +1156,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 			} else {
 				$opt[$widget_number]['list_part_nr_type'] = 'numbers';
 			}
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['use_fullscreen_selectbox']) AND 'yes' == $_POST['customfieldlist_opt'][$widget_number]['use_fullscreen_selectbox']) {
+				$opt[$widget_number]['use_fullscreen_selectbox'] = TRUE;
+				$opt_general = get_option('widget_custom_field_list_general_options');
+				$opt_general['use_fullscreen_selectbox'] = $widget_number;
+				update_option('widget_custom_field_list_general_options', $opt_general);
+			} else {
+				$opt[$widget_number]['use_fullscreen_selectbox'] = FALSE;
+			}
 		}
 		update_option('widget_custom_field_list', $opt);
 		$updated = true; // So that we don't go through this more than once
@@ -1621,13 +1633,21 @@ function customfieldlist($args=array(), $widget_args=1) {
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt2_explanation" class="customfieldlist_explanation">'.__('Show the list elements as a drop down menu.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		echo '<div id="customfieldlist_opt_'.$number.'_list_format_opt2_advice" class="customfieldlist_advice" style="display:none;">'.sprintf(__('It might be expedient to use the option "%1$s" or "%2$s" in combination with "%3$s".','customfieldlist'),__('each element with sub elements','customfieldlist'), __('group the values by the first character','customfieldlist'), __('drop down menu','customfieldlist')).'</div>'."\n";
-		if (FALSE == isset($opt['select_list_default']) OR '' == $opt['select_list_default']) {
+		if (FALSE == isset($opt[$number]['select_list_default']) OR '' == $opt[$number]['select_list_default']) {
 			$select_list_default_value = __('Select:','customfieldlist');
 		} else {
 			$select_list_default_value = attribute_escape($opt[$number]['select_list_default']);
-		}		
+		}
+		if (TRUE == isset($opt[$number]['use_fullscreen_selectbox']) AND TRUE === $opt[$number]['use_fullscreen_selectbox']) {
+			$chk_use_fullscreen_selectbox = ' checked="checked"';
+		} else {
+			$chk_use_fullscreen_selectbox = '';
+		}
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('drop down menu','customfieldlist').':</legend>';
-			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_fullscreen_selectbox_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox" class="customfieldlist_label">'.__('Show the drop down menu in a full screen box:','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][use_fullscreen_selectbox]" value="yes"'.$chk_use_fullscreen_selectbox.' id="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox" />'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox_explanation" class="customfieldlist_explanation">'.__('If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.','customfieldlist').'</p>'."\n";
+			echo '</div>'."\n";
+			echo '<div><label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" /></div>'."\n";
 		echo '</fieldset>';
 
 		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__)).'</p>'."\n";
@@ -1696,9 +1716,18 @@ function customfieldlist_widget_script() {
 		if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['effect_speed']) OR empty($customfieldlist_widgets_general_options['effect_speed']) ) {
 			$customfieldlist_widgets_general_options['effect_speed']='normal';
 		}
-	
-	// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
-	?>
+		$siteurl = get_option('siteurl');
+		if (FALSE === $siteurl) {
+			$siteurl = '..';
+		}
+		// load the jQuery library of WP and the scripts which are responsible for the effects
+		wp_enqueue_script( 'jquery' );
+		$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
+		wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
+		wp_enqueue_script( 'customfieldlist_widget_script' );
+		
+		// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
+		?>
 <script type="text/javascript">
 	//<![CDATA[
 	function customfieldlist_the_collapse_sign() {
@@ -1715,15 +1744,25 @@ function customfieldlist_widget_script() {
 		?>
 		return speed;
 	}
+	<?php 
+		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] ) {
+			wp_enqueue_script( 'thickbox' );
+	?>
+	
+	// use a absolute URLs instead of relative URLs for the Thickbox icons
+	var tb_pathToImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/loadingAnimation.gif";
+	var tb_closeImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/tb-close.png";
+	function customfieldlistwidget_show_list_in_thickbox(number, this_id) {
+		var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_long_selectbox.php?height=100&width=750&abspath='.(urlencode(ABSPATH)).'&selectboxid='?>' + this_id + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_long_selectbox_security'); ?>';
+		tb_show(document.getElementById( String(this_id) ).title, tst, false);
+	}
 	//]]>
  </script>
-	<?php
-
-		// load the jQuery library of WP and the scripts which are responsible for the effects
-		wp_enqueue_script( 'jquery' );
-		$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
-		wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
-		wp_enqueue_script( 'customfieldlist_widget_script' );
+		<?php 
+		} else {
+			echo 	'	//]]>'."\n";
+			echo '</script>'."\n";
+		}
 	}
 }
 
@@ -1733,6 +1772,10 @@ function customfieldlist_widget_style() {
 	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list.css';
 	wp_register_style( 'customfieldlist_widget_style', $stylefile );
 	wp_enqueue_style( 'customfieldlist_widget_style' );
+	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
+	if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] ) {
+		wp_enqueue_style( 'thickbox' );
+	}
 }
 
 // add js on the widgets page
@@ -2146,12 +2189,12 @@ function customfieldlist_widget_admin_script() {
 	<?php
 }
 
-add_action('admin_print_styles-widgets.php', 'customfieldlist_widget_admin_styles');
-function customfieldlist_widget_admin_styles() {
+add_action('admin_print_styles-widgets.php', 'customfieldlist_widget_widgetsettings_styles');
+function customfieldlist_widget_widgetsettings_styles() {
 	wp_enqueue_style( 'thickbox' );
-	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_admin.css';
-	wp_register_style( 'customfieldlist_widget_admin_style', $stylefile );
-	wp_enqueue_style( 'customfieldlist_widget_admin_style' );
+	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_widgetsettings.css';
+	wp_register_style( 'customfieldlist_widget_widgetsettings_style', $stylefile );
+	wp_enqueue_style( 'customfieldlist_widget_widgetsettings_style' );
 }
 
 function customfieldlist_widget_general_options() {
