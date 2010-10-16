@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 4
+Version: 1.2 beta 5
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -71,7 +71,7 @@ function customfieldlist_on_deactivation() {
 }
 
 // This function prints specialy the lists of one widget
-function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $group_by_firstchar='no', $i=0, $j=0, $k=0) {
+function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $group_by_firstchar='no', $strlimiter = Array('limittype' => 'end', 'maxlength' => 35, 'abbrev' => FALSE), $i=0, $j=0, $k=0) {
 	if ('dropdownmenu' == $list_format AND ('each_element_with_sub_element' == $list_style)) {
 		$internal_list_style = 'standard';
 	} else {
@@ -85,12 +85,12 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 					case 'dropdownmenu' :
 						foreach ($n as $key => $value) {
 							if ( TRUE === is_array($value) ) {
-								echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
+								echo "\t".'<optgroup class="customfieldoptgroup" label="'.attribute_escape(customfieldlist_strlimiter($key, $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])).'">'."\n";
 								if ( 'yes' == $group_by_firstchar ) {//AND 0 < count($value) 
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 								} else {
 									if ('' != $value[0]['post_title']) {
-										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
+										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.customfieldlist_strlimiter($value[0]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
 									}
 								}
 								echo "\t</optgroup>\n";
@@ -111,7 +111,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									}
 									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 									echo '<ul class="customfieldsublist">'."\n";
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
@@ -144,7 +144,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						}
 						echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 						echo '<ul class="customfieldsublist">'."\n";
-						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+						customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 						echo "\t</ul>\n";
 						echo "\t</li>\n";
 						if ( $i==1 ) { 
@@ -165,8 +165,8 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 						if ( 'each_element_with_sub_element' == $list_style ) {
 							foreach ($n as $key => $value) {
 								if ( TRUE === is_array($value) ) { 
-									echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+									echo "\t".'<optgroup class="customfieldoptgroup" label="'.attribute_escape(customfieldlist_strlimiter($key, $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])).'">'."\n";
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 									echo "\t</optgroup>\n";
 								} else {
 									echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
@@ -176,11 +176,11 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 							foreach ($n as $key => $value) {
 								if ( TRUE === is_array($value) ) { 
 									if ( FALSE === isset($value[0]['post_id']) OR 1 < count($value) ) {
-										echo "\t".'<optgroup class="customfieldoptgroup" label="'.$key.'">'."\n";
-										customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+										echo "\t".'<optgroup class="customfieldoptgroup" label="'.attribute_escape(customfieldlist_strlimiter($key, $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])).'">'."\n";
+										customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 										echo "\t</optgroup>\n";
 									} else {
-										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.$value[0]['post_title']."</option>\n";
+										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.customfieldlist_strlimiter($value[0]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
 									}
 								} else {
 									echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.'">(2 select)'.__('Internal Plugin Error: value is no array', 'customfieldlist')."</option>\n";
@@ -200,7 +200,7 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									}
 									echo "\t<li class=".'"customfieldlistelements_'.$number.'_'.$k.'"'.">\n\t".'<span class="customfieldtitle">'.$key.'</span>'.$nr_of_subelement_str.' <span class="customfieldplus">'.$signs['minus'].'</span>'."<br />\n\t";
 									echo '<ul class="customfieldsublist">'."\n";
-									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $i, $j, $k);
+									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 									echo "\t</ul>\n";
 									echo "\t</li>\n";
 								} else {
@@ -226,12 +226,12 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 				if ( 'yes' == $group_by_firstchar AND 'individual_href' == $internal_list_style) {
 					foreach ($n as $key => $value) {
 						if ('' != $n[$key]['post_title']) {
-							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+							echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.customfieldlist_strlimiter($n[$key]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
 						}
 					}
 				} else {
 					foreach ($n as $key => $value) {
-						echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.$n[$key]['post_title']."</option>\n";
+						echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($n[$key]['post_id']).'">'.customfieldlist_strlimiter($n[$key]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
 					}
 				}
 			break;
@@ -242,6 +242,60 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 				}
 			break;
 		}
+	}
+}
+
+
+/**
+* customfieldlist_strlimiter - if the input phrase is longer then maxlength then cut out character from the middle of the phrase
+*
+* @package customfieldlist
+* @since 1.1.2
+*
+* @param str $phrase input string
+* @param str $limittype [optional] - where should the function cut a piece out of the str: 'end' (default) or 'middle'
+* @param int $maxlength [optional] - max. length of the output string. if it is zero then don't shorten the string
+* @param bool $abbrev [optional] - use the abbr-tag with the original string as the title element
+* @param str $paddingchar [optional] - character(s) which should symbolize the shortend string / placed in the middle of the shortend string
+* @param str $classname [optional] - name(s) of the CSS class(es) of the abbr-tag
+*
+* @return str phrase with max. length
+*/
+function customfieldlist_strlimiter($phrase, $limittype = 'end', $maxlength = 35, $abbrev = FALSE, $paddingchar = ' ... ', $classname = 'customfieldlist_abbr') {
+	$len = strlen($phrase);
+	$maxlen = ($maxlength-strlen($paddingchar));
+	if ( $len > $maxlen AND $maxlen > 0 ) {
+		switch ($limittype) {
+			default :
+			case 'end' :
+				if ($abbrev == TRUE) {
+					if ( Trim($classname) != '' ) {
+						return '<span class="'.$classname.'" title="'.attribute_escape($phrase).'">' . substr($phrase, 0, $maxlen) . $paddingchar . '</span>';
+					} else {
+						return '<span title="'.attribute_escape($phrase).'">' . substr($phrase, 0, $maxlen) . $paddingchar . '</span>';
+					}
+				} else {
+					return substr($phrase, 0, $maxlength) . $paddingchar;
+				}
+			break;
+			case 'middle' :
+				$part1_len = floor($maxlen/2);
+				$part1 = substr($phrase, 0,  $part1_len);
+				$part2_len = ceil($maxlen/2);
+				$part2 = substr($phrase, -$part2_len, $len);
+				if ($abbrev == TRUE) {
+					if ( Trim($classname) != '' ) {
+						return '<span class="'.$classname.'" title="'.attribute_escape($phrase).'">' . $part1 . $paddingchar . $part2 . '</span>';
+					} else {
+						return '<span title="'.attribute_escape($phrase).'">' . $part1 . $paddingchar . $part2 . '</span>';
+					}
+				} else {
+					return $part1 . $paddingchar. $part2;
+				}
+			break;
+		}
+	} else {
+		return $phrase;
 	}
 }
 
@@ -459,6 +513,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			// get the data from the data base depending on the list type
 			if ( is_array($opt['custom_field_names']) AND 1 <= count($opt['custom_field_names']) AND FALSE === customfieldlist_are_the_array_elements_empty($opt['custom_field_names']) ) {
 				$charset=get_bloginfo('charset'); 
+				if ( FALSE == isset($opt['use_chr_limit_location']) ) {
+					$opt['use_chr_limit_location'] = 'end';
+				}
+				if ( FALSE == isset($opt['use_chr_limit']) ) {
+					$opt['use_chr_limit'] = 0;
+				}
 				switch ($opt['list_type']) {
 					case 'individual_href' :
 						$only_public1='';
@@ -713,7 +773,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								
 								$liststyleopt = 'individual_href';
 								
-								customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar']);
+								customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar'], Array('limittype' => $opt['use_chr_limit_location'], 'maxlength' => $opt['use_chr_limit'], 'abbrev' => FALSE));
 							} else {
 								echo "<li>".sprintf(__('There are no values in connection to the custom field name "%1$s" in the data base.','customfieldlist'), $customfieldname_show)."</li>\n";
 							}
@@ -913,7 +973,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								$liststyleopt = 'standard';
 							}
 							
-							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar']);
+							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar'], Array('limittype' => $opt['use_chr_limit_location'], 'maxlength' => $opt['use_chr_limit'], 'abbrev' => FALSE));
 						} else {
 							echo "<li>".sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname'])."</li>\n";
 						}
@@ -1163,6 +1223,20 @@ function customfieldlist($args=array(), $widget_args=1) {
 				update_option('widget_custom_field_list_general_options', $opt_general);
 			} else {
 				$opt[$widget_number]['use_fullscreen_selectbox'] = FALSE;
+			}
+			if ( isset($_POST['customfieldlist_opt'][$widget_number]['use_chr_limit']) ) {
+				$opt[$widget_number]['use_chr_limit'] = intval(strip_tags(stripslashes(trim($_POST['customfieldlist_opt'][$widget_number]['use_chr_limit']))));
+			} else {
+				$opt[$widget_number]['use_chr_limit'] = 0;
+			}
+			switch ($_POST['customfieldlist_opt'][$widget_number]['use_chr_limit_location']) {
+				default :
+				case 'end' :
+					$opt[$widget_number]['use_chr_limit_location'] = 'end';
+				break;
+				case 'middle' :
+					$opt[$widget_number]['use_chr_limit_location'] = 'middle';
+				break;
 			}
 		}
 		update_option('widget_custom_field_list', $opt);
@@ -1643,11 +1717,33 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			$chk_use_fullscreen_selectbox = '';
 		}
+		if (TRUE == isset($opt[$number]['use_chr_limit']) AND FALSE === empty($opt[$number]['use_chr_limit'])) {
+			$use_chr_limit_value = $opt[$number]['use_chr_limit'];
+		} else {
+			$use_chr_limit_value = '0';
+		}
+		switch ($opt[$number]['use_chr_limit_location']) {
+			default :
+			case 'end' :
+				$use_chr_limit_location['end'] = ' selected = "selected"';
+				$use_chr_limit_location['middle'] = '';
+			break;
+			case 'middle' :
+				$use_chr_limit_location['end'] = '';
+				$use_chr_limit_location['middle'] = ' selected = "selected"';
+			break;
+		}
 		echo '<fieldset class="customfieldlist_fieldset_h2"><legend>'.__('drop down menu','customfieldlist').':</legend>';
 			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_fullscreen_selectbox_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox" class="customfieldlist_label">'.__('Show the drop down menu in a full screen box:','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][use_fullscreen_selectbox]" value="yes"'.$chk_use_fullscreen_selectbox.' id="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox" />'."\n";
 			echo '<p id="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox_explanation" class="customfieldlist_explanation">'.__('If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.','customfieldlist').'</p>'."\n";
 			echo '</div>'."\n";
-			echo '<div><label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" /></div>'."\n";
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_chr_limit_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_chr_limit" class="customfieldlist_label">'.__('Limit the length of the list elements:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][use_chr_limit]" value="'.$use_chr_limit_value.'" id="customfieldlist_opt_'.$number.'_use_chr_limit" maxlength="4" class="customfieldlist_opt_use_chr_limit" />'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_explanation" class="customfieldlist_explanation">'.__('If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.<br />Zero means: do not limit the number of characters.','customfieldlist').'</p>'."\n";
+			echo '</div>'."\n";
+			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_chr_limit_location_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_chr_limit_location" class="customfieldlist_label">'.__('Shorten the strings at the end or in the middle:','customfieldlist').'</label> <select size="1" name="customfieldlist_opt['.$number.'][use_chr_limit_location]" id="customfieldlist_opt_'.$number.'_use_chr_limit_location"><option value="end"'.$use_chr_limit_location['end'].'>'.__('end','customfieldlist').'</option><option value="middle"'.$use_chr_limit_location['middle'].'>'.__('middle','customfieldlist').'</option></select>'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_location_explanation" class="customfieldlist_explanation">'.__('For instance: The long title is "Star Wars - The Return of the Jedi" and the max. number of chararcter is 20. "end" produces: "Star Wars - The ... " and "middle" produces: "Star Wars ... of the Jedi".','customfieldlist').'</p>'."\n";
+			echo '</div>'."\n";
+			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
 		echo '</fieldset>';
 
 		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__)).'</p>'."\n";
@@ -1753,7 +1849,7 @@ function customfieldlist_widget_script() {
 	var tb_pathToImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/loadingAnimation.gif";
 	var tb_closeImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/tb-close.png";
 	function customfieldlistwidget_show_list_in_thickbox(number, this_id) {
-		var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_long_selectbox.php?height=100&width=750&abspath='.(urlencode(ABSPATH)).'&selectboxid='?>' + this_id + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_long_selectbox_security'); ?>';
+		var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_long_selectbox.php?height=80&width='?>' + Math.round(screen.width-(screen.width * 0.20)) + '<?php echo '&abspath='.(urlencode(ABSPATH)).'&selectboxid='?>' + this_id + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_long_selectbox_security'); ?>';
 		tb_show(document.getElementById( String(this_id) ).title, tst, false);
 	}
 	//]]>

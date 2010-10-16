@@ -46,8 +46,9 @@ If like to translate this plugin into your language or if you like to continue t
 	* widget\_custom\_field\_list\_individual\_href.php
 	* widget\_custom\_field\_list\_individual\_href\_advice.php
 	* widget\_custom\_field\_list\_individual\_href\_save\_data.php
+	* widget\_custom\_field\_list\_long\_selectbox.php
 	* widget\_custom\_field\_list.css
-	* widget\_custom\_field\_list\_admin.css
+	* widget\_custom\_field\_list\_widgetsettings.css
 	* customfieldlist-de\_DE.mo (German localization file)
 	* customfieldlist-de\_DE.po (German localization file)
 	* customfieldlist-bg\_BG.mo (Bulgarian localization file)
@@ -158,6 +159,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 = v1.2 =
 * new option: sort list elements by publication date of the post
 * new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
+* new options: it is also possible to limit the number of characters per list element of the drop down menus
 
 = v1.1.7 =
 * Bugfix: all hyper links will be created with get_permalink instead of the GUID value of an article

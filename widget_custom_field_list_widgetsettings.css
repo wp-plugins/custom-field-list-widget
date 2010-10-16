@@ -178,3 +178,6 @@ fieldset.customfieldlist_fieldset_h2 legend {
 	background-color: #fee;
 	display:block;
 }
+.customfieldlist_opt_use_chr_limit {
+	width:4em;
+}
