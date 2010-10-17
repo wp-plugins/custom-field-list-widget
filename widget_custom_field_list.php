@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 5
+Version: 1.2 beta 6
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -488,12 +488,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$only_public = ' AND p.post_status = "publish"';
 		}
 		$j=$k=0;
-		
+		printphpnotices_var_dump($opt);
 		if (FALSE !== $opt) {
 			// decide whether it should be a drop down menu or ul-list ( list appearance )
 			switch ($opt['list_format']) {
 				case 'dropdownmenu' :
-					if (TRUE == isset($opt['use_fullscreen_selectbox']) OR TRUE === $opt['use_fullscreen_selectbox']) {
+					if (TRUE == isset($opt['use_fullscreen_selectbox']) AND TRUE === $opt['use_fullscreen_selectbox']) {
 						echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);" onfocus="customfieldlistwidget_show_list_in_thickbox('.$number.', this.id);" title="'.attribute_escape($header).'">'."\n";
 					} else {
 						echo '<select id="customfieldlist_main_menu_'.$number.'" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">'."\n";
