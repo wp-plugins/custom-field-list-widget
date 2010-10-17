@@ -488,7 +488,6 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$only_public = ' AND p.post_status = "publish"';
 		}
 		$j=$k=0;
-		printphpnotices_var_dump($opt);
 		if (FALSE !== $opt) {
 			// decide whether it should be a drop down menu or ul-list ( list appearance )
 			switch ($opt['list_format']) {
