@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 6
+Version: 1.2 beta 7
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -487,7 +487,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			$only_public = ' AND p.post_status = "publish"';
 		}
-		$j=$k=0;
+		$j=0;
+		$k=0;
 		if (FALSE !== $opt) {
 			// decide whether it should be a drop down menu or ul-list ( list appearance )
 			switch ($opt['list_format']) {
@@ -502,10 +503,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 					} else {
 						echo "\t".'<option value="nothing">'.$opt['select_list_default'].'</option>'."\n";
 					}
+					$listelementtags['begin'] = '<option value="nothing">';
+					$listelementtags['end'] = '</option>';
 				break;
 				case 'ul_list' :
 				default:
 					echo '<ul id="customfieldlist_mainlist_'.$number.'">'."\n";
+					$listelementtags['begin'] = '<li>';
+					$listelementtags['end'] = '</li>';
 				break;
 			}
 
@@ -652,7 +657,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 									}
 								}
 								
-								// if where_ar is no array then not links to own blog posts has been set ( all $link_target_post_id values are 'none')
+								// if where_ar is no array then no links to own blog posts has been set ( all $link_target_post_id values are 'none')
 								if (is_array($where_ar)) {
 									$where = implode(' OR ', $where_ar);
 									switch ($opt['sortby']) {
@@ -774,7 +779,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								
 								customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar'], Array('limittype' => $opt['use_chr_limit_location'], 'maxlength' => $opt['use_chr_limit'], 'abbrev' => FALSE));
 							} else {
-								echo "<li>".sprintf(__('There are no values in connection to the custom field name "%1$s" in the data base.','customfieldlist'), $customfieldname_show)."</li>\n";
+								echo $listelementtags['begin'].sprintf(__('There are no values in connection to the custom field name "%1$s" in the data base.','customfieldlist'), $customfieldname_show).$listelementtags['end']."\n";
 							}
 						} else {
 							if ( empty($opt['individual_href']['thecustomfieldname']) ) {
@@ -782,7 +787,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							} else {
 								$customfieldname_from_db = $opt['individual_href']['thecustomfieldname'];
 							}
-							echo "<li>".sprintf(__('The actual custom field name "%1$s" and the custom field name "%2$s" for which the link references are saved are different. Please save the links for the values of the actual custom field name.','customfieldlist'), $customfieldname_show, $customfieldname_from_db)."</li>\n";
+							echo $listelementtags['begin'].sprintf(__('The actual custom field name "%1$s" and the custom field name "%2$s" for which the link references are saved are different. Please save the links for the values of the actual custom field name.','customfieldlist'), $customfieldname_show, $customfieldname_from_db).$listelementtags['end']."\n";
 						}
 					break;
 					case 'standard':
@@ -974,71 +979,72 @@ function customfieldlist($args=array(), $widget_args=1) {
 							
 							customfieldlist_print_widget_content($output_array, $number, $partlength, $hierarchymaxlevel, $opt['list_format'], $liststyleopt, $opt['show_number_of_subelements'], $signslibrary[$signsgroup], $charset, $opt['group_by_firstchar'], Array('limittype' => $opt['use_chr_limit_location'], 'maxlength' => $opt['use_chr_limit'], 'abbrev' => FALSE));
 						} else {
-							echo "<li>".sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname'])."</li>\n";
+							echo $listelementtags['begin'].sprintf(__('There are no values which are related to the custom field names which are set on the widgets page.','customfieldlist'), $opt['customfieldname']).$listelementtags['end']."\n";
 						}
 					break;
 				}
 			} else {
-				echo "<li>".__('Please, define a custom field name!','customfieldlist')."</li>\n";
+				echo $listelementtags['begin'].__('Please, define a custom field name!','customfieldlist').$listelementtags['end']."\n";
+			}
+			
+			switch ($opt['list_format']) {
+				case 'dropdownmenu' :
+					echo "</select><!-- select end --> \n";
+				break;
+				case 'ul_list' :
+				default:
+					echo "</ul><!-- ul end --> \n";
+					echo '<input type="hidden" id="customfieldlistelements_'.$number.'" value="'.$j.'"'." />\n";
+					if ($j > 0 AND $k > $partlength) {
+						echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
+						echo __('part','customfieldlist').": ";
+						
+						// check out which part name tape should be used
+						if ( !isset($opt['list_part_nr_type']) OR empty($opt['list_part_nr_type']) ) {
+							$partnumbertype='numbers';
+						} elseif ( 'numbers' != $opt['list_part_nr_type'] ) {
+							$partnumbertype='letters';
+						}
+						// get the parts 
+						if ( 'letters' == $partnumbertype ) {
+							if ( TRUE == is_array($output_array) ) {
+								$letters = customfieldlist_get_parts_of_strings($output_array, $opt['list_part_nr_type']);
+							} else {
+								$partnumbertype == 'numbers';
+							}
+						}
+						for ($i=0; $i<$j; $i++) {
+							if ( 0 === $i ) {
+								$css_class=' class="customfieldlist_selectedpart"';
+							} else {
+								$css_class='';
+							}
+							switch ($partnumbertype) {
+								case 'letters' :
+									$nr = $i*$partlength;
+									if ( isset($letters[($nr+$partlength-1)]) ) {
+										$nr_last = $nr+$partlength-1;
+									} else {
+										$nr_last = count($letters)-1;
+									}
+									if ( $letters[$nr] != $letters[$nr_last] ) {
+										echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' - '.$letters[$nr_last].' </a>] ';
+									} else {
+										echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' </a>] ';
+									}
+								break;
+								case 'numbers' :
+								default:
+									echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
+								break;
+							}
+						}
+						echo "\n</p>\n";
+					}
+				break;
 			}
 		} else {
-			echo "<li>".__('Unable to retrieve the data of the customfield list widget from the db.','customfieldlist')."</li>\n";
-		}
-		switch ($opt['list_format']) {
-			case 'dropdownmenu' :
-				echo "</select><!-- select end --> \n";
-			break;
-			case 'ul_list' :
-			default:
-				echo "</ul><!-- ul end --> \n";
-				echo '<input type="hidden" id="customfieldlistelements_'.$number.'" value="'.$j.'"'." />\n";
-				if ($j > 0 AND $k > $partlength) {
-					echo '<p class="customfieldlistpages" id="customfieldlistpages_'.$number.'"'.">\n";
-					echo __('part','customfieldlist').": ";
-					
-					// check out which part name tape should be used
-					if ( !isset($opt['list_part_nr_type']) OR empty($opt['list_part_nr_type']) ) {
-						$partnumbertype='numbers';
-					} elseif ( 'numbers' != $opt['list_part_nr_type'] ) {
-						$partnumbertype='letters';
-					}
-					// get the parts 
-					if ( 'letters' == $partnumbertype ) {
-						if ( TRUE == is_array($output_array) ) {
-							$letters = customfieldlist_get_parts_of_strings($output_array, $opt['list_part_nr_type']);
-						} else {
-							$partnumbertype == 'numbers';
-						}
-					}
-					for ($i=0; $i<$j; $i++) {
-						if ( 0 === $i ) {
-							$css_class=' class="customfieldlist_selectedpart"';
-						} else {
-							$css_class='';
-						}
-						switch ($partnumbertype) {
-							case 'letters' :
-								$nr = $i*$partlength;
-								if ( isset($letters[($nr+$partlength-1)]) ) {
-									$nr_last = $nr+$partlength-1;
-								} else {
-									$nr_last = count($letters)-1;
-								}
-								if ( $letters[$nr] != $letters[$nr_last] ) {
-									echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' - '.$letters[$nr_last].' </a>] ';
-								} else {
-									echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.$letters[$nr].' </a>] ';
-								}
-							break;
-							case 'numbers' :
-							default:
-								echo '[<a id="customfieldlistpart_'.$number.'_'.$i.'"'.$css_class.' href="javascript:show_this_customfieldlistelements('.$i.', '.$j.', '.$number.');"> '.($i+1).' </a>] ';
-							break;
-						}
-					}
-					echo "\n</p>\n";
-				}
-			break;
+			echo "<p>".__('Unable to retrieve the data of the customfield list widget from the db.','customfieldlist')."</p>\n";
 		}
 	echo $after_widget."<!-- after_widget -->\n";
 }

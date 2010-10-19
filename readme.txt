@@ -160,6 +160,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 * new option: sort list elements by publication date of the post
 * new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
 * new options: it is also possible to limit the number of characters per list element of the drop down menus
+* Bugfix: some error messages has been displayed wrong
 
 = v1.1.7 =
 * Bugfix: all hyper links will be created with get_permalink instead of the GUID value of an article
