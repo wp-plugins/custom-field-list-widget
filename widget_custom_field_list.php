@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 7
+Version: 1.2 beta 8
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -65,10 +65,10 @@ if (function_exists('load_plugin_textdomain')) {
 }
 
 // on plugin deactivation
-register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
-function customfieldlist_on_deactivation() {
-	delete_option('widget_custom_field_list');
-}
+//~ register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
+//~ function customfieldlist_on_deactivation() {
+	//~ delete_option('widget_custom_field_list');
+//~ }
 
 // This function prints specialy the lists of one widget
 function customfieldlist_print_widget_content($n, $number, $partlength, $hierarchymaxlevel, $list_format='ul_list', $list_style='standard', $show_number_of_subelements=FALSE, $signs, $charset='UTF-8', $group_by_firstchar='no', $strlimiter = Array('limittype' => 'end', 'maxlength' => 35, 'abbrev' => FALSE), $i=0, $j=0, $k=0) {

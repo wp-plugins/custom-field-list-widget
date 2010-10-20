@@ -151,8 +151,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 == Deinstallation ==
 
 1. Deactivate the plugin.
-1. (The options of the plugin in the options table of your weblog database are going to be removed automatically during the plugin deactivation.)
-1. Delete the folders and files of the plugin (don't forget the file from the K2 theme folder if you have used that).
+1. Delete the folders and files of the plugin via the Dashboard of your blog or FTP or etc.(don't forget the file from the K2 theme folder if you have used that). Only deleting the plugin via the WP Dashboard will remove the options from the database.
 
 
 == Changelog ==
@@ -161,6 +160,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 * new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
 * new options: it is also possible to limit the number of characters per list element of the drop down menus
 * Bugfix: some error messages has been displayed wrong
+* The widgets options are not longer going to be removed during the deactivation. If you want to remove the plugins options from the db your need to delete it via the WP Dashboard (resp. Site Admin)
 
 = v1.1.7 =
 * Bugfix: all hyper links will be created with get_permalink instead of the GUID value of an article
