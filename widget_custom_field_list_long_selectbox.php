@@ -10,6 +10,7 @@ if (isset($_GET['abspath'])) {
 }
 
 function customfieldlist_print_long_selectbox($selectboxid) {
+	global $wp_version;
 	echo '<div style="vertical-align:middle; padding:1em; font-weight:normal;" id="customfieldlist_long_selectbox_container">';
 	?>
 	<script type="text/javascript">
@@ -30,6 +31,9 @@ function customfieldlist_print_long_selectbox($selectboxid) {
 	echo '<select id="customfieldlist_long_selectbox" class="customfieldlist_selectbox" onchange="customfieldlistwidget_go_to_target(this.id, this.selectedIndex);">';
 	echo '</select>';
 	echo '</div>';
+	if (version_compare($wp_version, '2.9', '<')) {
+		echo '[ <a href="javascript:void(null);" onclick="tb_remove();">'.__('Close').'</a> ]';
+	}
 	?>
 	<script type="text/javascript">
 	//<![CDATA[

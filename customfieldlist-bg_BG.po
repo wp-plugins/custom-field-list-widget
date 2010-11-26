@@ -1,11 +1,12 @@
 # Petar Toushkov <pt.launchpad@gmail.com>, 2009, 2010.
+# Петър Тушков <peter.toushkov@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-16 12:13+0100\n"
-"PO-Revision-Date: 2010-10-16 12:13+0100\n"
-"Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
+"PO-Revision-Date: 2010-11-21 15:54+0200\n"
+"Last-Translator: Petar Toushkov <pt.launchpad@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: H:\\xampp\\htdocs\\wp30mu\\wp-content\\plugins\\custom-field-list-widget\n"
 
@@ -146,21 +147,19 @@ msgstr "Настройки за сортиране"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
 msgid "sort criterion"
-msgstr ""
+msgstr "критерий за сортиране"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1526
-#, fuzzy
 msgid "custom field values (alphabetically)"
-msgstr "сортиране заглавията на публикации по азбучен ред"
+msgstr "стойности на потребителските полета (азбучно)"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1527
-#, fuzzy
 msgid "post date"
-msgstr "пост или страница"
+msgstr "дата на публикация"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1528
 msgid "A core function of this plugin is to link custom field values to posts. By using this option the custom field values will be arranged by the date of the posts they are linked to."
-msgstr ""
+msgstr "Основна функция на тази приставка е да свързва стойностите на потребителските полета с публикации. Ако използвате тази опция, стойностите на потребителските полета ще бъдат подредени по датата на публикациите, към които сочат."
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1539
 msgid "sort sequence"
@@ -208,14 +207,12 @@ msgid "sort the values by the last word"
 msgstr "сортиране на стойностите по последна дума"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
-#, fuzzy
 msgid "sort sub list elements alphabetically"
-msgstr "сортиране заглавията на публикации по азбучен ред"
+msgstr "сортиране на поделементите по азбучен ред"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1602
-#, fuzzy
 msgid "Arrange the sub list elements (which are e.g. post titles) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)"
-msgstr "Подреждане на заглавията на публикации (които са поделементи) по азбучен ред. (По подразбиране (неотметнато) заглавията на публикации са подредени по дата.)"
+msgstr "Подреждане на елементите от подсписъка (например заглавия на публикации) по азбучен ред. (По подразбиране (неотметнато) заглавията на публикации са подредени по дата.)"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1610
 msgid "List Types"
@@ -344,37 +341,35 @@ msgstr "Би било удачно да използвате опцията \"%1
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1737
 msgid "Show the drop down menu in a full screen box:"
-msgstr ""
+msgstr "Показване на падащото меню в област на цял екран:"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1738
 msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element."
-msgstr ""
+msgstr "Ако настроите достъпа до списъка в падащо меню и имате дълги стойности на потребителските полета или заглавията на публикациите, е напълно възможно части от списъка с елементи да не се виждат, например - списъкът да излиза от границите на екрана, ако приставката се намира в дясната странична лента. В този случай функцията може да ви бъде от полза.<br />С нейна помощ падащото меню се изобразява в разширена област по средата на екрана, когато фокусът е върху елемента от падащото меню."
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1740
-#, fuzzy
 msgid "Limit the length of the list elements:"
-msgstr "символи за отваряне/затваряне на списъка с поделементи"
+msgstr "Ограничаване на дължината на елементите от списъка:"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1741
 msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.<br />Zero means: do not limit the number of characters."
-msgstr ""
+msgstr "Ако настроите достъпа до списъка в падащо меню и имате дълги стойности на потребителските полета или заглавията на публикациите, е напълно възможно части от списъка с елементи да не се виждат, например - списъкът да излиза от границите на екрана, ако приставката се намира в дясната странична лента. В този случай функцията може да ви бъде от полза.<br />С нейна помощ падащото меню се изобразява в разширена област по средата на екрана, когато фокусът е върху елемента от падащото меню.<br />Нула означава: без ограничение в броя на символите."
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
 msgid "Shorten the strings at the end or in the middle:"
-msgstr ""
+msgstr "Скъсяване на низовете в края или в средата:"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
 msgid "end"
-msgstr ""
+msgstr "край"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
-#, fuzzy
 msgid "middle"
-msgstr "Скриване"
+msgstr "среда"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1744
 msgid "For instance: The long title is \"Star Wars - The Return of the Jedi\" and the max. number of chararcter is 20. \"end\" produces: \"Star Wars - The ... \" and \"middle\" produces: \"Star Wars ... of the Jedi\"."
-msgstr ""
+msgstr "Например: дългото заглавие е: \"Star Wars - The Return of the Jedi\" и максималният брой символи е 20. \"край\" ще ограничи:  \"Star Wars - The ... \", а \"среда\" ще ограничи: \"Star Wars ... of the Jedi\"."
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1746
 msgid "What should be the default value of the drop down menu?:"
@@ -545,17 +540,14 @@ msgstr "Моля, първо запазете потребителските и�
 #~ msgstr ""
 #~ "Преди да зададете връзките за стойностите на новото име на потребителско "
 #~ "поле, трябва да запазите настройките на джаджата."
-
 #~ msgid "in"
 #~ msgstr "в"
-
 #~ msgid "or"
 #~ msgstr "oder"
-
 #~ msgid "This option will probably not work on this server OS (Windows)."
 #~ msgstr ""
 #~ "Diese Option funktioniert wahrscheinlich nicht mit diesem Server OS "
 #~ "(Windows)."
-
 #~ msgid "Guests"
 #~ msgstr "G&auml;ste"
+

@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 8
+Version: 1.2 beta 16 debug
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -583,7 +583,12 @@ function customfieldlist($args=array(), $widget_args=1) {
 						}
 
 						if ( $customfieldname_show == $opt['individual_href']['thecustomfieldname'] ) {
-							$meta_values =  $wpdb->get_results($querystring);
+							if ( FALSE == defined('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY') OR (TRUE == defined('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY') AND FALSE === constant('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY')) ) {
+								$meta_values = $wpdb->get_results($querystring);
+							} else {
+								echo "\n <!-- Custom Field List Widget (INDIVIDUALHREF): ".$querystring." --> \n";
+								$meta_values = Array();
+							}
 							$nr_meta_values = count($meta_values);
 							
 							if ($nr_meta_values > 0) {
@@ -870,7 +875,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								break;
 							}
 							$querystring = 'SELECT pm0.post_id, '.$select_meta_value_str.'p.guid, p.post_title, p.post_date FROM '.$wpdb->postmeta.' AS pm0 '.$from_left_join_str.' LEFT JOIN '.$wpdb->posts.' AS p ON (pm0.post_id = p.ID) WHERE pm0.meta_key = "'.$meta_keys[0].'"'.$only_public.' ORDER BY '.$order_by_str;
-							$meta_values =  $wpdb->get_results($querystring);
+							$meta_values = $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
 						}
 
@@ -1799,7 +1804,7 @@ function customfieldlist_widget_init() {
 // add jquery scripts for the appearance of the widgets lists
 add_action('wp_print_scripts', 'customfieldlist_widget_script');
 function customfieldlist_widget_script() {
-	if (FALSE == is_admin()) {
+	if ( FALSE == is_admin() ) {		
 		$signslibrary = array(
 			'dblarrows' => array('minus' => '&laquo;', 'plus' => '&raquo;'),
 			'gtlt' => array('minus' => '&lt;', 'plus' => '&gt;'),
@@ -1813,55 +1818,81 @@ function customfieldlist_widget_script() {
 		if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
 			$customfieldlist_widgets_general_options['plusminusalt']='default';
 		}
-		
+			
 		if ( FALSE === $customfieldlist_widgets_general_options OR FALSE === isset($customfieldlist_widgets_general_options['effect_speed']) OR empty($customfieldlist_widgets_general_options['effect_speed']) ) {
 			$customfieldlist_widgets_general_options['effect_speed']='normal';
 		}
+		
 		$siteurl = get_option('siteurl');
 		if (FALSE === $siteurl) {
 			$siteurl = '..';
 		}
-		// load the jQuery library of WP and the scripts which are responsible for the effects
-		wp_enqueue_script( 'jquery' );
+		
+		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] AND TRUE == defined('CUSTOM_FIELD_LIST_LOAD_THICKBOX') AND TRUE === constant('CUSTOM_FIELD_LIST_LOAD_THICKBOX') ) {
+			wp_enqueue_script( 'thickbox' );
+		} else {
+			// load the jQuery library of WP and the scripts which are responsible for the effects
+			wp_enqueue_script( 'jquery' );
+		}
+		
 		$scriptfile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_js.php';
 		wp_register_script( 'customfieldlist_widget_script',  $scriptfile , array('jquery') );
 		wp_enqueue_script( 'customfieldlist_widget_script' );
-		
-		// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
-		?>
-<script type="text/javascript">
-	//<![CDATA[
-	function customfieldlist_the_collapse_sign() {
-		var signs = new Object();
-		<?php 
-			echo "signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES, get_bloginfo('charset'))."';\n\t\t";
-			echo "signs['plus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES, get_bloginfo('charset'))."';\n";
-		?>
-		return signs;
-	}
-	function customfieldlist_effect_speed() {
-		<?php 
-			echo "var speed = '".$customfieldlist_widgets_general_options['effect_speed']."';\n";
-		?>
-		return speed;
-	}
-	<?php 
-		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] ) {
-			wp_enqueue_script( 'thickbox' );
-	?>
 	
-	// use a absolute URLs instead of relative URLs for the Thickbox icons
-	var tb_pathToImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/loadingAnimation.gif";
-	var tb_closeImage = "<?php echo $siteurl; ?>/wp-includes/js/thickbox/tb-close.png";
-	function customfieldlistwidget_show_list_in_thickbox(number, this_id) {
-		var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_long_selectbox.php?height=80&width='?>' + Math.round(screen.width-(screen.width * 0.20)) + '<?php echo '&abspath='.(urlencode(ABSPATH)).'&selectboxid='?>' + this_id + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_long_selectbox_security'); ?>';
-		tb_show(document.getElementById( String(this_id) ).title, tst, false);
-	}
-	//]]>
- </script>
-		<?php 
+		if ( FALSE == isset($customfieldlist_widgets_general_options['plusminusalt']) OR FALSE == array_key_exists($customfieldlist_widgets_general_options['plusminusalt'], $signslibrary) ) {
+			$customfieldlist_widgets_general_options['plusminusalt'] = 'default';
+		}
+		// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
+		echo "\n".'<script type="text/javascript">'."\n";
+		echo '//<![CDATA['."\n";
+			//~ echo '/* '."\n";
+			//~ echo 'PHP version: ' . PHP_VERSION."\n";
+			//~ echo 'custom field list widget general settings: '."\n";
+			//~ var_dump($customfieldlist_widgets_general_options);
+			//~ echo '*/'."\n";
+		$charset = get_bloginfo('charset');
+		echo 'function customfieldlist_the_collapse_sign() {'."\n";
+		echo '	var signs = new Object();'."\n";
+		if ( TRUE == version_compare(PHP_VERSION, '5.0', '<') ) {
+			if ( 'UTF-8' == $charset ) {
+				echo "	signs['minus'] = '".utf8_encode(html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES))."';\n";
+				echo "	signs['plus'] = '".utf8_encode(html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES))."';\n";
+			} else {
+				if (function_exists('mb_convert_encoding')) {
+					echo "	signs['minus'] = '".mb_convert_encoding(html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES), $charset)."';\n";
+					echo "	signs['plus'] = '".mb_convert_encoding(html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES), $charset)."';\n";
+				} else {
+					echo "	signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES)."';\n";
+					echo "	signs['plus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES)."';\n";
+				}
+			}
 		} else {
-			echo 	'	//]]>'."\n";
+			echo "	signs['minus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['minus'], ENT_QUOTES, $charset)."';\n";
+			echo "	signs['plus'] = '".html_entity_decode($signslibrary[$customfieldlist_widgets_general_options['plusminusalt']]['plus'], ENT_QUOTES, $charset)."';\n";
+		}
+		echo '	return signs;'."\n";
+		echo '}'."\n";
+		echo 'function customfieldlist_effect_speed() {'."\n";
+		if ( FALSE == isset($customfieldlist_widgets_general_options['effect_speed']) OR FALSE == empty($customfieldlist_widgets_general_options['effect_speed']) ) {
+			echo "	var speed = 'slow';\n";
+		} else {
+			echo "	var speed = '".$customfieldlist_widgets_general_options['effect_speed']."';\n";
+		}
+		echo '	return speed;'."\n";
+		echo '}'."\n";
+		
+		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] ) {
+			echo '// use a absolute URLs instead of relative URLs for the Thickbox icons'."\n";
+			echo "var tb_pathToImage = '".$siteurl."/wp-includes/js/thickbox/loadingAnimation.gif';"."\n";
+			echo "var tb_closeImage = '".$siteurl."/wp-includes/js/thickbox/tb-close.png';"."\n";
+			echo 'function customfieldlistwidget_show_list_in_thickbox(number, this_id) {'."\n";
+			echo "	var tst = '".CUSTOM_FIELD_LIST_WIDGET_URL."/widget_custom_field_list_long_selectbox.php?height=80&width=' + Math.round(screen.width-(screen.width * 0.20)) + '&abspath=".(urlencode(ABSPATH))."&selectboxid=' + this_id + '&_wpnonce=".wp_create_nonce('customfieldlist_long_selectbox_security')."';\n";
+			echo '	tb_show(document.getElementById( String(this_id) ).title, tst, false);'."\n";
+			echo '}'."\n";
+			echo '//]]>'."\n";
+			echo '</script>'."\n";
+		} else {
+			echo 	'//]]>'."\n";
 			echo '</script>'."\n";
 		}
 	}
