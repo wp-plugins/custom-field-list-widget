@@ -44,7 +44,7 @@ global $wpdb; ?>
 						//URLs
 						identifier = ('&link[' + meta_id_values[i].value + ']=');
 						if ( String(id_values[i].value) == 'none' ) {
-							print_link_array += identifier + encodeURI(link_values[i].value);
+							print_link_array += identifier + encodeURIComponent(link_values[i].value);
 						} else {
 							print_link_array += identifier + '';
 						}
@@ -123,6 +123,12 @@ global $wpdb; ?>
 					var title = document.getElementById('customfieldlist_individual_href_title_'+String(index-1)).value
 					document.getElementById('customfieldlist_individual_href_link_description_'+String(group_id)).value = title;
 				}
+			}
+			
+			function customfieldlist_build_search_url(link_id, descr_id, meta_value_id) {
+				var meta_value = decodeURIComponent(document.getElementById( meta_value_id ).value);
+				document.getElementById( link_id ).value = document.getElementById( 'customfieldlist_individual_href_siteurl' ).value + '/?s=' + meta_value.replace(/\s/g, '+' );
+				document.getElementById( descr_id ).value = meta_value;
 			}
 		//]]>
 	</script>
@@ -222,10 +228,12 @@ global $wpdb; ?>
 			echo '<div id="customfieldlist_individual_href_wrap">';
 			$i=0;
 			foreach ($post_titles_and_IDs as $post_title_and_ID) {
-			
-				echo '<input type="hidden" id="customfieldlist_individual_href_title_'.$i.'" value="'.$post_title_and_ID->post_title.'" />';//ID: '.$post_title_and_ID->ID.' - '.$post_title_and_ID->post_title.$is_page_str.'</option>';
+				echo '<input type="hidden" id="customfieldlist_individual_href_title_'.$i.'" value="'.attribute_escape($post_title_and_ID->post_title).'" />';//ID: '.$post_title_and_ID->ID.' - '.$post_title_and_ID->post_title.$is_page_str.'</option>';
 				$i++;
 			}
+			
+			echo '<input type="hidden" id="customfieldlist_individual_href_siteurl" value="'.attribute_escape(get_option('siteurl')).'" />';
+			
 			$selection = FALSE;
 			$i=0;
 			foreach ($meta_unique_values as $meta_id => $meta_value) {
@@ -234,6 +242,7 @@ global $wpdb; ?>
 				echo '<div'.$styleclass.' style="padding:1em;">'.sprintf(__('Link "%1$s" to','customfieldlist'), $meta_value);
 				echo '<div style="margin-top:0.5em;">';
 				echo '<input name="customfieldlist_individual_href_meta_ids[]" type="hidden" value="'.strval($meta_id).'" />';
+				echo '<input id="customfieldlist_individual_href_meta_value_'.$i.'" type="hidden" value="'.rawurlencode($meta_value).'" />';
 				echo __('a post or page','customfieldlist').' <select name="customfieldlist_individual_href_ids[]" id="customfieldlist_individual_href_id_'.$i.'" onchange="customfieldlist_set_the_title('.$i.', this.selectedIndex);">';
 				foreach ($post_titles_and_IDs as $post_title_and_ID) {
 					if ($post_title_and_ID->ID == $opt['individual_href']['id'][$meta_id]) {
@@ -251,11 +260,13 @@ global $wpdb; ?>
 					echo '<option value="none" selected="selected">-</option>';
 				}
 				echo $output;
-				echo '</select></div><div style="margin-top:0.5em;">';
+				echo '</select>';
+				echo ' '.sprintf(__('or to a %1$sblog internal search%2$s for this value','customfieldlist'), '<a href="javascript:void(null);" onclick="javascript: customfieldlist_build_search_url(\'customfieldlist_individual_href_link_'.$i.'\', \'customfieldlist_individual_href_link_description_'.$i.'\', \'customfieldlist_individual_href_meta_value_'.$i.'\');">', '</a>');
+				echo '</div><div style="margin-top:0.5em;">';
 				echo ' '.__('or to this URL:', 'customfieldlist').' ';
-				echo '<input type="text" name="customfieldlist_individual_href_links[]" value="'.attribute_escape(urldecode($opt['individual_href']['link'][$meta_id])).'" maxlength="400" style="width:470px;" />';
+				echo '<input type="text" name="customfieldlist_individual_href_links[]" id="customfieldlist_individual_href_link_'.$i.'" value="'.attribute_escape($opt['individual_href']['link'][$meta_id]).'" maxlength="400" style="width:470px;" />';
 				echo '</div><div style="margin-top:0.5em;">'.__('link description (title)', 'customfieldlist').': ';
-				echo '<input type="text" name="customfieldlist_individual_href_link_descriptions[]" id="customfieldlist_individual_href_link_description_'.$i.'"value="'.attribute_escape($opt['individual_href']['descr'][$meta_id]).'" maxlength="400" style="width:470px;" />';
+				echo '<input type="text" name="customfieldlist_individual_href_link_descriptions[]" id="customfieldlist_individual_href_link_description_'.$i.'" value="'.attribute_escape($opt['individual_href']['descr'][$meta_id]).'" maxlength="400" style="width:470px;" />';
 				echo '</div></div>';
 				$i++;
 			}

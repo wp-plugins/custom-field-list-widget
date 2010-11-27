@@ -159,6 +159,7 @@ To keep your settings download the plugin archive file, unpack him and upload th
 * new option: sort list elements by publication date of the post
 * new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
 * new options: it is also possible to limit the number of characters per list element of the drop down menus
+* Bugfix: the List Type "a list with manually linked values" is working again and while you are setting the links you can click on "blog internal search" to add automatically an URL to the search result page of the blog internal search for the custom field value
 * Bugfix: some error messages has been displayed wrong
 * The widgets options are not longer going to be removed during the deactivation. If you want to remove the plugins options from the db your need to delete it via the WP Dashboard (resp. Site Admin)
 

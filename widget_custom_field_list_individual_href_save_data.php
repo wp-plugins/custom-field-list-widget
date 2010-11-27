@@ -23,11 +23,16 @@ function customfieldlist_save_data($widget_number) {
 	if ( !is_array($opt) ) {
 		$opt = array();
 	}
-	$opt[$widget_number]['individual_href']['id'] = $_POST['id'];
-	$opt[$widget_number]['individual_href']['link'] = $_POST['link'];
-	$opt[$widget_number]['individual_href']['descr'] = $_POST['descr'];
-	$opt[$widget_number]['individual_href']['thecustomfieldname'] = $_POST['thecustomfieldname'];
-	
-	$result = update_option('widget_custom_field_list', $opt);
+	foreach ($_POST['id'] as $key => $id) {
+		$opt[$widget_number]['individual_href']['id'][$key] = strip_tags(trim(strval($id)));
+	}
+	foreach ($_POST['link'] as $key => $link) {
+		$opt[$widget_number]['individual_href']['link'][$key] = clean_url(rawurldecode($link), array('http', 'https', 'ftp'), 'db');
+	}
+	foreach ($_POST['descr'] as $key => $descr) {
+		$opt[$widget_number]['individual_href']['descr'][$key] = strip_tags(trim($descr));
+	}
+	$opt[$widget_number]['individual_href']['thecustomfieldname'] = strip_tags(trim($_POST['thecustomfieldname']));
+	//$result = update_option('widget_custom_field_list', $opt);
 }
 ?>

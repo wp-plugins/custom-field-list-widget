@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 16 debug
+Version: 1.2 beta 17
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -90,7 +90,9 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									customfieldlist_print_widget_content($value, $number, $partlength, $hierarchymaxlevel, $list_format, $list_style, $show_number_of_subelements, $signs, $charset, $group_by_firstchar, $strlimiter, $i, $j, $k);
 								} else {
 									if ('' != $value[0]['post_title']) {
-										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.get_permalink($value[0]['post_id']).'">'.customfieldlist_strlimiter($value[0]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
+										// there will only be a link in the dropdown list if the post_title or the description is not empty
+										// post_guid is here not the GUID value. It is in every case an URL
+										echo "\t".'<option class="customfieldoptionelements_'.$number.'_'.$k.' customfieldlist_opt_link" value="'.$value[0]['post_guid'].'">'.customfieldlist_strlimiter($value[0]['post_title'], $strlimiter['limittype'], $strlimiter['maxlength'], $strlimiter['abbrev'])."</option>\n";
 									}
 								}
 								echo "\t</optgroup>\n";
@@ -116,7 +118,8 @@ function customfieldlist_print_widget_content($n, $number, $partlength, $hierarc
 									echo "\t</li>\n";
 								} else {
 									if ( FALSE === empty($value[0]['post_guid']) ) {
-										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.get_permalink($value[0]['post_id']).'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
+										// post_guid is here not the GUID value. It is in every case an URL
+										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'"><a href="'.$value[0]['post_guid'].'" title="'.attribute_escape($value[0]['post_title'].' - '.$value[0]['post_date']).'">'.$key."</a></li>\n";
 									} else {
 										echo "\t".'<li class="customfieldlistelements_'.$number.'_'.$k.'">'.$key."</li>\n";
 									}
@@ -583,12 +586,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 						}
 
 						if ( $customfieldname_show == $opt['individual_href']['thecustomfieldname'] ) {
-							if ( FALSE == defined('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY') OR (TRUE == defined('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY') AND FALSE === constant('CUSTOM_FIELD_LIST_NO_INDIVIDUALHREF_QUERY')) ) {
-								$meta_values = $wpdb->get_results($querystring);
-							} else {
-								echo "\n <!-- Custom Field List Widget (INDIVIDUALHREF): ".$querystring." --> \n";
-								$meta_values = Array();
-							}
+							$meta_values = $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
 							
 							if ($nr_meta_values > 0) {
@@ -637,7 +635,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 										foreach ( $meta_values_array_zw as $key => $value ) {
 											foreach ( $individual_href_keys as $individual_href_key ) {
 												if ( $individual_href_key === $key ) {
-													$individual_href[$key] = $opt['individual_href']['id'][$key];
+													$individual_href[$key]['id'] = $opt['individual_href']['id'][$key];
+													$individual_href[$key]['link'] = $opt['individual_href']['link'][$key];
+													$individual_href[$key]['descr'] = $opt['individual_href']['descr'][$key];
 												}
 											}
 										}
@@ -646,19 +646,21 @@ function customfieldlist($args=array(), $widget_args=1) {
 									} else {
 										// reverse the sort sequence if the option says so
 										if ( 'desc' === $opt['sortseq'] ) {
-											$individual_href = array_reverse($opt['individual_href']['id'], TRUE);
+											$opt_rev = array_reverse($opt['individual_href']['id'], TRUE);
+											$individual_href = $opt['individual_href'];
 										} else {
-											$individual_href = $opt['individual_href']['id'];
+											$individual_href = $opt['individual_href'];
 										}
 									}
 								} else {
-									$individual_href = $opt['individual_href']['id'];
+									$individual_href = $opt['individual_href'];
 								}
 								
+								// get the data of the posts of this blog if post of this has been linked with the dropdown menu
 								// built WHERE string
-								foreach ($individual_href as $meta_id => $link_target_post_id) {
-									if ('none' !== $link_target_post_id) {
-										$where_ar[] = 'ID = '.$link_target_post_id;
+								foreach ($individual_href['id'] as $key => $post_id) {
+									if ( 'none' !== $individual_href['id'][$key] ) {
+										$where_ar[] = 'ID = '.$post_id;
 									}
 								}
 								
@@ -669,67 +671,63 @@ function customfieldlist($args=array(), $widget_args=1) {
 										default :
 											$opt['sortby'] = 'alphabetically';
 										case 'alphabetically' :
-											$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY ID DESC";
+											$querystring = 'SELECT ID, post_title, post_status, post_date FROM '.$wpdb->posts." WHERE ".$where." ORDER BY ID DESC";
 										break;
 										case 'post_date' :
 											if ( 'desc' == $opt['sortseq'] ) {
-												$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date DESC";
+												$querystring = 'SELECT ID, post_title, post_status, post_date FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date DESC";
 											} else {
-												$querystring = 'SELECT ID, post_title, post_status, post_date, guid FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date ASC";
+												$querystring = 'SELECT ID, post_title, post_status, post_date FROM '.$wpdb->posts." WHERE ".$where." ORDER BY post_date ASC";
 											}
 										break;
 									}
 									$post_status_results =  $wpdb->get_results($querystring);
 									foreach ($post_status_results as $post_status_result) {
-										$post_data[$post_status_result->ID]['post_id']=$post_status_result->ID;
 										$post_data[$post_status_result->ID]['post_title']=$post_status_result->post_title;
 										$post_data[$post_status_result->ID]['post_status']=$post_status_result->post_status;
 										$post_data[$post_status_result->ID]['post_date']=$post_status_result->post_date;
-										$post_data[$post_status_result->ID]['post_guid']=$post_status_result->guid;
 									}
 								}
-
+								
 								switch ($opt['sortby']) {
 									default :
 										$opt['sortby'] = 'alphabetically';
 									case 'alphabetically' :
-										foreach ($individual_href as $meta_id => $link_target_post_id) {
-											$meta_value = $meta_values_array[$meta_id];
-											$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
-											//~ if ('' != $only_public AND 'publish' != $meta_value_post_status[$meta_id]) {
-												//~ $nr_meta_values--;
-											//~ } else {
-												if ('none' == $link_target_post_id) { // if there is no post or page id ...
-													$output_array[$meta_value][0]['post_id'] = '';
-													
-													// ... then look for an URL which was free entered into the text box
-													$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
-													if ('' == $url) {
-														$output_array[$meta_value][0]['post_guid'] = '';
-														$output_array[$meta_value][0]['post_title'] = '';
-													} else {
-														$output_array[$meta_value][0]['post_guid'] = $url;
-														$output_array[$meta_value][0]['post_title'] = $descr;
-													}
-													$output_array[$meta_value][0]['post_date'] = '';
-												} elseif ( '' != $only_public AND 'publish' != $post_data[$link_target_post_id]['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
+										foreach ($individual_href['id'] as $key => $post_id) {
+											$meta_value = $meta_values_array[$key];
+											$descr = htmlspecialchars($individual_href['descr'][$key], ENT_COMPAT, $charset);
+											if ('none' == $post_id) { // if there is no post or page id ...
+												$output_array[$meta_value][0]['post_id'] = '';
+												
+												// ... then look for an URL which was free entered into the text box
+												$url = trim($individual_href['link'][$key]);
+												if ( FALSE == empty($url) ) {
+													$output_array[$meta_value][0]['post_guid'] = $url;
+													$output_array[$meta_value][0]['post_title'] = $descr;
+												} else {
+													$output_array[$meta_value][0]['post_guid'] = '';
+													$output_array[$meta_value][0]['post_title'] = '';
+												}
+												$output_array[$meta_value][0]['post_date'] = '';
+											} else {
+												if ( '' != $only_public AND 'publish' != $post_data[$post_id]['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
 													$output_array[$meta_value][0]['post_id'] = '';
 													$output_array[$meta_value][0]['post_guid'] = '';
 													$output_array[$meta_value][0]['post_title'] = '';
 													$output_array[$meta_value][0]['post_date'] = '';
 												} else {
-													$output_array[$meta_value][0]['post_id'] = $post_data[$link_target_post_id]['post_id'];
-													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href[$meta_id]));
+													$output_array[$meta_value][0]['post_id'] = $post_id;
+													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($post_id));
 													$output_array[$meta_value][0]['post_title'] = $descr;
-													$output_array[$meta_value][0]['post_date'] = $post_data[$link_target_post_id]['post_date'];
+													$output_array[$meta_value][0]['post_date'] = $post_data[$post_id]['post_date'];
 												}
-											//~ }
+											}
 										}
 									break;
 									case 'post_date' :
 										// build output for the list elements which have a link to a local post
 										foreach ($post_data as $post_dat) {
-											$meta_id = array_search($post_dat['post_id'], $individual_href);
+											$meta_id = array_search($post_dat['post_id'], $individual_href['id']);
 											if (FALSE !== $meta_id) {
 												if ( '' != $only_public AND 'publish' != $post_dat['post_status'] ) { // if there is a post_id check if the post is published and if the user is logged in
 													$output_array[$meta_value][0]['post_id'] = '';
@@ -737,29 +735,29 @@ function customfieldlist($args=array(), $widget_args=1) {
 													$output_array[$meta_value][0]['post_title'] = '';
 													$output_array[$meta_value][0]['post_date'] = '';
 												} else {
-													$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
+													$descr = htmlspecialchars($individual_href['descr'][$meta_id], ENT_COMPAT, $charset);
 													$meta_value = $meta_values_array[$meta_id];
 													$output_array[$meta_value][0]['post_id'] = $post_dat['post_id'];
-													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href[$meta_id]));
+													$output_array[$meta_value][0]['post_guid'] = get_permalink(intval($individual_href['id'][$meta_id]));
 													$output_array[$meta_value][0]['post_title'] = $descr;
 													$output_array[$meta_value][0]['post_date'] = $post_dat['post_date'];
 												}
 											}
 										}
 										// build output for the list elements which have a link to remote web site no link
-										foreach ($individual_href as $meta_id => $link_target_post_id) {
-											$meta_value = $meta_values_array[$meta_id];
-											$descr = htmlspecialchars($opt['individual_href']['descr'][$meta_id], ENT_COMPAT, $charset);
-											if ('none' == $link_target_post_id) { // if there is no post or page id ...
+										foreach ($individual_href['id'] as $key => $post_id) {
+											$meta_value = $meta_values_array[$key];
+											$descr = htmlspecialchars($individual_href['descr'][$key], ENT_COMPAT, $charset);
+											if ('none' == $post_id) { // if there is no post or page id ...
 												$output_array[$meta_value][0]['post_id'] = '';
 												// ... then look for an URL which was free entered into the text box
-												$url = trim(urldecode($opt['individual_href']['link'][$meta_id]));
-												if ('' == $url) {
-													$output_array[$meta_value][0]['post_guid'] = '';
-													$output_array[$meta_value][0]['post_title'] = '';
-												} else {
+												$url = trim($individual_href['link'][$key]);
+												if ( FALSE == empty($url) ) {
 													$output_array[$meta_value][0]['post_guid'] = $url;
 													$output_array[$meta_value][0]['post_title'] = $descr;
+												} else {
+													$output_array[$meta_value][0]['post_guid'] = '';
+													$output_array[$meta_value][0]['post_title'] = '';
 												}
 												$output_array[$meta_value][0]['post_date'] = '';
 											}
@@ -1829,7 +1827,7 @@ function customfieldlist_widget_script() {
 		}
 		
 		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] AND TRUE == defined('CUSTOM_FIELD_LIST_LOAD_THICKBOX') AND TRUE === constant('CUSTOM_FIELD_LIST_LOAD_THICKBOX') ) {
-			wp_enqueue_script( 'thickbox' );
+			wp_enqueue_script( 'thickbox' ); // that loads jQuery automatically
 		} else {
 			// load the jQuery library of WP and the scripts which are responsible for the effects
 			wp_enqueue_script( 'jquery' );
@@ -1845,11 +1843,6 @@ function customfieldlist_widget_script() {
 		// get the plus/minus sign or it's alternative for the jQuery functions which change the behaviour and the appearance of the sidebar widgets
 		echo "\n".'<script type="text/javascript">'."\n";
 		echo '//<![CDATA['."\n";
-			//~ echo '/* '."\n";
-			//~ echo 'PHP version: ' . PHP_VERSION."\n";
-			//~ echo 'custom field list widget general settings: '."\n";
-			//~ var_dump($customfieldlist_widgets_general_options);
-			//~ echo '*/'."\n";
 		$charset = get_bloginfo('charset');
 		echo 'function customfieldlist_the_collapse_sign() {'."\n";
 		echo '	var signs = new Object();'."\n";

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-16 12:12+0100\n"
-"PO-Revision-Date: 2010-10-16 12:12+0100\n"
+"POT-Creation-Date: 2010-11-27 11:58+0100\n"
+"PO-Revision-Date: 2010-11-27 11:58+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Kakesh Kumar\n"
 "MIME-Version: 1.0\n"
@@ -19,423 +19,423 @@ msgstr ""
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:472
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1249
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1784
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1785
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1789
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1790
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:475
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1257
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1792
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1793
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1797
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1798
 msgid "Custom Field List"
 msgstr "कस्टम फील्ड लिस्ट"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:98
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:131
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:157
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:172
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:186
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:216
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:100
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:134
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:160
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:175
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:189
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:219
 msgid "Internal Plugin Error: value is no array"
 msgstr "आंतरिक प्लगइन त्रुटि : ऐरे में कोई आंकड़ा नहीं है। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:502
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1711
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:505
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1719
 msgid "Select:"
 msgstr "चुनें:"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:778
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:270
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:785
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:281
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "आपने कस्टम फील्ड \"%1$s\" को चुना है लेकिन इससे संबंधित कोई भी जानकारी डाटाबेस में नहीं है। कोई दूसरा फील्ड चुनें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:782
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:789
 msgid "no value"
 msgstr "इस फील्ड में कोई वैल्यू नहीं है "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:786
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:793
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr "आपके द्वारा चुना गये कस्टम फील्ड का नाम \"%1$s\" है और जो कस्टम फील्ड आपने सहेजा है \"%2$s\" वे दोनों अलग अलग हैं। कृपया पहले चुने हुए कस्टम फील्ड की वैल्यूज जांच लें।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:800
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1802
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2302
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:807
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1810
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2331
 msgid "Hide"
 msgstr "छिपायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:800
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1802
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2302
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:807
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1810
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2331
 msgid "Show"
 msgstr "दिखायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:978
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:985
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "कस्टम फील्ड का नाम जो विजेट में चुना गया है उसके लिये कोई आंकड़ा उपलब्ध नहीं है।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:983
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:273
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:990
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:284
 msgid "Please, define a custom field name!"
 msgstr "कृपया, कस्टम फील्ड परिभाषित करें!"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:986
-msgid "Unable to retrieve the data of the customfield list widget from the db."
-msgstr "कस्टम फील्ड लिस्ट विजेट के लिये डाटबेस में कोई आंकड़ा नहीं है।"
-
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:998
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1003
 msgid "part"
 msgstr "अन्य भाग"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1256
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1050
+msgid "Unable to retrieve the data of the customfield list widget from the db."
+msgstr "कस्टम फील्ड लिस्ट विजेट के लिये डाटबेस में कोई आंकड़ा नहीं है।"
+
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1264
 msgid "Header (optional)"
 msgstr "शीर्षक (वैकल्पिक) "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1256
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1264
 msgid "Leave the field empty for no widget title"
 msgstr "यदि आप कोई शीर्षक नहीं रखना चाहते हैं, तो यहाँ पर कुछ ना भरें, यानि इस फील्ड को खाली रखें।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1260
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1268
 msgid "Custom Field Names"
 msgstr "कस्टम फील्ड का नाम"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1299
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1451
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1307
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1459
 msgid "custom field names"
 msgstr "कस्टम फील्ड के नाम"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1302
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1310
 msgid "sort by"
 msgstr "क्रमबद्ध करें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1305
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1313
 msgid "hide this"
 msgstr "इसे छिपायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1389
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr "यदि आप अनेक उपखंडो (हायरकी) से बनी लिस्ट बनाना चाहते है तो सभी कस्टम फील्ड के नाम एक के बाद एक भरें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1421
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1429
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr "आप एक से अधिक कस्टम फील्ड का उपयोग कर रहे हैं लेकिन ये फील्ड सभी पृष्ठों/लेखों में समान रूप से शामिल नहीं हैं। <br /> साइडबार में यह कुछ इस तरह से दिखेंगे। <br /> यह सूची यह बताती है कि कौन सा कस्टम फील्ड कब उपयोग में लिया गया है। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1452
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 msgid "post IDs"
 msgstr "पोस्ट की आई.डी. "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1493
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1501
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
 msgid "group the values by the first character"
 msgstr "अंतिम शब्द से क्रमबद्ध करें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1494
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
 #, php-format
 msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
 msgstr "कस्टम फील्ड वैल्य़ू को पहले अक्षर से क्रमबद्ध करें। यदि आपके पास बहुत से विकल्प हैं लेकिन आप  \"%1$s\"  साइडबार में उपयोग नहीं करना चाहते हैं। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1494
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1677
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1685
 msgid "show only a part of the list elements at once"
 msgstr "लिस्ट का केवल एक भाग ही दिखायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1514
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1522
 msgid "Sorting Options"
 msgstr "क्रमबद्ध करने के तरीके"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1525
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1533
 msgid "sort criterion"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1526
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1534
 #, fuzzy
 msgid "custom field values (alphabetically)"
 msgstr "वर्णानुसार क्रमबद्ध करें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1527
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1535
 #, fuzzy
 msgid "post date"
 msgstr "कोई लेख या पृष्ठ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1528
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1536
 msgid "A core function of this plugin is to link custom field values to posts. By using this option the custom field values will be arranged by the date of the posts they are linked to."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1539
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1547
 msgid "sort sequence"
 msgstr "इस क्रम में लगायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1540
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1548
 msgid "ascending (ASC)"
 msgstr "आरोही (असेंडिंग)"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1541
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1549
 msgid "descending (DESC)"
 msgstr "अवरोही (डिसेंडिंग)"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1543
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1551
 msgid "further sorting options"
 msgstr "क्रमबद्ध करने के तरीके"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1546
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1554
 msgid "database collation"
 msgstr "डाटाबेस कोलेशन"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1554
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1562
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr "संभवत: यह विकल्प काम नहीं करेगा, क्योक़ि इस सर्वर पर \"setlocale(LC_COLLATE, ... \" को सैट करना संभव नहीं है। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1561
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1569
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr "इस सर्वर का ऑपरेटिंग सिस्टम विन्डोज है, जिस पर UTF-8 के द्वारा क्रमबद्ध करना संभव नहीं है, इसलिये आवश्यक है कि आप : "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1562
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1570
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr "1. अपनी <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">भाषा</a> और <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">देश का </a> नाम डालें और <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">अपने कोड का नाम लिखेंr</a> "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1563
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1571
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr "2. जिस कोड पेज को पी एच पी दिखा सकती हो वही कोड पेज डालें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1577
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1585
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr "यह विकल्प संभवतया काम नहीं करेगा क्योंकि सर्वर का ऑपरेटिंग सिस्टम विंडोज है जिसमें फंक्शन mb_convert_encoding उपलब्ध नहीं है।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1593
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1595
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1603
 msgid "sort the values by the last word"
 msgstr "अंतिम शब्द से क्रमबद्ध करें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1609
 #, fuzzy
 msgid "sort sub list elements alphabetically"
 msgstr "वर्णानुसार क्रमबद्ध करें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1602
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1610
 #, fuzzy
 msgid "Arrange the sub list elements (which are e.g. post titles) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)"
 msgstr "अपने लेखों को शीर्षक के वर्णानुसार क्रमबद्ध करें, यदि आप इसे नहीं चुनते हैं तो आपके लेख दिनाँक के आधार पर क्रमबद्ध होंगे।   "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1610
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1618
 msgid "List Types"
 msgstr "लिस्ट का प्रकार"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1612
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1645
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1663
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1620
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1653
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1671
 msgid "standard layout"
 msgstr "स्टैंडर्ड ले-आउट "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1613
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1621
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr "जिन खंड समूहों में उप खंड है उन खंड समूहों के सामने + का चिन्ह होगा, जहाँ केवल एक ही खंड है वहाँ कड़ी एक लेख की ओर इंगित करेगी। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1617
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1625
 msgid "a list with manually linked values"
 msgstr "खुद सैट की गई कडियों की लिस्ट"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1618
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1626
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr "सभी कस्टम फील्ड की "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1620
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1621
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1628
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1629
 #, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr "कस्टम फील्ड %1$s के लिये सभी आंकड़े दें। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1620
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1628
 msgid "Set the links"
 msgstr "कड़ी सैट करें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1637
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1645
 msgid "List Appearance"
 msgstr "लिस्ट का प्रदर्शन"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1644
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1652
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
 msgid "each element with sub elements"
 msgstr "प्रत्येक कड़ी अपनी उप कडियों के साथ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1645
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1653
 #, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr "प्रत्येक कस्टम फील्ड को एक खंड के रूप में और फील्ड की वैल्यूज को उसके उपखंड के रूप में दिखायें। सभी उपखंड किसी ना किसी पृष्ठ से हायपर लिंक्ड होंगे। \"%1$s\" के साथ ही उपलब्ध।   "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1651
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1655
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1659
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1663
 msgid "simple list"
 msgstr "साधारण क्रम में "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1652
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1660
 msgid "Show the list elements in a simple list with bullets."
 msgstr "लिस्ट को बुलेट पॉइंट के साथ दिखायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1662
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1670
 msgid "show the number of sub elements"
 msgstr "प्रत्येक कड़ी अपनी उप कडियों के साथ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1663
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1671
 #, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr "प्रत्येक कस्टम फील्ड को एक खंड के रूप में और फील्ड की वैल्यूज को उसके उपखंड के रूप में दिखायें। सभी उपखंड किसी ना किसी पृष्ठ से हायपर लिंक्ड होंगे। \"%1$s\" के साथ ही उपलब्ध।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1666
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1674
 msgid "partitioned list"
 msgstr "विभक्त कड़ियाँ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1680
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1688
 msgid "elements per part of the list"
 msgstr "प्रत्येक भाग में कडियों की संख्या"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1683
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1691
 msgid "pagination type"
 msgstr "आप किस प्रकार पृष्ठ अलग करना चाहते हैं"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1683
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1691
 msgid "use the"
 msgstr "यहाँ से चुनें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1686
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1694
 msgid "numbers"
 msgstr "क्रमिक संख्याऐं"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1687
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1695
 msgid "first letter"
 msgstr "पहला अक्षर"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1688
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1701
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1696
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
 msgid "first two letters"
 msgstr "पहले दो अक्षर"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1689
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1697
 msgid "first three letters"
 msgstr "पहले तीन अक्षर"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1690
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1698
 msgid "first word"
 msgstr "पहला शब्द"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1691
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1699
 msgid "last word"
 msgstr "अंतिम शब्द"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1701
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr "अनेक खंडो वाली कडियों के विभिन्न भाग दिखाने के लिये आप नम्बर या कड़ी के कुछ शब्दों को चुन सकते हैं। यदि आप कड़ी के शब्दों को चुन रहे हैं तो किसी भी खंड के पहले या अंतिम कड़ी में से शब्द चुना जायेगा। जैसे [अ-क]  \"%1$s\") । "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1706
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1736
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1714
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1744
 msgid "drop down menu"
 msgstr "नीचे खुलने वाले मीनू "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1707
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1715
 msgid "Show the list elements as a drop down menu."
 msgstr "लिस्ट का केवल एक भाग ही दिखायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
 #, php-format
 msgid "It might be expedient to use the option \"%1$s\" or \"%2$s\" in combination with \"%3$s\"."
 msgstr "संभवत: \"%1$s\" or \"%2$s\" को \"%3$s\" के साथ प्रयोग करना ज्यादा बेहतर रहेगा।"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1737
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1745
 msgid "Show the drop down menu in a full screen box:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1738
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1746
 msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1740
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1748
 #, fuzzy
 msgid "Limit the length of the list elements:"
 msgstr "उपखंड दिखाने/छिपाने के लिये चिन्ह"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1741
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1749
 msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.<br />Zero means: do not limit the number of characters."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
 msgid "Shorten the strings at the end or in the middle:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
 msgid "end"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
 #, fuzzy
 msgid "middle"
 msgstr "छिपायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1744
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1752
 msgid "For instance: The long title is \"Star Wars - The Return of the Jedi\" and the max. number of chararcter is 20. \"end\" produces: \"Star Wars - The ... \" and \"middle\" produces: \"Star Wars ... of the Jedi\"."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1746
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1754
 msgid "What should be the default value of the drop down menu?:"
 msgstr "ड्रॉप डाउन मेनू की डिफॉल्ट वैल्यू क्या होगी? "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1749
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1757
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr "इस विजेट की सैटिग्स <a href=\"%1$s\">इसके सैंटिंग पेज से सैट करें</a>"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1763
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1771
 msgid "Displays a list of custom field values of a set key"
 msgstr "किसी निर्दिष्ट फील्ड के कस्टम फील्ड की सूची प्रदर्शित करें "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1952
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1981
 msgid "Unsaved changes"
 msgstr "ना सहेजे गये परिवर्तन"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1956
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1985
 msgid "Not available with these widget preferences."
 msgstr "इस विजेट के साथ उपलब्ध नहीं"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2306
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2335
 msgid "slow"
 msgstr "धीमी गति"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2307
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2336
 msgid "normal"
 msgstr "सामान्य गति"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2308
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2337
 msgid "fast"
 msgstr "तेज गति"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2327
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2356
 msgid "Changes saved"
 msgstr "परिवर्तन सहेजे गये"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2334
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2363
 msgid "Custom Field List Widget - settings"
 msgstr "कस्टम फील्ड लिस्ट"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2340
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2369
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr "उपखंड दिखाने/छिपाने के लिये चिन्ह"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2351
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2380
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr "यदि किसी खंड के उपखंड हैं तो उपखंड दिखाने या छिपाने के चिन्ह यहाँ से चुनें।  "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2356
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2385
 msgid "effect speed"
 msgstr "दिखाने/छिपाने की गति"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2367
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2396
 msgid "How fast should the list elements show up or hide?"
 msgstr "लिस्ट का केवल एक भाग ही दिखायें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2376
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2405
 msgid "Save Changes"
 msgstr "ना सहेजे गये परिवर्तन"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2386
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2415
 msgid "Custom Field List Widgets"
 msgstr "कस्टम फील्ड लिस्ट"
 
@@ -494,33 +494,38 @@ msgstr "रेक्वेस्ट में कोई समस्या ह�
 msgid "http_request.status:"
 msgstr "एच टी टी पी रिक्वेस्ट की ताजा स्थिति "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:216
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:222
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."
 msgstr "आप अपने साइट के पृष्ठों/लेखों के साथ या फिर किसी अन्य पतों के लिये कड़ी बना सकते हैं। यदि आप कोई पृष्ठ/लेख का शीर्षक देते हैं तो वह यह उस पृष्ठ से जुड़ जायेगा ना कि आपके द्वारा दी गयी कड़ी से।  <br /> कृपया पते से पहले  http:// या https:// या ftp:// आदि का प्रयोग अवश्य करें। आप कड़ी का विवरण भी डाल सकते हैं जो आपके माउस कर्सर को कड़ी के ऊपर ले जाने पर दिखेगा। "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:219
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:266
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:225
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:277
 msgid "Save"
 msgstr "सहेजें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:234
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:242
 #, php-format
 msgid "Link \"%1$s\" to"
 msgstr "\"%1$s\" से जोड़ें"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:237
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:246
 msgid "a post or page"
 msgstr "कोई लेख या पृष्ठ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:245
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:254
 msgid "page"
 msgstr "पृष्ठ"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:255
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:264
+#, php-format
+msgid "or to a %1$sblog internal search%2$s for this value"
+msgstr ""
+
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:266
 msgid "or to this URL:"
 msgstr "या फिर इस कड़ी पर: "
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:257
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:268
 msgid "link description (title)"
 msgstr "कड़ी का विवरण (शीर्षक)"
 
@@ -536,6 +541,10 @@ msgstr "अपनी कडियां स्वयं सैट करें"
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href_advice.php:24
 msgid "Please, save the custom field names first."
 msgstr "कृपया, पहले कस्टम फील्ड परिभाषित करें!"
+
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_long_selectbox.php:35
+msgid "Close"
+msgstr ""
 
 #, fuzzy
 #~ msgid "alphabetically"
