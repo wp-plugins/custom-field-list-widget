@@ -33,6 +33,6 @@ function customfieldlist_save_data($widget_number) {
 		$opt[$widget_number]['individual_href']['descr'][$key] = strip_tags(trim($descr));
 	}
 	$opt[$widget_number]['individual_href']['thecustomfieldname'] = strip_tags(trim($_POST['thecustomfieldname']));
-	//$result = update_option('widget_custom_field_list', $opt);
+	$result = update_option('widget_custom_field_list', $opt);
 }
 ?>
