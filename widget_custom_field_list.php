@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 19
+Version: 1.2 beta 20
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -622,7 +622,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 											// build the charset name and setlocale on Linux (or other) machines 
 											$loc = setlocale(LC_COLLATE, WPLANG.'.'.DB_CHARSET);
 										}
-									
+								
 										// sort the meta_values
 										if ( 'desc' === $opt['sortseq'] ) {
 											arsort($meta_values_array_zw, SORT_LOCALE_STRING);
@@ -635,12 +635,13 @@ function customfieldlist($args=array(), $widget_args=1) {
 										foreach ( $meta_values_array_zw as $key => $value ) {
 											foreach ( $individual_href_keys as $individual_href_key ) {
 												if ( $individual_href_key === $key ) {
-													$individual_href[$key]['id'] = $opt['individual_href']['id'][$key];
-													$individual_href[$key]['link'] = $opt['individual_href']['link'][$key];
-													$individual_href[$key]['descr'] = $opt['individual_href']['descr'][$key];
+													$individual_href['id'][$key] = $opt['individual_href']['id'][$key];
+													$individual_href['link'][$key] = $opt['individual_href']['link'][$key];
+													$individual_href['descr'][$key] = $opt['individual_href']['descr'][$key];
 												}
 											}
 										}
+										
 										// turn the locale back
 										$loc=setlocale(LC_COLLATE, $old_locale);
 									} else {
@@ -1826,7 +1827,7 @@ function customfieldlist_widget_script() {
 			$siteurl = '..';
 		}
 		
-		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] AND TRUE == defined('CUSTOM_FIELD_LIST_LOAD_THICKBOX') AND TRUE === constant('CUSTOM_FIELD_LIST_LOAD_THICKBOX') ) {
+		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) ) {
 			wp_enqueue_script( 'thickbox' ); // that loads jQuery automatically
 		} else {
 			// load the jQuery library of WP and the scripts which are responsible for the effects
