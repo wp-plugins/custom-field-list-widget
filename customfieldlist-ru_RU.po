@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 11:59+0100\n"
-"PO-Revision-Date: 2010-11-27 11:59+0100\n"
+"POT-Creation-Date: 2010-11-27 12:33+0100\n"
+"PO-Revision-Date: 2010-11-27 12:33+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Fat Cow <zhr@tut.by>\n"
 "MIME-Version: 1.0\n"
@@ -506,6 +506,11 @@ msgstr "При запросе возникла проблема. (Вероятн
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr ""
+
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:131
+#, fuzzy
+msgid "posts about:"
+msgstr "пост или страница"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:222
 #, fuzzy

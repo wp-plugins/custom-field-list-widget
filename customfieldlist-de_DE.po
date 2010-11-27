@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 11:55+0100\n"
-"PO-Revision-Date: 2010-11-27 11:57+0100\n"
+"POT-Creation-Date: 2010-11-27 12:32+0100\n"
+"PO-Revision-Date: 2010-11-27 12:33+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "MIME-Version: 1.0\n"
@@ -487,6 +487,10 @@ msgstr "Es gab ein Problem mit der Anfrage. (Wahrscheinlich keine Daten gespeich
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:112
 msgid "http_request.status:"
 msgstr ""
+
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:131
+msgid "posts about:"
+msgstr "Beitr&auml:ge &uuml;ber:"
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:222
 msgid "You can specify links to published posts or pages of your blog or enter different adresses. If you choose a post or a page title then the custom field value will be linked to that post or page and not to a manually set link.<br />Please, write the URLs with a http:// (or https://, ftp://, etc.) in front of the address.<br />You can also enter link descriptions which appear while you hold the mouse cursor over the links."

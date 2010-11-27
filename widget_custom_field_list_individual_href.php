@@ -128,7 +128,7 @@ global $wpdb; ?>
 			function customfieldlist_build_search_url(link_id, descr_id, meta_value_id) {
 				var meta_value = decodeURIComponent(document.getElementById( meta_value_id ).value);
 				document.getElementById( link_id ).value = document.getElementById( 'customfieldlist_individual_href_siteurl' ).value + '/?s=' + meta_value.replace(/\s/g, '+' );
-				document.getElementById( descr_id ).value = meta_value;
+				document.getElementById( descr_id ).value = '<?php echo js_escape(__('posts about:', 'customfieldlist')); ?> ' + meta_value;
 			}
 		//]]>
 	</script>
