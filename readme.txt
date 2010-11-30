@@ -140,14 +140,6 @@ Since v1.0 all click-able drop down menu elements have the class "customfieldlis
 The speed of the show/hide effects and the hide/show characters are changeable via the settings page of the plugin. The settings on this page are for all the widgets of this plugin.
 
 
-== Upgrade Notice ==
-
-ATTENTION: The options of the plugin in the options table of your weblog database are going to be removed automatically during the plugin deactivation.
-This is important because the old plugin version will be deactivated during the automatic upgrade process!
-
-To keep your settings download the plugin archive file, unpack him and upload the plugin files to the plugin folder manually.
-
-
 == Deinstallation ==
 
 1. Deactivate the plugin.

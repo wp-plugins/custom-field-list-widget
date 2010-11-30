@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Field List Widget v1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 12:33+0100\n"
-"PO-Revision-Date: 2010-11-27 12:33+0100\n"
+"POT-Creation-Date: 2010-11-30 15:05+0100\n"
+"PO-Revision-Date: 2010-11-30 15:05+0100\n"
 "Last-Translator: Tim Berger <timberge@cs.tu-berlin.de>\n"
 "Language-Team: Peter Kirring\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:29
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/custom_field_list_k2_widget.php:30
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:475
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1257
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1258
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1791
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1792
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1793
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1796
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1797
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1798
 msgid "Custom Field List"
 msgstr ""
 
@@ -38,186 +38,186 @@ msgid "Internal Plugin Error: value is no array"
 msgstr ""
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:505
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1719
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1718
 msgid "Select:"
 msgstr "Vælg:"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:785
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:786
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:281
 #, php-format
 msgid "There are no values in connection to the custom field name \"%1$s\" in the data base."
 msgstr "Der er ingen værdier knyttet til egne felter (custom field name) \"%1$s\" i databasen"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:789
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:790
 msgid "no value"
 msgstr "ingen værdier"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:793
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:794
 #, php-format
 msgid "The actual custom field name \"%1$s\" and the custom field name \"%2$s\" for which the link references are saved are different. Please save the links for the values of the actual custom field name."
 msgstr "Det faktiske 'Egne felter' navn (custom field name) \"%1$s\" og 'Egne felter' (custom field name) \"%2$s\" som linket referer til, er gemt forskelligt. Gem henvisningerne til værdierne til de faktiske 'Egne felter' (custom field name)."
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:807
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1810
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2331
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:808
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1809
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2330
 msgid "Hide"
 msgstr "Skjul"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:807
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1810
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2331
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:808
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1809
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2330
 msgid "Show"
 msgstr "Vis"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:985
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:986
 msgid "There are no values which are related to the custom field names which are set on the widgets page."
 msgstr "Der er ingen værdier knyttet til 'Egne felter' (custom field name) som er indstillet på widgets' siden"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:990
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:991
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list_individual_href.php:284
 msgid "Please, define a custom field name!"
 msgstr "Definer venligst et 'Egne felter' navn"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1003
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1004
 msgid "part"
 msgstr "afsnit"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1050
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1051
 msgid "Unable to retrieve the data of the customfield list widget from the db."
 msgstr "Kunne ikke hente data fra 'Egne felter' fra databasen"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1264
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1265
 msgid "Header (optional)"
 msgstr "Overskrift (valgfri)"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1264
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1265
 msgid "Leave the field empty for no widget title"
 msgstr "Tomt felt medfører ingen widget titel"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1268
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1269
 msgid "Custom Field Names"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1307
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1459
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1308
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
 msgid "custom field names"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1310
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1311
 msgid "sort by"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1313
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1314
 msgid "hide this"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1397
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1398
 msgid "If you want to create a list with several hierarchy levels then fill the custom field name fields one by one."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1429
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1430
 msgid "You are using more than one custom field name. But these custom field names are not used in the same amount of posts or in the same amount per posts.<br />It is most likely that the appearance of the list in the side bar is as intended.<br />The table gives an overview which and how often a custom field is used:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1460
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1461
 msgid "post IDs"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1501
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1716
 msgid "group the values by the first character"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1503
 #, php-format
 msgid "Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option \"%1$s\" to keep the list in the sidebar short.)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1502
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1685
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1503
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1684
 msgid "show only a part of the list elements at once"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1522
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1523
 msgid "Sorting Options"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1533
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1534
 msgid "sort criterion"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1534
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1535
 msgid "custom field values (alphabetically)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1535
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1536
 msgid "post date"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1536
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1537
 msgid "A core function of this plugin is to link custom field values to posts. By using this option the custom field values will be arranged by the date of the posts they are linked to."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1547
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1548
 msgid "sort sequence"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1548
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1549
 msgid "ascending (ASC)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1549
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1550
 msgid "descending (DESC)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1551
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1552
 msgid "further sorting options"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1554
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1555
 msgid "database collation"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1562
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1563
 msgid "This option will probably not work. Because it is not possible to set \"setlocale(LC_COLLATE, ... \" on this server."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1569
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1570
 msgid "The servers OS is Windows (which is not able to sort UTF-8) what makes it probably necessary for the correct functioning of this option to:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1570
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1571
 msgid "1. enter your <a href=\"http://msdn.microsoft.com/en-gb/library/39cwe7zf.aspx\" target=\"_blank\">language</a> and <a href=\"http://msdn.microsoft.com/en-gb/library/cdax410z.aspx\" target=\"_blank\">country</a> name and eventually the <a href=\"http://en.wikipedia.org/wiki/Windows_code_pages\" target=\"_blank\">code page number</a> (like german_germany or german_germany.1252 for German)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1571
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1572
 msgid "2. select the (same) code page in the form PHP can handle (e.g. Windows-1252 for German)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1585
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1586
 msgid "This option will probably not work on this server because this plugin converts the encoding of the meta values to the encoding of the OS (Windows) with the function mb_convert_encoding but this function is not available."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1601
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1603
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1602
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1604
 msgid "sort the values by the last word"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1609
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1610
 msgid "sort sub list elements alphabetically"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1610
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1611
 msgid "Arrange the sub list elements (which are e.g. post titles) in alphabetical order (By default (box is unchecked) the post titles are arranged by date.)"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1618
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1619
 msgid "List Types"
 msgstr ""
 
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1620
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1653
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1671
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1652
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1670
 msgid "standard layout"
 msgstr ""
 
@@ -225,213 +225,213 @@ msgstr ""
 msgid "Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1625
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1624
 msgid "a list with manually linked values"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1626
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1625
 msgid "A simple list of all unique custom field values of one custom field name. Each value can be linked individually."
 msgstr ""
 
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1627
 #: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1628
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1629
 #, php-format
 msgid "Set a Link for each custom field value of the custom field: %1$s"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1628
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1627
 msgid "Set the links"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1645
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1644
 msgid "List Appearance"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1652
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1651
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1716
 msgid "each element with sub elements"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1653
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1652
 #, php-format
 msgid "Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type \"%1$s\")"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1659
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1663
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1658
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1662
 msgid "simple list"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1660
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1659
 msgid "Show the list elements in a simple list with bullets."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1670
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1669
 msgid "show the number of sub elements"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1671
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1670
 #, php-format
 msgid "Shows after each list element with at least one sub element the number of sub elements. (Only available in combination with list type \"%1$s\")"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1674
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1673
 msgid "partitioned list"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1688
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1687
 msgid "elements per part of the list"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1691
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1690
 msgid "pagination type"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1691
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1690
 msgid "use the"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1694
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1693
 msgid "numbers"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1695
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1694
 msgid "first letter"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1696
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1695
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1708
 msgid "first two letters"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1697
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1696
 msgid "first three letters"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1698
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1697
 msgid "first word"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1699
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1698
 msgid "last word"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1709
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1708
 #, php-format
 msgid "You can choose if the pagination of the list parts should be consecutive numbers or strings taken from the main list elements. If you choose a strings as pagination type then the list part names will consist of parts from the first and the last main list element of a list part (if they are different.) like e.g. [Am - Be] (with type \"%1$s\")."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1714
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1744
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1713
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1716
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1743
 msgid "drop down menu"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1715
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1714
 msgid "Show the list elements as a drop down menu."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1717
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1716
 #, php-format
 msgid "It might be expedient to use the option \"%1$s\" or \"%2$s\" in combination with \"%3$s\"."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1745
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1744
 msgid "Show the drop down menu in a full screen box:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1746
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1745
 msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1748
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1747
 msgid "Limit the length of the list elements:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1749
-msgid "If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.<br />Zero means: do not limit the number of characters."
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1748
+msgid "It is the maximal number of characters per list item. Zero means: do not limit the number of characters.<br />If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1750
 msgid "Shorten the strings at the end or in the middle:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1750
 msgid "end"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1750
 #, fuzzy
 msgid "middle"
 msgstr "Skjul"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1752
-msgid "For instance: The long title is \"Star Wars - The Return of the Jedi\" and the max. number of chararcter is 20. \"end\" produces: \"Star Wars - The ... \" and \"middle\" produces: \"Star Wars ... of the Jedi\"."
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1751
+msgid "For instance: The long title is \"Star Wars - The Return of the Jedi\" and the max. number of chararcters is 20. \"end\" produces: \"Star Wars - The ... \" and \"middle\" produces: \"Star Wars ... of the Jedi\"."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1754
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1753
 msgid "What should be the default value of the drop down menu?:"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1757
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1756
 #, php-format
 msgid "settings for all widgets can be changed at the <a href=\"%1$s\">Custom Field List Widget settings page</a>"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1771
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1770
 msgid "Displays a list of custom field values of a set key"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1981
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1980
 msgid "Unsaved changes"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1985
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:1984
 msgid "Not available with these widget preferences."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2335
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2334
 msgid "slow"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2336
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2335
 msgid "normal"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2337
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2336
 msgid "fast"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2356
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2355
 msgid "Changes saved"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2363
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2362
 #, fuzzy
 msgid "Custom Field List Widget - settings"
 msgstr "Einstellungsseite dieses Widgets"
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2369
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2368
 msgid "symbols to deflate/inflate the sub list elements"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2380
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2379
 msgid "If a list element has sub elements then there will be a symbol which lets the users expand or collapse the list of the sub elements."
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2385
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2384
 msgid "effect speed"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2396
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2395
 msgid "How fast should the list elements show up or hide?"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2405
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2404
 msgid "Save Changes"
 msgstr ""
 
-#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2415
+#: H:\xampp\htdocs\wp30mu\wp-content\plugins\custom-field-list-widget/widget_custom_field_list.php:2414
 msgid "Custom Field List Widgets"
 msgstr ""
 

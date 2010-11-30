@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2 beta 20
+Version: 1.2
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -794,8 +794,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 							echo $listelementtags['begin'].sprintf(__('The actual custom field name "%1$s" and the custom field name "%2$s" for which the link references are saved are different. Please save the links for the values of the actual custom field name.','customfieldlist'), $customfieldname_show, $customfieldname_from_db).$listelementtags['end']."\n";
 						}
 					break;
-					case 'standard':
-					default:
+					case 'standard' :
+					default :
 						$meta_keys = $opt['custom_field_names'];
 						$none_empty = customfieldlist_remove_empty_array_elements($meta_keys);
 						$nr_meta_keys = count($none_empty);
@@ -1617,12 +1617,10 @@ function customfieldlist($args=array(), $widget_args=1) {
 	// section: select the list type
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Types','customfieldlist').'</h5>'."\n";
-		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";
 		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt1_explanation" class="customfieldlist_explanation">'.__('Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		
-		//echo '<div><span class="customfieldlist_help" onclick="customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')">[ ? ]</span> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" /></div>'."\n";	
 		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";	
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt2_explanation" class="customfieldlist_explanation">'.__('A simple list of all unique custom field values of one custom field name. Each value can be linked individually.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
@@ -1747,10 +1745,10 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '<p id="customfieldlist_opt_'.$number.'_use_fullscreen_selectbox_explanation" class="customfieldlist_explanation">'.__('If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.','customfieldlist').'</p>'."\n";
 			echo '</div>'."\n";
 			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_chr_limit_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_chr_limit" class="customfieldlist_label">'.__('Limit the length of the list elements:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][use_chr_limit]" value="'.$use_chr_limit_value.'" id="customfieldlist_opt_'.$number.'_use_chr_limit" maxlength="4" class="customfieldlist_opt_use_chr_limit" />'."\n";
-			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_explanation" class="customfieldlist_explanation">'.__('If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.<br />It displays the drop down menu in a wide box in the middle of the screen when the focus is on the drop down menu element.<br />Zero means: do not limit the number of characters.','customfieldlist').'</p>'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_explanation" class="customfieldlist_explanation">'.__('It is the maximal number of characters per list item. Zero means: do not limit the number of characters.<br />If you let the list appear as a drop down menu and you have long custom field values or long post titles then it is possible that parts of the list elements are not visible on the screen e.g. the list juts out the screen if it is in the right sidebar. In such cases you might consider using this feature.','customfieldlist').'</p>'."\n";
 			echo '</div>'."\n";
 			echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_use_chr_limit_location_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> <label for="customfieldlist_opt_'.$number.'_use_chr_limit_location" class="customfieldlist_label">'.__('Shorten the strings at the end or in the middle:','customfieldlist').'</label> <select size="1" name="customfieldlist_opt['.$number.'][use_chr_limit_location]" id="customfieldlist_opt_'.$number.'_use_chr_limit_location"><option value="end"'.$use_chr_limit_location['end'].'>'.__('end','customfieldlist').'</option><option value="middle"'.$use_chr_limit_location['middle'].'>'.__('middle','customfieldlist').'</option></select>'."\n";
-			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_location_explanation" class="customfieldlist_explanation">'.__('For instance: The long title is "Star Wars - The Return of the Jedi" and the max. number of chararcter is 20. "end" produces: "Star Wars - The ... " and "middle" produces: "Star Wars ... of the Jedi".','customfieldlist').'</p>'."\n";
+			echo '<p id="customfieldlist_opt_'.$number.'_use_chr_limit_location_explanation" class="customfieldlist_explanation">'.__('For instance: The long title is "Star Wars - The Return of the Jedi" and the max. number of chararcters is 20. "end" produces: "Star Wars - The ... " and "middle" produces: "Star Wars ... of the Jedi".','customfieldlist').'</p>'."\n";
 			echo '</div>'."\n";
 			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
 		echo '</fieldset>';
@@ -1876,7 +1874,7 @@ function customfieldlist_widget_script() {
 		echo '}'."\n";
 		
 		if ( TRUE == isset($customfieldlist_widgets_general_options['use_fullscreen_selectbox']) AND FALSE !== $customfieldlist_widgets_general_options['use_fullscreen_selectbox'] ) {
-			echo '// use a absolute URLs instead of relative URLs for the Thickbox icons'."\n";
+			echo '// use absolute URLs instead of relative URLs for the Thickbox icons'."\n";
 			echo "var tb_pathToImage = '".$siteurl."/wp-includes/js/thickbox/loadingAnimation.gif';"."\n";
 			echo "var tb_closeImage = '".$siteurl."/wp-includes/js/thickbox/tb-close.png';"."\n";
 			echo 'function customfieldlistwidget_show_list_in_thickbox(number, this_id) {'."\n";
