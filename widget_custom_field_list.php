@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2
+Version: 1.2.1
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -1315,8 +1315,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 				echo '</div>'."\n";
 			echo '</div>'."\n";
 		foreach ( $opt[$number]['custom_field_names'] as $custom_field_name ) {
-			if (($i & 1) == 1) {$style = 'alternate';} else {$style = '';}
-			echo '<div class="customfieldlist_row '.$style.'">'."\n";
+			if (($i & 1) == 1) {$style = ' alternate';} else {$style = '';}
+			echo '<div class="customfieldlist_row'.$style.'">'."\n";
 			echo '<div class="customfieldlist_column_index">';
 			echo $i . '.';
 			echo '</div>';
@@ -1331,7 +1331,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			
 			########## TEXTAREA column #########################
 			echo '<div class="customfieldlist_column_textbox">';
-			echo '&nbsp;<input type="text" id="customfieldnames_'.$number.'_'.$i.'" name="customfieldlist_opt['.$number.'][custom_field_names][]" value="'.attribute_escape($custom_field_name).'" maxlength="200" onchange="customfieldlist_customfieldname_changed(this.name, '.$number.');"'.$readonly_text_areas.' />';
+			echo '&nbsp;<input type="text" id="customfieldnames_'.$number.'_'.$i.'" name="customfieldlist_opt['.$number.'][custom_field_names][]" value="'.attribute_escape($custom_field_name).'" maxlength="200" onchange="customfieldlist_customfieldname_changed(this.name, \''.$number.'\');"'.$readonly_text_areas.' />';
 			echo '</div>';
 			
 			########## RADIO BUTTON column #####################
@@ -1359,7 +1359,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$disable_check_boxes = ' disabled="disabled"';
 			}
 			echo '<div class="customfieldlist_column_radiobutton">';
-			echo '&nbsp;<input type="radio" name="customfieldlist_opt['.$number.'][sort_by_custom_field_name]" value="'.$i.'"'.$checked.' onclick="customfieldlist_radio_button_changed(this.name, '.$number.', '.$i.');"'.$disable_radio_buttons.' />';
+			echo '&nbsp;<input type="radio" name="customfieldlist_opt['.$number.'][sort_by_custom_field_name]" value="'.$i.'"'.$checked.' onclick="customfieldlist_radio_button_changed(this.name, \''.$number.'\', '.$i.');"'.$disable_radio_buttons.' />';
 			echo '</div>';
 			
 			########## CHECKBOX column ########################
@@ -1370,7 +1370,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 				$checked='';
 			}
 			echo '<div class="customfieldlist_column_checkbox">';
-			echo '&nbsp;<input type="checkbox" id="donnotshowthis_customfieldname_'.$number.'_'.$i.'" name="customfieldlist_opt['.$number.'][donnotshowthis_customfieldname][]" value="'.$i.'"'.$checked.$disabled.' onclick="customfieldlist_checkbox_changed(this.id, this.name, '.$number.', '.$i.');"'.$disable_check_boxes.' />';
+			echo '&nbsp;<input type="checkbox" id="donnotshowthis_customfieldname_'.$number.'_'.$i.'" name="customfieldlist_opt['.$number.'][donnotshowthis_customfieldname][]" value="'.$i.'"'.$checked.$disabled.' onclick="customfieldlist_checkbox_changed(this.id, this.name, \''.$number.'\', '.$i.');"'.$disable_check_boxes.' />';
 
 			########## hidden HIERARCHY column ####################
 			echo '<input type="hidden" name="customfieldlist_opt['.$number.'][hierarchy][]" value="'.$i.'">';
@@ -1499,7 +1499,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			$group_by_firstchar = '';
 		}
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_group_by_firstchar_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_group_by_firstchar" class="customfieldlist_label">'.__('group the values by the first character','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][group_by_firstchar]" id="customfieldlist_opt_'.$number.'_group_by_firstchar" value="yes"'.$group_by_firstchar.' onclick="customfieldlist_group_by_firstchar_changed(this.id, '.$number.');" />'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_group_by_firstchar_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_group_by_firstchar" class="customfieldlist_label">'.__('group the values by the first character','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][group_by_firstchar]" id="customfieldlist_opt_'.$number.'_group_by_firstchar" value="yes"'.$group_by_firstchar.' onclick="customfieldlist_group_by_firstchar_changed(this.id, \''.$number.'\');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_group_by_firstchar_explanation" class="customfieldlist_explanation">'.sprintf(__('Groups the custom field value by their first character after retrieving from the database. This might be a useful option if you have many values and you do not want to use the option "%1$s" to keep the list in the sidebar short.)','customfieldlist'), __('show only a part of the list elements at once','customfieldlist')).'</p>'."\n";
 		echo '</div>'."\n";
 	echo '</div>'."\n"; // end of section: custom field names
@@ -1532,8 +1532,8 @@ function customfieldlist($args=array(), $widget_args=1) {
 			$customfieldsortby_lastword_disabled=' disabled="disabled"';
 		}
 		echo '<fieldset class="customfieldlist_fieldset_h3"><legend>'.__('sort criterion','customfieldlist').':</legend>';
-			echo '<div><label for="customfieldsortby_'.$number.'_alphabetically" class="customfieldlist_label">'.__('custom field values (alphabetically)','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_alphabetically" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="alphabetically"'.$customfieldsortby_alphabetically_checked.' onclick="customfieldlist_sort_by_changed(this.id, '.$number.');" /></div>';
-			echo '<div>'.'<a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_by_post_date_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldsortby_'.$number.'_post_date" class="customfieldlist_label">'.__('post date','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_post_date" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="post_date"'.$customfieldsortby_post_date_checked.' onclick="customfieldlist_sort_by_changed(this.id, '.$number.');"  />';
+			echo '<div><label for="customfieldsortby_'.$number.'_alphabetically" class="customfieldlist_label">'.__('custom field values (alphabetically)','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_alphabetically" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="alphabetically"'.$customfieldsortby_alphabetically_checked.' onclick="customfieldlist_sort_by_changed(this.id, \''.$number.'\');" /></div>';
+			echo '<div>'.'<a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_sort_by_post_date_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldsortby_'.$number.'_post_date" class="customfieldlist_label">'.__('post date','customfieldlist').'</label> <input type="radio" id="customfieldsortby_'.$number.'_post_date" name="customfieldlist_opt['.$number.'][customfieldsortby]" value="post_date"'.$customfieldsortby_post_date_checked.' onclick="customfieldlist_sort_by_changed(this.id, \''.$number.'\');"  />';
 			echo '<p id="customfieldlist_opt_'.$number.'_sort_by_post_date_explanation" class="customfieldlist_explanation">'.__('A core function of this plugin is to link custom field values to posts. By using this option the custom field values will be arranged by the date of the posts they are linked to.','customfieldlist').'</p>'."\n";
 			echo '</div>';
 		echo '</fieldset>';
@@ -1599,9 +1599,9 @@ function customfieldlist($args=array(), $widget_args=1) {
 			if ( 'lastword' === $opt[$number]['orderelement'] ) {
 				$sort_titles_alphab = '';
 				$sort_titles_alphab_disabled = ' disabled="disabled"';
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" checked="checked" onclick="customfieldlist_sortbylastword_changed(this.id, \''.$number.'\');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
 			} else {
-				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" onclick="customfieldlist_sortbylastword_changed(this.id, '.$number.');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
+				echo '<div'.$message_os_asterisk.'><label for="customfieldlist_sortbylastword_'.$number.'" class="customfieldlist_label">'.__('sort the values by the last word','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][orderelement]" id="customfieldlist_sortbylastword_'.$number.'" value="lastword" onclick="customfieldlist_sortbylastword_changed(this.id, \''.$number.'\');"'.$customfieldsortby_lastword_disabled.' /></div>'.$message_os.$message_setloc.''."\n";
 			}
 			if ( TRUE === isset($opt[$number]['sortby']) AND 'post_date' === $opt[$number]['sortby'] ) {
 				$sort_titles_alphab = '';
@@ -1617,14 +1617,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 	// section: select the list type
 	echo '<div class="customfieldlist_section">'."\n";
 		echo '<h5>'.__('List Types','customfieldlist').'</h5>'."\n";
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt1" class="customfieldlist_label">'.__('standard layout','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt1" value="standard" '.$listlayoutopt1chk.' onclick="customfieldlist_opt_changed(this.id, \''.$number.'\');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt1_explanation" class="customfieldlist_explanation">'.__('Only list elements of custom field names with more than one custom field value have sub elements. These sub elements becoming visible by clicking on the custom field name list elements or the + sign. The other list elements with one value are the hyper links to the posts and the values are in the link title.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, '.$number.');" />'."\n";	
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_type_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_type_opt2" class="customfieldlist_label">'.__('a list with manually linked values','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_type]" id="customfieldlist_opt_'.$number.'_list_type_opt2" value="individual_href" '.$listlayoutopt3chk.' onclick="customfieldlist_opt_changed(this.id, \''.$number.'\');" />'."\n";	
 		echo '<p id="customfieldlist_opt_'.$number.'_list_type_opt2_explanation" class="customfieldlist_explanation">'.__('A simple list of all unique custom field values of one custom field name. Each value can be linked individually.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
-		echo '<input type="button" class="button" id="customfieldlist_opt_'.$number.'_set_links" title="'.sprintf(__('Set a Link for each custom field value of the custom field: %1$s','customfieldlist'), $thecustomfieldname).'" value="'.__('Set the links','customfieldlist').'" onclick="customfieldlist_set_links(\'\', '.$number.', this.id);" />'."\n";
+		echo '<input type="button" class="button" id="customfieldlist_opt_'.$number.'_set_links" title="'.sprintf(__('Set a Link for each custom field value of the custom field: %1$s','customfieldlist'), $thecustomfieldname).'" value="'.__('Set the links','customfieldlist').'" onclick="customfieldlist_set_links(\'\', \''.$number.'\', this.id);" />'."\n";
 		echo '<input type="hidden" id="customfieldlist_opt_'.$number.'_set_links_helper" value="'.sprintf(__('Set a Link for each custom field value of the custom field: %1$s','customfieldlist'), $thecustomfieldname).'" />'."\n";
 	echo '</div>'."\n";
 	
@@ -1648,14 +1648,14 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			$liststyleopt1chk = '';
 		}
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' onclick="customfieldlist_list_style_opt1_changed(this.id, '.$number.');" />'."\n";
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_style_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_style_opt1" class="customfieldlist_label">'.__('each element with sub elements','customfieldlist').'</label> <input type="checkbox" name="customfieldlist_opt['.$number.'][list_style_opt1]" id="customfieldlist_opt_'.$number.'_list_style_opt1" value="yes"'.$liststyleopt1chk.''.$liststyleopt1disabled.' onclick="customfieldlist_list_style_opt1_changed(this.id, \''.$number.'\');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_style_opt1_explanation" class="customfieldlist_explanation">'.sprintf(__('Shows each custom field name as a list element with the custom field value as a sub element. All sub elements are every time visible and they are the hyper links to the posts. (Only available in combination with list type "%1$s")','customfieldlist'),__('standard layout','customfieldlist')).'</p>'."\n";
 		if (FALSE == empty($liststyleopt1chk)) {$liststyleopt1hidden = 'yes';} else {$liststyleopt1hidden = 'no';}
 		echo '<input type="hidden" name="customfieldlist_opt['.$number.'][list_style_opt1_hidden]" id="customfieldlist_opt_'.$number.'_list_style_opt1_hidden" value="'.$liststyleopt1hidden.'" />'."\n";
 		echo '</div>'."\n";
 
 		// ### Opt ###
-		echo '<div class="customfieldlist_option_with_top_space"><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";
+		echo '<div class="customfieldlist_option_with_top_space"><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt1_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt1" class="customfieldlist_label">'.__('simple list','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt1" value="ul_list"'.$listformatopt1chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, \''.$number.'\');" />'."\n";
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt1_explanation" class="customfieldlist_explanation">'.__('Show the list elements in a simple list with bullets.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		
@@ -1681,7 +1681,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 					$liststyleoptpartlengthdisabled = ' disabled="disabled"';
 					$liststyleopt4disabled = ' disabled="disabled"';
 				}
-				echo '<div><label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').'</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' onclick="customfieldlist_partitionedlist_optionsswitch(this.id, '.$number.');" /></div>'."\n";
+				echo '<div><label for="customfieldlist_opt_'.$number.'_list_style_opt2" class="customfieldlist_label">'.__('show only a part of the list elements at once','customfieldlist').'</label> <input type="checkbox" id="customfieldlist_opt_'.$number.'_list_style_opt2" name="customfieldlist_opt['.$number.'][partlist]" value="yes"'.$liststyleopt2chk.' onclick="customfieldlist_partitionedlist_optionsswitch(this.id, \''.$number.'\');" /></div>'."\n";
 				
 				// ### Opt ###
 				echo '<div><label for="customfieldlist_opt_'.$number.'_partlength" class="customfieldlist_label">'.__('elements per part of the list','customfieldlist').' (X>=3)</label> <input type="text" id="customfieldlist_opt_'.$number.'_partlength" name="customfieldlist_opt['.$number.'][partlength]" value="'.$partlength.'" maxlength="5" style="width:5em;"'.$liststyleoptpartlengthdisabled.' /></div>'."\n";
@@ -1710,7 +1710,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '</fieldset>';
 		echo '</fieldset>';
 		
-		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, '.$number.');" />'."\n";// 	
+		echo '<div><a href="#customfieldlist_help" onclick="if (false == customfieldlist_show_this_explanation(\'customfieldlist_opt_'.$number.'_list_format_opt2_explanation\')) {return false;}" class="customfieldlist_help">[ ? ]</a> '.'<label for="customfieldlist_opt_'.$number.'_list_format_opt2" class="customfieldlist_label">'.__('drop down menu','customfieldlist').'</label> <input type="radio" name="customfieldlist_opt['.$number.'][list_format]" id="customfieldlist_opt_'.$number.'_list_format_opt2" value="dropdownmenu"'.$listformatopt2chk.' onclick="customfieldlist_list_appearancetype_changed(this.id, \''.$number.'\');" />'."\n";// 	
 		echo '<p id="customfieldlist_opt_'.$number.'_list_format_opt2_explanation" class="customfieldlist_explanation">'.__('Show the list elements as a drop down menu.','customfieldlist').'</p>'."\n";
 		echo '</div>'."\n";
 		echo '<div id="customfieldlist_opt_'.$number.'_list_format_opt2_advice" class="customfieldlist_advice" style="display:none;">'.sprintf(__('It might be expedient to use the option "%1$s" or "%2$s" in combination with "%3$s".','customfieldlist'),__('each element with sub elements','customfieldlist'), __('group the values by the first character','customfieldlist'), __('drop down menu','customfieldlist')).'</div>'."\n";

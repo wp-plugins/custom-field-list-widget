@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.7
-Tested up to: 3.0.1
+Tested up to: 3.0.2
 Stable tag: 1.2
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
@@ -23,10 +23,10 @@ This plugin supports multiple widgets (You can have more than one list at the sa
 Available in the languages:
 
 * Bulgarian provided by Peter Toushkov
-* Hindi provided by [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
-* Danish (frontend only) provided by [Peter Kirring](http://http://www.fotoblogger.dk/ "Peter Kirring of fotoblogger.dk/")
 * German
 * English
+* Hindi provided by (complete only until v1.1.7) [Kakesh Kumar](http://kakesh.com "Kakesh Kumar of kakesh.com")
+* Danish (frontend only) provided by [Peter Kirring](http://http://www.fotoblogger.dk/ "Peter Kirring of fotoblogger.dk/")
 * Russian (only for v0.9.4 and v0.9.4.1) provided by [Michael Comfi](http://www.comfi.com/ "Michael Comfi of the ComFi.com, Corp.")
 * Uzbek (only for v0.9.4 and v0.9.4.1) provided by [Alisher Safarov](http://www.comfi.com/ "Alisher Safarov of the ComFi.com, Corp.")
 
@@ -147,6 +147,9 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 
 
 == Changelog ==
+= v1.2.1 =
+* bug fix: fix for the syntax errors which occured only in Internet Explorers
+
 = v1.2 =
 * new option: sort list elements by publication date of the post
 * new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
