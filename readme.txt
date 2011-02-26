@@ -2,7 +2,7 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.7
-Tested up to: 3.0.2
+Tested up to: 3.1
 Stable tag: 1.2.1
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
@@ -147,12 +147,16 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 
 
 == Changelog ==
+= v1.2.2 =
+* the size of the fullscreen box is now defined by the size of the browser window (and not by the screen size)
+* the lists will contain at all times only posts which are available for all users (post_status="publish")
+
 = v1.2.1 =
 * bug fix: fix for the syntax errors which occured only in Internet Explorers
 
 = v1.2 =
 * new option: sort list elements by publication date of the post
-* new option: shows the drop down menu in a full screen box ([Thickbox](http://jquery.com/demo/thickbox/))
+* new option: shows the drop down menu in a fullscreen box ([Thickbox](http://jquery.com/demo/thickbox/))
 * new options: it is also possible to limit the number of characters per list element of the drop down menus
 * Bugfix: the List Type "a list with manually linked values" is working again and while you are setting the links you can click on "blog internal search" to add automatically an URL to the search result page of the blog internal search for the custom field value
 * Bugfix: some error messages has been displayed wrong

@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.1
+Version: 1.2.2
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.0.1
@@ -26,7 +26,7 @@ Localization:
 
 For detailed information about the usage of this plugin, please read the readme.txt.	
 
-Copyright 2010  Tim Berger  (email : timberge@cs.tu-berlin.de)
+Copyright 2011  Tim Berger  (email : timberge@cs.tu-berlin.de)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -485,11 +485,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 		} else {
 			echo '<input type="hidden" id="customfieldlistpartlist_'.$number.'" value="no"'." />\n";
 		}
-		if (TRUE === is_user_logged_in()) {
-			$only_public = '';
-		} else {
+		//~ if (TRUE === is_user_logged_in()) {
+			//~ $only_public = '';
+		//~ } else {
 			$only_public = ' AND p.post_status = "publish"';
-		}
+		//~ }
 		$j=0;
 		$k=0;
 		if (FALSE !== $opt) {
@@ -1878,7 +1878,7 @@ function customfieldlist_widget_script() {
 			echo "var tb_pathToImage = '".$siteurl."/wp-includes/js/thickbox/loadingAnimation.gif';"."\n";
 			echo "var tb_closeImage = '".$siteurl."/wp-includes/js/thickbox/tb-close.png';"."\n";
 			echo 'function customfieldlistwidget_show_list_in_thickbox(number, this_id) {'."\n";
-			echo "	var tst = '".CUSTOM_FIELD_LIST_WIDGET_URL."/widget_custom_field_list_long_selectbox.php?height=80&width=' + Math.round(screen.width-(screen.width * 0.20)) + '&abspath=".(urlencode(ABSPATH))."&selectboxid=' + this_id + '&_wpnonce=".wp_create_nonce('customfieldlist_long_selectbox_security')."';\n";
+			echo "	var tst = '".CUSTOM_FIELD_LIST_WIDGET_URL."/widget_custom_field_list_long_selectbox.php?height=80&width=' + Math.round(window.innerWidth-(window.innerWidth * 0.20)) + '&abspath=".(urlencode(ABSPATH))."&selectboxid=' + this_id + '&_wpnonce=".wp_create_nonce('customfieldlist_long_selectbox_security')."';\n";
 			echo '	tb_show(document.getElementById( String(this_id) ).title, tst, false);'."\n";
 			echo '}'."\n";
 			echo '//]]>'."\n";

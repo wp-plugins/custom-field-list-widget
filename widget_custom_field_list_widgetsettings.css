@@ -27,6 +27,7 @@
 	text-align:left;
 	background-color: #ffffe0;
 	border: 1px solid #e6db55;
+	-moz-border-radius:3px;
 	padding-top: 0pt;
 	padding-right: 0.6em;
 	padding-bottom: 0pt;
@@ -46,6 +47,7 @@
 .customfieldlist_advice, .customfieldlist_advice_chkb {
 	background-color: #ffffe0;
 	border: 1px solid #e6db55;
+	-moz-border-radius:3px;
 }
 .customfieldlist_error {
 	float:left;
@@ -62,6 +64,7 @@
 .customfieldlist_error, .customfieldlist_error_chkb {
 	background-color: #ffebe8;
 	border: 1px solid #cc0000;
+	-moz-border-radius:3px;
 }
 #customfieldlist_advice_cfn_usage {
 	height:20em; 
