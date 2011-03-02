@@ -147,9 +147,10 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 
 
 == Changelog ==
+
 = v1.2.2 =
 * the size of the fullscreen box is now defined by the size of the browser window (and not by the screen size)
-* the lists will contain at all times only posts which are available for all users (post_status="publish")
+* the lists will contain at all times only posts which are available for all users (`post_status="publish"`)
 
 = v1.2.1 =
 * bug fix: fix for the syntax errors which occured only in Internet Explorers
