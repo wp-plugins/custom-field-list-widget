@@ -1,5 +1,5 @@
 <?php
-if ( TRUE == isset($_POST['abspath']) AND TRUE == is_file($_POST['abspath']) AND TRUE == is_file($_POST['abspath'] . 'wp-config.php') ) {
+if ( TRUE == isset($_POST['abspath']) AND FALSE === stristr($_POST['abspath'], '://') AND FALSE === stristr($_POST['abspath'], '%3A%2F%2F') AND TRUE == is_file($_POST['abspath'] . 'wp-config.php') ) {
 	require_once($_POST['abspath'] . 'wp-config.php');
 	if ( FALSE == function_exists('wp_verify_nonce') or FALSE == wp_verify_nonce($_POST['_ajax_nonce'], 'customfieldlist_dbaction_security') ) {
 		die(__('Security Check failed!','customfieldlist')); 

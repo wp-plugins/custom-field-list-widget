@@ -3,7 +3,7 @@ Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.7
 Tested up to: 3.1
-Stable tag: 1.2.3
+Stable tag: 1.2.2
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
 
@@ -147,6 +147,9 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 
 
 == Changelog ==
+= v1.2.3 =
+* a bug fix for a problem in v1.2.3
+
 = v1.2.3 =
 * security update
 
