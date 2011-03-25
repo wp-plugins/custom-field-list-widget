@@ -1,6 +1,6 @@
 <?php 
-if (isset($_GET['abspath'])) {
-	require_once( urldecode($_GET['abspath']) . "wp-config.php" );
+if ( TRUE == isset($_GET['abspath']) AND TRUE == is_file($_GET['abspath']) AND TRUE == is_file($_GET['abspath'] . 'wp-config.php') ) {
+	require_once( $_GET['abspath'] . 'wp-config.php' );
 	if ( FALSE == function_exists('wp_verify_nonce') or FALSE == wp_verify_nonce($_GET['_wpnonce'], 'customfieldlist_individual_href_security') ) {
 		die ('<p class="error" style="vertical-align:middle; padding:1em; font-weight:normal;">'.__('Security Check failed!','customfieldlist').'</p>'); 
 	}
@@ -16,7 +16,6 @@ if (isset($_GET['abspath'])) {
 } else {
 	die ('Please do not load this page directly.');
 }
-
 
 function customfieldlist_print_action_list($number) {
 global $wpdb; ?>
@@ -89,7 +88,7 @@ global $wpdb; ?>
 				document.getElementById(cell_id).innerHTML = '<div style="background-color:#fffccc; border:1px solid #FFDBCC; vertical-align:middle; padding:1em; margin-top:0em; font-size:0.8em; font-weight:normal;"><img src="<?php echo get_option('siteurl').'/'.WPINC; ?>/js/thickbox/loadingAnimation.gif" style="vertical-align:middle;" /> <?php echo js_escape(__('Saving the data','customfieldlist')); ?>... </div>';
 				http_request.open('POST', '<?php echo CUSTOM_FIELD_LIST_WIDGET_URL;?>/widget_custom_field_list_individual_href_save_data.php', true);
 				http_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				http_request.send( print_id_array + print_link_array + print_linkdescription_array + '&widget_number=' + widget_number +'&abspath=<?php echo urlencode(ABSPATH); ?>' + '&thecustomfieldname=' + thecustomfieldname + '&_ajax_nonce=<?php echo wp_create_nonce('customfieldlist_dbaction_security'); ?>' );
+				http_request.send( print_id_array + print_link_array + print_linkdescription_array + '&widget_number=' + widget_number +'&abspath=<?php echo rawurlencode(ABSPATH); ?>' + '&thecustomfieldname=' + thecustomfieldname + '&_ajax_nonce=<?php echo wp_create_nonce('customfieldlist_dbaction_security'); ?>' );
 				http_request.onreadystatechange = function() { customfieldlist_alertInhalt(cell_id, old_cell_content); }
 			}
 			

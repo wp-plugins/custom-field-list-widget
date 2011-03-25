@@ -1,7 +1,7 @@
 <?php
-if (isset($_GET['abspath'])) {
-	require_once( urldecode($_GET['abspath']) . 'wp-config.php');
-	if ( FALSE == function_exists('wp_verify_nonce') or FALSE == wp_verify_nonce($_GET['_wpnonce'], 'customfieldlist_long_selectbox_security') ) {
+if ( TRUE == isset($_GET['abspath']) AND TRUE == is_file($_GET['abspath']) AND TRUE == is_file($_GET['abspath'] . 'wp-config.php') ) {
+	require_once( $_GET['abspath'] . 'wp-config.php');
+	if ( FALSE == function_exists('wp_verify_nonce') OR FALSE == wp_verify_nonce($_GET['_wpnonce'], 'customfieldlist_long_selectbox_security') ) {
 		die ('<p class="error" style="vertical-align:middle; padding:1em; font-weight:normal;">'.__('Security Check failed!','customfieldlist').'</p>'); 
 	}
 	customfieldlist_print_long_selectbox($_GET['selectboxid']);
@@ -16,7 +16,6 @@ function customfieldlist_print_long_selectbox($selectboxid) {
 	<script type="text/javascript">
 	//<![CDATA[
 	jQuery(document).ready(function(){
-		//jQuery('#customfieldlist_long_selectbox').append(jQuery('#<?php echo $selectboxid; ?>').html());
 		jQuery('#<?php echo $selectboxid; ?>').children().clone().appendTo(jQuery('#customfieldlist_long_selectbox'));
 	});
 	jQuery('#<?php echo $selectboxid; ?>').attr('disabled', 'disabled');

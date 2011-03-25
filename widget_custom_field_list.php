@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.1
@@ -1975,14 +1975,14 @@ function customfieldlist_widget_admin_script() {
 		if ( document.getElementById('customfieldlist_opt_' + String(number) + '_list_type_opt2').checked == true ) {
 			if ( 'unsaved_changes' != document.getElementById( this_id + '_helper' ).value ) {
 				document.getElementById(this_id).title = String(document.getElementById( this_id + '_helper' ).value);
-				var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href.php?height=400&width=750&abspath='.(urlencode(ABSPATH)).'&number='; ?>' + String(number) + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
+				var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href.php?height=400&width=750&abspath='.(rawurlencode(ABSPATH)).'&number='; ?>' + String(number) + '<?php echo '&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
 			} else {
 				document.getElementById(this_id).title = '<?php echo __('Unsaved changes','customfieldlist'); ?>';
-				var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href_advice.php?height=100&width=750&abspath='.(urlencode(ABSPATH)).'&advicemsg=3&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
+				var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href_advice.php?height=100&width=750&abspath='.(rawurlencode(ABSPATH)).'&advicemsg=3&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
 			}
 		} else {
 			document.getElementById(this_id).title = '<?php echo __('Not available with these widget preferences.','customfieldlist'); ?>';
-			var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href_advice.php?height=100&width=750&abspath='.(urlencode(ABSPATH)).'&advicemsg=2&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
+			var tst = '<?php  echo CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_individual_href_advice.php?height=100&width=750&abspath='.(rawurlencode(ABSPATH)).'&advicemsg=2&_wpnonce='.wp_create_nonce('customfieldlist_individual_href_security'); ?>';
 		}
 		tb_show(document.getElementById( String(this_id) ).title, tst, false);
 	}
