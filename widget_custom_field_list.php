@@ -7,7 +7,7 @@ Author: Tim Berger
 Version: 1.2.4
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
-Max WP Version: 3.1
+Max WP Version: 3.2
 License: GNU General Public License
 
 Requirements:
