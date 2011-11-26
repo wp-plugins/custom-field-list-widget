@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.5 beta 1
+Version: 1.2.5 beta 2
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.2.1
@@ -59,10 +59,13 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
-// load the translation file
-if (function_exists('load_plugin_textdomain')) {
-	load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+function customfieldlist_init() {
+	// load the translation file
+	if (function_exists('load_plugin_textdomain')) {
+		load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+	}
 }
+add_action('plugins_loaded', 'customfieldlist_init');
 
 // on plugin deactivation
 //~ register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
@@ -2411,7 +2414,7 @@ function customfieldlist_widget_general_options() {
 add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
-		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 'manage_options', basename(__FILE__), 'customfieldlist_widget_general_options'); 
+		add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 'manage_options', basename(__FILE__), 'customfieldlist_widget_general_options'); 
 	}
 }
 ?>
