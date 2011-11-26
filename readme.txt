@@ -150,6 +150,7 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 = v1.2.5 =
 * the speed setting of the Javascript effects works now
 * the minimum capabilty for the general settings page of this plugin is now [manage_options](http://codex.wordpress.org/Roles_and_Capabilities#manage_options) (Role: Administrator)
+* Bugfix: in some case the redirect of the settings of the plugin did not work after pressing "Save Changes" (Thank you [Karesansui](http://wordpress.org/support/profile/karesansui) for [reporting the problem](http://wordpress.org/support/topic/custom-field-list-widget-settings-not-saved).
 
 = v1.2.4 =
 * a bug fix for a problem in v1.2.3

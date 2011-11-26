@@ -4,7 +4,7 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.5 beta 2
+Version: 1.2.5 beta 3
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
 Max WP Version: 3.2.1
@@ -2363,7 +2363,7 @@ function customfieldlist_widget_general_options() {
 
 	echo '<div class="wrap">'."\n";
 	echo '<h2>'.__('Custom Field List Widget - settings','customfieldlist').'</h2>'."\n";
-	echo '<form method="post" action="'.trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__).'">'."\n";
+	echo '<form method="post" action="">'."\n";
 	wp_nonce_field('customfieldlist_general_options_security');
 	echo '<table class="form-table">'."\n";
 
@@ -2414,7 +2414,7 @@ function customfieldlist_widget_general_options() {
 add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
-		add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 'manage_options', basename(__FILE__), 'customfieldlist_widget_general_options'); 
+		add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List','customfieldlist'), 'manage_options', plugin_basename(__FILE__), 'customfieldlist_widget_general_options'); 
 	}
 }
 ?>

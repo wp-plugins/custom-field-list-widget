@@ -13,6 +13,39 @@
 .customfieldlist_selectbox {
 	width:100%;
 }
+/*
+select.customfieldlist_selectbox optgroup  {
+	color:#f00;
+	font-style:normal;
+}
+select.customfieldlist_selectbox option  {
+	color:#f0f;
+}
+*//*
+select.customfieldlist_selectbox  {
+    position: absolute;
+   left: 50%;
+   top: 50%;
+   z-index: 20; 
+   width: 200px;
+   height: 22px;
+   margin-left: -10px;
+}
+*/
+#customfieldlist_main_menu_2 {
+	left:20px;
+}
+.customfieldoptgroup  {
+	color:#f00;
+	font-style:normal;
+}
+.customfieldoptgroup option  {
+	color:#f0f;
+}
+/*.customfieldoptgroup option {
+	color:#000;
+}
+*/
 
 /* customfieldlist_opt_link is the class of the clickable elements in the drop down menus. 
 If you like to have these elements to look like links then remove the comment characters before 
