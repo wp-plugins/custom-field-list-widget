@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.5
+Version: 1.2.6
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
-Max WP Version: 3.2.1
+Max WP Version: 3.3.1
 License: GNU General Public License
 
 Requirements:
@@ -26,7 +26,7 @@ Localization:
 
 For detailed information about the usage of this plugin, please read the readme.txt.	
 
-Copyright 2011  Tim Berger  (email : timberge@cs.tu-berlin.de)
+Copyright 2012  Tim Berger  (email : timberge@cs.tu-berlin.de)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
