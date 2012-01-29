@@ -2,8 +2,8 @@
 Contributors: ntm
 Tags: custom field, meta information, guest list, widget, multiple widgets
 Requires at least: 2.7
-Tested up to: 3.2
-Stable tag: 1.2.4
+Tested up to: 3.3.1
+Stable tag: 1.2.5
 
 This plugin creates lists of custom field information in the form of sidebar widgets.
 
@@ -147,6 +147,16 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 
 
 == Changelog ==
+= v1.2.6 =
+* Bugfix: In WP 3.3 the name of the Thickbox event which happens on closing the Thickbox ("unload") has been changed by the WP team (see [Ticket #19189](http://core.trac.wordpress.org/ticket/19189)). This bug fix takes this modification into account so that the function of this plugin uses "unload" in combination with older WP versions and "tb_unload" with the current and probably the next couple of WP versions. (This is related to the "... full screen box" option of this widget.) 
+* Bugfix: The CSS option z-index of #TB_window and #TB_overlay will be increased temporarily (while the full screen box is open) to 10005 and 10000. This improves the appearance of this plugin in combination with some themes like Twenty Eleven.
+
+
+= v1.2.5 =
+* the speed setting of the Javascript effects works now
+* the minimum capabilty for the general settings page of this plugin is now [manage_options](http://codex.wordpress.org/Roles_and_Capabilities#manage_options) (Role: Administrator)
+* Bugfix: in some case the redirect of the settings of the plugin did not work after pressing "Save Changes" (Thank you [Karesansui](http://wordpress.org/support/profile/karesansui) for [reporting the problem](http://wordpress.org/support/topic/custom-field-list-widget-settings-not-saved).
+
 = v1.2.4 =
 * a bug fix for a problem in v1.2.3
 
@@ -158,7 +168,7 @@ The speed of the show/hide effects and the hide/show characters are changeable v
 * the lists will contain at all times only posts which are available for all users (post_status="publish")
 
 = v1.2.1 =
-* bug fix: fix for the syntax errors which occured only in Internet Explorers
+* Bugfix: fix for the syntax errors which occured only in Internet Explorers
 
 = v1.2 =
 * new option: sort list elements by publication date of the post

@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.4
+Version: 1.2.6
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
-Max WP Version: 3.2
+Max WP Version: 3.3.1
 License: GNU General Public License
 
 Requirements:
@@ -26,7 +26,7 @@ Localization:
 
 For detailed information about the usage of this plugin, please read the readme.txt.	
 
-Copyright 2011  Tim Berger  (email : timberge@cs.tu-berlin.de)
+Copyright 2012  Tim Berger  (email : timberge@cs.tu-berlin.de)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -59,10 +59,13 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . 
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
 if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
 
-// load the translation file
-if (function_exists('load_plugin_textdomain')) {
-	load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+function customfieldlist_init() {
+	// load the translation file
+	if (function_exists('load_plugin_textdomain')) {
+		load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+	}
 }
+add_action('plugins_loaded', 'customfieldlist_init');
 
 // on plugin deactivation
 //~ register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
@@ -1865,8 +1868,8 @@ function customfieldlist_widget_script() {
 		echo '	return signs;'."\n";
 		echo '}'."\n";
 		echo 'function customfieldlist_effect_speed() {'."\n";
-		if ( FALSE == isset($customfieldlist_widgets_general_options['effect_speed']) OR FALSE == empty($customfieldlist_widgets_general_options['effect_speed']) ) {
-			echo "	var speed = 'slow';\n";
+		if ( FALSE == isset($customfieldlist_widgets_general_options['effect_speed']) OR TRUE === empty($customfieldlist_widgets_general_options['effect_speed']) ) {
+			echo "	var speed = 'normal';\n";
 		} else {
 			echo "	var speed = '".$customfieldlist_widgets_general_options['effect_speed']."';\n";
 		}
@@ -2360,7 +2363,7 @@ function customfieldlist_widget_general_options() {
 
 	echo '<div class="wrap">'."\n";
 	echo '<h2>'.__('Custom Field List Widget - settings','customfieldlist').'</h2>'."\n";
-	echo '<form method="post" action="'.trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__).'">'."\n";
+	echo '<form method="post" action="">'."\n";
 	wp_nonce_field('customfieldlist_general_options_security');
 	echo '<table class="form-table">'."\n";
 
@@ -2411,7 +2414,7 @@ function customfieldlist_widget_general_options() {
 add_action('admin_menu', 'customfieldlist_add_options_page');
 function customfieldlist_add_options_page() {
 	if (function_exists('add_options_page')) {
-		$page = add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List Widgets','customfieldlist'), 'manage_links', basename(__FILE__), 'customfieldlist_widget_general_options'); 
+		add_options_page(__('Custom Field List Widgets','customfieldlist'), __('Custom Field List','customfieldlist'), 'manage_options', plugin_basename(__FILE__), 'customfieldlist_widget_general_options'); 
 	}
 }
 ?>

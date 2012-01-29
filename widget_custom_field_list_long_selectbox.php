@@ -20,7 +20,19 @@ function customfieldlist_print_long_selectbox($selectboxid) {
 	});
 	jQuery('#<?php echo $selectboxid; ?>').attr('disabled', 'disabled');
 	jQuery('#<?php echo $selectboxid; ?>').hide();
-	jQuery('#TB_window').bind( 'unload', function() {
+	var customfieldlist_orig_z_index_window = jQuery('#TB_window').css('z-index');
+	var customfieldlist_orig_z_index_overlay = jQuery('#TB_overlay').css('z-index');
+	jQuery('#TB_window').css('z-index', '10005');
+	jQuery('#TB_overlay').css('z-index', '10000');
+	<?php
+	if (version_compare($wp_version, '3.3', '<')) { 
+		echo "jQuery('#TB_window').bind( 'unload', function() {\n";
+	} else {
+		echo "jQuery('#TB_window').bind( 'tb_unload', function() {\n";
+	}
+	?>
+		jQuery('#TB_window').css('z-index', customfieldlist_orig_z_index_window);
+		jQuery('#TB_overlay').css('z-index', customfieldlist_orig_z_index_overlay);
 		jQuery('#<?php echo $selectboxid; ?>').removeAttr('disabled');
 		jQuery('#<?php echo $selectboxid; ?>').show();
 	});
