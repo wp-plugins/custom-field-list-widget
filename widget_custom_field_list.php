@@ -4,10 +4,10 @@ Plugin Name: Custom Field List Widget
 Plugin URI: http://undeuxoutrois.de/custom_field_list_widget.shtml
 Description: This plugin creates sidebar widgets with lists of the values of a custom field (name). The listed values can be (hyper-)linked in different ways.
 Author: Tim Berger
-Version: 1.2.6
+Version: 1.2.7 beta
 Author URI: http://undeuxoutrois.de/
 Min WP Version: 2.7
-Max WP Version: 3.3.1
+Max WP Version: 3.8.1
 License: GNU General Public License
 
 Requirements:
@@ -26,7 +26,7 @@ Localization:
 
 For detailed information about the usage of this plugin, please read the readme.txt.	
 
-Copyright 2012  Tim Berger  (email : timberge@cs.tu-berlin.de)
+Copyright 2014  Tim Berger  (email : be.tim.info@web.de)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,26 +46,27 @@ Parts of this plugin are based on the multiple-widgets-pattern example from the 
 
 */
 
-// #######################################################################################
-// max. number of hierarchy steps resp. number of 
-if ( ! defined( 'CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL' ) ) { define( 'CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL', 5 ); }
-// #######################################################################################
 
-// Pre-2.6 compatibility 
-if ( ! defined( 'WP_CONTENT_URL' ) ) { define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' ); }
-if ( ! defined( 'WP_CONTENT_DIR' ) ) { define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' ); }
-if ( ! defined( 'WP_PLUGIN_URL' ) ) { define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' ); }
-if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' ); }
-if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
-if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
-
+add_action('plugins_loaded', 'customfieldlist_init');
 function customfieldlist_init() {
+	// #######################################################################################
+	// max. number of hierarchy steps resp. number of 
+	if ( ! defined( 'CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL' ) ) { define( 'CUSTOM_FIELD_LIST_MAX_HIERARCHY_LEVEL', 5 ); }
+	// #######################################################################################
+
+	// Pre-2.6 compatibility 
+	if ( ! defined( 'WP_CONTENT_URL' ) ) { define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' ); }
+	if ( ! defined( 'WP_CONTENT_DIR' ) ) { define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' ); }
+	if ( ! defined( 'WP_PLUGIN_URL' ) ) { define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' ); }
+	if ( ! defined( 'WP_PLUGIN_DIR' ) ) { define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' ); }
+	if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_DIR' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_DIR', WP_PLUGIN_DIR.'/'.dirname(plugin_basename(__FILE__)) ); }
+	if ( ! defined( 'CUSTOM_FIELD_LIST_WIDGET_URL' ) ) { define( 'CUSTOM_FIELD_LIST_WIDGET_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) ); }
+	
 	// load the translation file
 	if (function_exists('load_plugin_textdomain')) {
-		load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR, '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
+		load_plugin_textdomain( 'customfieldlist', false, str_replace(WP_PLUGIN_DIR.'/languages', '', CUSTOM_FIELD_LIST_WIDGET_DIR) );
 	}
 }
-add_action('plugins_loaded', 'customfieldlist_init');
 
 // on plugin deactivation
 //~ register_deactivation_hook( (__FILE__), 'customfieldlist_on_deactivation' );
@@ -880,8 +881,11 @@ function customfieldlist($args=array(), $widget_args=1) {
 							$meta_values = $wpdb->get_results($querystring);
 							$nr_meta_values = count($meta_values);
 						}
+							
+					
+printphpnotices_var_dump($meta_values);
 
-						if (0 < $nr_meta_values) {
+						if ( 0 < $nr_meta_values ) {
 							if ( 'alphabetically' === $opt['sortby'] AND 'lastword' === $opt['orderelement'] ) {
 								$mvals=array();
 								$old_locale = setlocale(LC_COLLATE, "0");
@@ -918,7 +922,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 								}
 								$meta_values = $meta_values_tmp;
 								unset($meta_values_tmp);
-							} 
+							}
 							
 							$hierarchy = $opt['hierarchy'];
 
@@ -931,7 +935,7 @@ function customfieldlist($args=array(), $widget_args=1) {
 							foreach ($opt['donnotshowthis_customfieldname'] as $key => $value) {
 								if ( 'sel' === $value ) { // there are custom field names which should not be included in the hierarchy
 									$dontshowthis_id = $key;
-								} 
+								}
 							}
 							$new_used_fields = $used_fields;
 							for ($i=0; $i < $used_fields; $i++) {
@@ -1755,8 +1759,17 @@ function customfieldlist($args=array(), $widget_args=1) {
 			echo '</div>'."\n";
 			echo '<label for="customfieldlist_opt_'.$number.'_list_select_default_value" class="customfieldlist_label">'.__('What should be the default value of the drop down menu?:','customfieldlist').'</label> <input type="text" name="customfieldlist_opt['.$number.'][select_list_default]" value="'.$select_list_default_value.'" id="customfieldlist_opt_'.$number.'_list_select_default_value" maxlength="200" style="width:92%;" />'."\n";
 		echo '</fieldset>';
+		
+		if ( function_exists('get_admin_url') ) {
+			$adminurl = get_admin_url(); // since WP 3.0
+		} elseif ( function_exists('admin_url') ) {
+			$adminurl = admin_url(); // since WP 2.6
+		} else {
+			$adminurl = site_url() . '/wp-admin';
+		}
+		$settingsurl = trailingslashit($adminurl).'options-general.php?page='.plugin_basename(__FILE__);
 
-		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), trailingslashit(get_bloginfo('siteurl')).'wp-admin/options-general.php?page='.basename(__FILE__)).'</p>'."\n";
+		echo '<p class="customfieldlist_more_settings_advice">'.sprintf(__('settings for all widgets can be changed at the <a href="%1$s">Custom Field List Widget settings page</a>','customfieldlist'), $settingsurl).'</p>'."\n";
 	echo '</div>'."\n";
 	echo '<input type="hidden" id="customfieldlist-submit-'.$number.'" name="customfieldlist-submit['.$number.'][submit]" value="1" />'."\n";
 }
@@ -1896,7 +1909,7 @@ function customfieldlist_widget_script() {
 // add styles for the appearance of the widgets lists 
 add_action('wp_print_styles', 'customfieldlist_widget_style');
 function customfieldlist_widget_style() {
-	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list.css';
+	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/style/widget_custom_field_list.css';
 	wp_register_style( 'customfieldlist_widget_style', $stylefile );
 	wp_enqueue_style( 'customfieldlist_widget_style' );
 	$customfieldlist_widgets_general_options = get_option('widget_custom_field_list_general_options');
@@ -2319,7 +2332,7 @@ function customfieldlist_widget_admin_script() {
 add_action('admin_print_styles-widgets.php', 'customfieldlist_widget_widgetsettings_styles');
 function customfieldlist_widget_widgetsettings_styles() {
 	wp_enqueue_style( 'thickbox' );
-	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/widget_custom_field_list_widgetsettings.css';
+	$stylefile = CUSTOM_FIELD_LIST_WIDGET_URL.'/style/widget_custom_field_list_widgetsettings.css';
 	wp_register_style( 'customfieldlist_widget_widgetsettings_style', $stylefile );
 	wp_enqueue_style( 'customfieldlist_widget_widgetsettings_style' );
 }
